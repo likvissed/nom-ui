@@ -1,0 +1,47 @@
+version: "3.9"
+
+x-args: &args
+  args:
+    NODE_MAJOR: 16
+    APP_ROOT: /app
+    NG_CLI_VERSION: 14.1.0
+
+x-env: &envs
+  environment:
+    - TZ=Asia/Krasnoyarsk
+    - APP_ROOT=/app
+
+x-common: &common
+  restart: unless-stopped
+  stdin_open: true
+  tty: true
+
+x-ui: &app
+  build:
+    <<: *args
+    context: .
+    dockerfile: .docker/Dockerfiles/app.dev.Dockerfile
+
+x-frontend: &frontend
+  <<: *envs
+  <<: *app
+  volumes:
+    - .:/app
+    - node_modules:/app/node_modules
+  <<: *common
+
+services:
+  nom-ui-runner-dev:
+    <<: *frontend
+    container_name: nom-ui-runner-dev
+    command: /bin/bash
+
+  nom-ui-dev:
+    <<: *frontend
+    container_name: nom-ui-app-dev
+    ports:
+      - "42071:4200"
+    command: ng serve --host 0.0.0.0 --disable-host-check --ssl=true --ssl-cert=/app/.docker/tls/***REMOVED***.ru.crt --ssl-key=/app/.docker/tls/***REMOVED***.ru.key
+
+volumes:
+  node_modules:
