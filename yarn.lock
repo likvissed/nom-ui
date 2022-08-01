@@ -1332,6 +1332,39 @@
   resolved "https://nexus.***REMOVED***.ru/repository/npm/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@ngrx/core@^1.2.0":
+  version "1.2.0"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngrx/core/-/core-1.2.0.tgz#882b46abafa2e0e6d887cb71a1b2c2fa3e6d0dc6"
+  integrity sha512-cxPnK57DHrRG8TLeYfBVT4ZfWCqcsqtM8JmHz8GoaxWmIkWGDWoNN/PYlN8ze++zRs9Qd5ovty4rcnQqNIR15Q==
+
+"@ngrx/effects@14":
+  version "14.0.2"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngrx/effects/-/effects-14.0.2.tgz#4f448de91462a5905a58b4db8c860270e567ee83"
+  integrity sha512-1VBJ9eBoeCKSBDkn+wllV1gFGLBrRwq5So0F0QUX2rPcjpE5N1pdpuLAmmwQ84f8nttVlMOx4P9kcEM8qW9jLg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/router-store@14":
+  version "14.0.2"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngrx/router-store/-/router-store-14.0.2.tgz#4e7b3e042eadee85c9b3328415547ac34ceefdda"
+  integrity sha512-kW4//ipsZioVFeHPHQeKdn+8O0V2sPp3ydXuarsZGiosq2uQbKvYaUQqRNz2CtNyrn0z2Tw0zdEbLnvQhNrOog==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store-devtools@14":
+  version "14.0.2"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngrx/store-devtools/-/store-devtools-14.0.2.tgz#c071ca666c6de21686de69abb1f56fd85fd924ae"
+  integrity sha512-szaJSeoWA2GAaE9uzVmH00ewlWQDCI4Xfb6/5GEKMhGNtRSh6UctulNHVR+0TjjiEb4dhUBLMOVUc9HkI+yFCQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store@14":
+  version "14.0.2"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngrx/store/-/store-14.0.2.tgz#f9ab5fd68ea219aeb39276a9ba0e3e24b20e39aa"
+  integrity sha512-ogxcK7fj4zXCxCVJXzX2+jbVCfvC7ehbvbD5oWXT7GFajUIvA8FSXQzapUPAQEqFbjxgFzhjMFBApMaOcfleIQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngtools/webpack@14.1.0":
   version "14.1.0"
   resolved "https://nexus.***REMOVED***.ru/repository/npm/@ngtools/webpack/-/webpack-14.1.0.tgz#2e79fffe93f35939ed3dc65ab5aa830afdb13d39"
@@ -5886,7 +5919,7 @@ tree-kill@1.2.2:
   resolved "https://nexus.***REMOVED***.ru/repository/npm/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
 
-tslib@2.4.0, tslib@^2.1.0, tslib@^2.3.0:
+tslib@2.4.0, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0:
   version "2.4.0"
   resolved "https://nexus.***REMOVED***.ru/repository/npm/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
