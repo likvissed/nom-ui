@@ -1,0 +1,135 @@
+@import 'src/stylesheets/utils';
+
+// ------------------------------- navbar -------------------------------
+.navbar {
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background-color: #F8F8F8 !important;
+  // border-bottom: 1px solid #57a9b6;
+}
+
+.navbar-logo {
+  width: 250px;
+  min-width: 230px;
+  text-align: center;
+
+  img {
+    max-height: 45px;
+  }
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+
+  .navbar-brand-name {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    white-space: nowrap;
+  }
+
+  a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 0px;
+
+    padding: 15px 25px;
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+
+    display: block;
+    color: #3251ae;
+    cursor: pointer;
+
+    &:hover {
+      color: #60709e;
+      text-decoration: none !important;
+    }
+  }
+}
+
+.navbar-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0 1;
+  display: flex;
+  white-space: nowrap;
+
+  .nav-item {
+    display: flex;
+    margin: 4px 4px;
+    line-height: 45px;
+
+    .user-icon {
+      padding-right: 5px;
+    }
+  }
+
+}
+
+// ------------------------------- manubar -------------------------------
+
+// .menubar {
+//   top: 0;
+//   left: 0;
+//   height: 40px;
+//   width: 100%;
+//   z-index: 100;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   background-color: var(--color-menu) !important;
+
+//   ul {
+//     align-items: center;
+//     list-style: none;
+//     display: flex;
+
+//     li {
+//       font-size: 16px;
+//       border-left: 2px;
+//       white-space: nowrap; // текст в одну строку
+
+//       a {
+//         color: #F8F8F8;
+//         text-decoration: none !important;
+//         padding: 8px;
+
+//         &:hover {
+//           color: #292727cc;
+//           background-color: #e9f0f7;
+//           text-decoration: none !important;
+//         }
+//       }
+
+//     }
+
+//     li.active {
+//       background-color: #73b6c2;
+//       color: #252525;
+//       padding-bottom: 10px;
+//       padding-top: 11px;
+//     }
+
+//   }
+
+// }
+
+

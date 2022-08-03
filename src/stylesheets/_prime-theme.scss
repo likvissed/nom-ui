@@ -1,0 +1,11 @@
+::ng-deep .p-menubar {
+  height: 40px;
+  background-color: #ececec !important;
+  border-radius: 0px;
+
+  p-menubarsub {    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
