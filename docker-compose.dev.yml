@@ -41,7 +41,7 @@ services:
     container_name: nom-ui-app-dev
     ports:
       - "42071:4200"
-    command: ng serve --host 0.0.0.0 --disable-host-check --ssl=true --ssl-cert=/app/.docker/tls/***REMOVED***.ru.crt --ssl-key=/app/.docker/tls/***REMOVED***.ru.key
+    command: yarn run start-dev
 
 volumes:
   node_modules:
