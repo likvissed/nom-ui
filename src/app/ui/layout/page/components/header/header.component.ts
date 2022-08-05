@@ -42,10 +42,12 @@ export class HeaderComponent implements OnInit {
         style: {'margin-left': '0px'},
         items: [
           {
-            label: 'Статьи'
+            label: 'Статьи',
+            routerLink: '/articles'
           },
           {
-            label: 'Приказы'
+            label: 'Приказы',
+            routerLink: '/orders'
           }
         ]
       }

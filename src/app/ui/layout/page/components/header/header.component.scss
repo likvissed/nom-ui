@@ -1,7 +1,7 @@
 @import 'src/stylesheets/utils';
 
 // ------------------------------- navbar -------------------------------
-.navbar {
+.navbarr {
   top: 0;
   left: 0;
   height: 60px;
@@ -64,17 +64,19 @@
   width: 100%;
 }
 
-.navbar-nav {
+.navbar-navu {
   list-style: none;
   margin: 0;
   padding: 0 1;
   display: flex;
   white-space: nowrap;
 
-  .nav-item {
+  .nav-item-el {
     display: flex;
     margin: 4px 4px;
     line-height: 45px;
+    align-items: center;
+    font-size: 16px;
 
     .user-icon {
       padding-right: 5px;
