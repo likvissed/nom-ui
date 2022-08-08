@@ -43,16 +43,15 @@ export class HeaderComponent implements OnInit {
         items: [
           {
             label: 'Статьи',
-            routerLink: '/articles'
+            routerLink: ['/articles']
           },
           {
             label: 'Приказы',
-            routerLink: '/orders'
+            routerLink: ['/orders']
           }
         ]
       }
     ];
   }
-
 
 }

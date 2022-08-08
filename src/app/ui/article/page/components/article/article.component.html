@@ -1,111 +1,113 @@
-
 <div class="container">
-  <div class="row">
-    <ng-container *ngIf="articles$ | async as data">
-      <p-table
-        #dtable
-        [value]="data"
-        dataKey="article_id"
-        styleClass="p-datatable-sm p-datatable-gridlines"
-        [paginator]="true"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Показано с {first} по {last} из {totalRecords} записей"
-        [rowsPerPageOptions]="[10,25,50]"
-      >
+  <div class="card">
 
-        <ng-template pTemplate="caption">
-          <span class="caption-table"> Статьи </span>
-        </ng-template>
+    <div class="row">
+      <ng-container *ngIf="articles$ | async as data">
+        <p-table
+          #dtable
+          [value]="data"
+          dataKey="article_id"
+          styleClass="p-datatable-sm"
+          [paginator]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Показано с {first} по {last} из {totalRecords} записей"
+          [rowsPerPageOptions]="[10,25,50]"
+        >
 
-        <ng-template pTemplate="header">
-          <tr>
-            <th width="7%"></th>
-            <th width="5%" style="text-align:center"> № </th>
-            <th> Наименование статьи </th>
-          </tr>
+          <ng-template pTemplate="caption">
+            <span class="caption-table"> Статьи </span>
+          </ng-template>
 
-          <tr>
-            <th></th>
-            <th></th>
-            <th width="">
-              <input pInputText
-                type="text"
-                [value]="$any(dtable.filters['text'])?.value"
-                (input)="dtable.filter($any($event.target)?.value, 'text', 'contains')"
-                placeholder="Поиск по наименованию статьи"
-                class="form-control col-lg-12"
-              >
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-column let-i="rowIndex" let-expanded="expanded">
-          <tr>
-            <td>
-              <button type="button" pButton pRipple [pRowToggler]="column" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-            </td>
-            <td style="text-align:center">{{ i + 1 }}</td>
-            <!-- <td>{{ column.article_id }}</td> -->
-            <td>{{ column.text }}</td>
-          </tr>
-        </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="7%"></th>
+              <th width="5%" style="text-align:center"> № </th>
+              <th> Наименование статьи </th>
+            </tr>
 
-        <ng-template pTemplate="rowexpansion" let-column>
-          <tr>
-              <td colspan="7">
-                  <div>
-                    <ul class="pl-8 row-height">
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Длительность хранения: </span>
-                          <span>{{ column.duration | nameEmpty }}</span>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Наименование приказа: </span>
-                          <span>{{ column.order_name | nameEmpty }}</span>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Содеримое приказа: </span>
-                          <span>{{ column.order_desc | nameEmpty }}</span>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Подпункт: </span>
-                          <span>{{ column.sub | nameEmpty }}</span>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Содержимое подпункта: </span>
-                          <span>{{ column.default_name | nameEmpty }}</span>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div>
-                          <span class="attribute"> Примечание: </span>
-                          <span>{{ column.tips | nameEmpty }}</span>
-                        </div>
-                      </li>
-                   </ul>
-
-                  </div>
+            <tr>
+              <th></th>
+              <th></th>
+              <th width="">
+                <input pInputText
+                  type="text"
+                  [value]="$any(dtable.filters['text'])?.value"
+                  (input)="dtable.filter($any($event.target)?.value, 'text', 'contains')"
+                  placeholder="Поиск по наименованию статьи"
+                  class="form-control col-lg-12"
+                >
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-column let-i="rowIndex" let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="column" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
               </td>
-          </tr>
-      </ng-template>
+              <td style="text-align:center">{{ i + 1 }}</td>
+              <!-- <td>{{ column.article_id }}</td> -->
+              <td>{{ column.text }}</td>
+            </tr>
+          </ng-template>
 
-      </p-table>
+          <ng-template pTemplate="rowexpansion" let-column>
+            <tr>
+                <td colspan="7">
+                    <div>
+                      <ul class="pl-8 row-height">
 
-    </ng-container>
+                        <li>
+                          <div>
+                            <span class="attribute"> Длительность хранения: </span>
+                            <span>{{ column.duration | nameEmpty }}</span>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div>
+                            <span class="attribute"> Наименование приказа: </span>
+                            <span>{{ column.order_name | nameEmpty }}</span>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div>
+                            <span class="attribute"> Содеримое приказа: </span>
+                            <span>{{ column.order_desc | nameEmpty }}</span>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div>
+                            <span class="attribute"> Подпункт: </span>
+                            <span>{{ column.sub | nameEmpty }}</span>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div>
+                            <span class="attribute"> Содержимое подпункта: </span>
+                            <span>{{ column.default_name | nameEmpty }}</span>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div>
+                            <span class="attribute"> Примечание: </span>
+                            <span>{{ column.tips | nameEmpty }}</span>
+                          </div>
+                        </li>
+                     </ul>
+
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        </p-table>
+
+      </ng-container>
+    </div>
   </div>
 </div>

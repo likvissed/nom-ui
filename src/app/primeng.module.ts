@@ -6,7 +6,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { DividerModule } from 'primeng/divider';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
-import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 
 
@@ -17,7 +16,6 @@ const modules: any[] = [
   DividerModule,
   MenuModule,
   MenubarModule,
-  DropdownModule,
   TableModule
 ];
 
