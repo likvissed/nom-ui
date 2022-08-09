@@ -22,8 +22,6 @@ export class GetOrdersEffect {
       switchMap(() => {
         return this.orderService.getOrders().pipe(
           map((response: any ) => {//GetOrdersResponseInterface
-            console.log('resp', response);
-
             return getOrdersSuccessAction({response});
           }),
 

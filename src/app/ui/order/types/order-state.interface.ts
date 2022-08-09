@@ -1,5 +1,6 @@
 export interface OrderStateInterface {
   isSubmitting: boolean
   response: any
-  orders: any
+  orders: any,
+  errors: any
 }

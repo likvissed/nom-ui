@@ -15,4 +15,10 @@ export class OrderService {
 
     return this.http.get (url,  { headers: headers });
   }
+
+  deleteOrder(id: number) {
+    const url = `${environment.apiUrl}/delete_order`;
+
+    return this.http.delete(`${url}/${id}`)
+  }
 }

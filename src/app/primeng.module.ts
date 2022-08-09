@@ -1,3 +1,4 @@
+import { ConfirmationService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 
 import { ToolbarModule } from 'primeng/toolbar';
@@ -7,7 +8,7 @@ import { DividerModule } from 'primeng/divider';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const modules: any[] = [
   ToolbarModule,
@@ -16,7 +17,8 @@ const modules: any[] = [
   DividerModule,
   MenuModule,
   MenubarModule,
-  TableModule
+  TableModule,
+  ConfirmDialogModule
 ];
 
 @NgModule({
