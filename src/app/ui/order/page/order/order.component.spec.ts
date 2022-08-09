@@ -1,8 +1,9 @@
+import { ORDER_FEATURE_KEY, orderReducer } from './../../store/reducers';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MenubarModule } from 'primeng/menubar';
-import { DividerModule } from 'primeng/divider';
-/* tslint:disable:no-unused-variable */
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { StoreModule } from '@ngrx/store';
 
 import { OrderComponent } from './order.component';
 
@@ -15,8 +16,8 @@ describe('OrderComponent', () => {
       declarations: [ OrderComponent ],
       imports: [
         RouterTestingModule,
-        DividerModule,
-        MenubarModule
+        StoreModule.forRoot({}),
+        StoreModule.forFeature(ORDER_FEATURE_KEY, orderReducer)
       ]
     })
     .compileComponents();
