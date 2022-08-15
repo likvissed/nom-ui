@@ -233,6 +233,15 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/localize@^14.1.2":
+  version "14.1.2"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@angular/localize/-/localize-14.1.2.tgz#b7dad4d94a895cfae45b4704c2a1f0b1adaa33f4"
+  integrity sha512-4qktWELw9W3DRqbFasUGXmq4i66shprNp+4G05b6V/sLsy9DnRtPL9tiwqhBS6kwFYLlcsbGqTfCSHgOtBVUeA==
+  dependencies:
+    "@babel/core" "7.18.9"
+    glob "8.0.3"
+    yargs "^17.2.1"
+
 "@angular/material@^14.1.0":
   version "14.1.0"
   resolved "https://nexus.***REMOVED***.ru/repository/npm/@angular/material/-/material-14.1.0.tgz#35ee1cd77d8944842f8501e3c120146c83d86141"
@@ -306,6 +315,27 @@
     json5 "^2.2.1"
     semver "^6.3.0"
 
+"@babel/core@7.18.9", "@babel/core@^7.12.3", "@babel/core@^7.17.2":
+  version "7.18.9"
+  resolved "https://nexus.***REMOVED***.ru/repository/npm/@babel/core/-/core-7.18.9.tgz#805461f967c77ff46c74ca0460ccf4fe933ddd59"
+  integrity sha512-1LIb1eL8APMy91/IMW+31ckrfBM4yCoLaVzoDhZUKSM4cu1L1nIidyxkCgzPAgrC5WEz36IPEr/eSeSF9pIn+g==
+  dependencies:
+    "@ampproject/remapping" "^2.1.0"
+    "@babel/code-frame" "^7.18.6"
+    "@babel/generator" "^7.18.9"
+    "@babel/helper-compilation-targets" "^7.18.9"
+    "@babel/helper-module-transforms" "^7.18.9"
+    "@babel/helpers" "^7.18.9"
+    "@babel/parser" "^7.18.9"
+    "@babel/template" "^7.18.6"
+    "@babel/traverse" "^7.18.9"
+    "@babel/types" "^7.18.9"
+    convert-source-map "^1.7.0"
+    debug "^4.1.0"
+    gensync "^1.0.0-beta.2"
+    json5 "^2.2.1"
+    semver "^6.3.0"
+
 "@babel/core@^7.11.6":
   version "7.18.10"
   resolved "https://nexus.***REMOVED***.ru/repository/npm/@babel/core/-/core-7.18.10.tgz#39ad504991d77f1f3da91be0b8b949a5bc466fb8"
@@ -321,27 +351,6 @@
     "@babel/template" "^7.18.10"
     "@babel/traverse" "^7.18.10"
     "@babel/types" "^7.18.10"
-    convert-source-map "^1.7.0"
-    debug "^4.1.0"
-    gensync "^1.0.0-beta.2"
-    json5 "^2.2.1"
-    semver "^6.3.0"
-
-"@babel/core@^7.12.3", "@babel/core@^7.17.2":
-  version "7.18.9"
-  resolved "https://nexus.***REMOVED***.ru/repository/npm/@babel/core/-/core-7.18.9.tgz#805461f967c77ff46c74ca0460ccf4fe933ddd59"
-  integrity sha512-1LIb1eL8APMy91/IMW+31ckrfBM4yCoLaVzoDhZUKSM4cu1L1nIidyxkCgzPAgrC5WEz36IPEr/eSeSF9pIn+g==
-  dependencies:
-    "@ampproject/remapping" "^2.1.0"
-    "@babel/code-frame" "^7.18.6"
-    "@babel/generator" "^7.18.9"
-    "@babel/helper-compilation-targets" "^7.18.9"
-    "@babel/helper-module-transforms" "^7.18.9"
-    "@babel/helpers" "^7.18.9"
-    "@babel/parser" "^7.18.9"
-    "@babel/template" "^7.18.6"
-    "@babel/traverse" "^7.18.9"
-    "@babel/types" "^7.18.9"
     convert-source-map "^1.7.0"
     debug "^4.1.0"
     gensync "^1.0.0-beta.2"
