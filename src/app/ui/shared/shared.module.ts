@@ -7,15 +7,21 @@ const pipes: any[] = [
   EmptyValuePipe
 ];
 
+const components: any[] = [
+]
+
 @NgModule({
   declarations: [
-    ...pipes
+    ...pipes,
+    ...components
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    ...pipes
-  ]
+    ...pipes,
+    ...components
+  ],
+  providers: []
 })
 export class SharedModule { }

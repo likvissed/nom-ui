@@ -1,3 +1,7 @@
+import { ModalSelectArticleComponent } from '../../article/page/components/modal-select-article/modal-select-article.component';
+import { NewOrderComponent } from './../page/components/new-order/new-order.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddOrderEffect } from './../store/effects/add-order.effect';
 import { DeleteOrderEffect } from './../store/effects/delete-order.effect';
 import { OrderServiceModule } from '../services/order.service.module';
 import { SharedModule } from './../../shared/shared.module';
@@ -15,7 +19,8 @@ import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    NewOrderComponent
   ],
   imports: [
     CommonModule,
@@ -26,12 +31,19 @@ import { StoreModule } from '@ngrx/store';
     EffectsModule.forFeature(
       [
         GetOrdersEffect,
-        DeleteOrderEffect
+        DeleteOrderEffect,
+        AddOrderEffect
       ]
     ),
 
     PrimengModule,
-    SharedModule
+    SharedModule,
+
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    ModalSelectArticleComponent
   ]
 })
 export class OrderModule { }

@@ -1,3 +1,4 @@
+import { addOrderAction, addOrderFailureAction, addOrderSuccessAction } from './actions/add-order.action';
 import { getOrdersAction, getOrdersFailureAction, getOrdersSuccessAction } from './actions/get-orders.action';
 import { OrderStateInterface } from './../types/order-state.interface';
 import { Action, createReducer, on } from '@ngrx/store';
@@ -9,7 +10,8 @@ const initialState: OrderStateInterface = {
   isSubmitting: false,
   response: null,
   orders: null,
-  errors: null
+  errors: null,
+  duration_types: null
 }
 
 const reducer = createReducer(
@@ -18,17 +20,21 @@ const reducer = createReducer(
   on(getOrdersAction, (state): OrderStateInterface => ({
     ...state,
     isSubmitting: true,
-    orders: null
+    orders: null,
+    duration_types: null
   })),
   on(getOrdersSuccessAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
     response: action.response,
-    orders: action.response.orders
+    orders: action.response.orders,
+    duration_types: action.response.data_filters.duration_types
   })),
   on(getOrdersFailureAction, (state, action): any => ({
     ...state,
-    isSubmitting: false
+    isSubmitting: false,
+    orders: null,
+    duration_types: null
   })),
 
   on(deleteOrderAction, (state): any => ({
@@ -36,9 +42,21 @@ const reducer = createReducer(
   })),
   on(deleteOrderSuccessAction, (state, action): any => ({
     ...state,
-    response: action.response
+    response: action
   })),
   on(deleteOrderFailureAction, (state, action): any => ({
+    ...state,
+    errors: action.error,
+  })),
+
+  on(addOrderAction, (state): any => ({
+    ...state
+  })),
+  on(addOrderSuccessAction, (state, action): any => ({
+    ...state,
+    response: action
+  })),
+  on(addOrderFailureAction, (state, action): any => ({
     ...state,
     errors: action.error,
   })),

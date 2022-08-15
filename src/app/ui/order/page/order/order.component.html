@@ -1,6 +1,14 @@
 <div class="container">
-  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+  <p-confirmDialog [style]="{width: '700px'}" [baseZIndex]="10000"></p-confirmDialog>
   <div class="card">
+
+    <div class="row">
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="Добавить приказ" icon="pi pi-plus" (click)="onNewOrder()" class="p-button-success p-button-outlined"></button>
+        </ng-template>
+    </p-toolbar>
+    </div>
 
     <div class="row">
       <ng-container *ngIf="orders$ | async as data">
@@ -17,7 +25,7 @@
         >
 
           <ng-template pTemplate="caption">
-            <span class="caption-table"> Приказы </span>
+            <span class="caption-table"> Список приказов </span>
           </ng-template>
 
           <ng-template pTemplate="header">
@@ -88,7 +96,7 @@
 
               <td>
                 <button pButton pRipple icon="pi pi-trash" (click)="onDeleteOrder(column.id, column.name)" class="p-button-danger p-button-outlined" ></button>
-            </td>
+              </td>
             </tr>
           </ng-template>
 

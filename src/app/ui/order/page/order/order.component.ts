@@ -1,4 +1,6 @@
-import { selectAllOrders } from './../../store/selectors';
+import { DurationTypeInterface } from './../../types/duration-type.interface';
+import { NewOrderComponent } from './../components/new-order/new-order.component';
+import { selectAllOrders, selectAllDurationTypes } from './../../store/selectors';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
@@ -10,34 +12,50 @@ import { deleteOrderAction } from '../../store/actions/delete-order.action';
 
 import { ConfirmationService } from 'primeng/api';
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
   providers: [
-    ConfirmationService
+    ConfirmationService, DialogService
   ]
 })
 export class OrderComponent implements OnInit {
   @ViewChild('dtable') table!: Table;
   orders$!: Observable<any>;
+  durationTypes = [];
 
   constructor(
     private store: Store,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public dialogService: DialogService
   ) { }
 
   ngOnInit() {
-    this.initializeValues();
+    this.onInitializeValues();
   }
 
-  initializeValues() {
+  onInitializeValues() {
     this.store.dispatch(getOrdersAction());
+
     this.onLoadOrders();
+    this.onLoadDurationTypes();
   }
 
   onLoadOrders() {
     this.orders$ = this.store.pipe(select(selectAllOrders));
+  }
+
+  onLoadDurationTypes() {
+    // TODO: Перенести в отдельный запрос в компонент NewOrderComponent
+    this.store.pipe(select(selectAllDurationTypes))
+        .subscribe((durationValues: any) => {
+          if (durationValues) {
+            this.durationTypes = durationValues;
+          }
+        });
   }
 
   onDeleteOrder(id: number, name: string) {
@@ -49,6 +67,16 @@ export class OrderComponent implements OnInit {
       rejectLabel: 'Нет',
       accept: () => {
         this.store.dispatch(deleteOrderAction({id: id}));
+      }
+    });
+  }
+
+  onNewOrder() {
+    const ref = this.dialogService.open(NewOrderComponent, {
+      header: 'Добавление приказа',
+      width: '50%',
+      data: {
+        durationTypes: this.durationTypes
       }
     });
   }

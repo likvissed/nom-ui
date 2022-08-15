@@ -48,7 +48,7 @@ const appModules: any[] = [
       logOnly: environment.production
     }),
 
-    appModules
+    ...appModules
   ],
   providers: [],
   bootstrap: [AppComponent]

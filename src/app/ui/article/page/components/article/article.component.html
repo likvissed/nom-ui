@@ -16,17 +16,19 @@
         >
 
           <ng-template pTemplate="caption">
-            <span class="caption-table"> Статьи </span>
+            <span class="caption-table"> Список статей </span>
           </ng-template>
 
           <ng-template pTemplate="header">
             <tr>
               <th width="7%"></th>
               <th width="5%" style="text-align:center"> № </th>
+              <th> Подпункт </th>
               <th> Наименование статьи </th>
             </tr>
 
             <tr>
+              <th></th>
               <th></th>
               <th></th>
               <th width="">
@@ -45,8 +47,9 @@
               <td>
                 <button type="button" pButton pRipple [pRowToggler]="column" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
               </td>
-              <td style="text-align:center">{{ i + 1 }}</td>
-              <!-- <td>{{ column.article_id }}</td> -->
+              <!-- <td style="text-align:center">{{ i + 1 }}</td> -->
+              <td style="text-align:center">{{ column.article_id }}</td>
+              <td style="text-align:center">{{ column.sub }}</td>
               <td>{{ column.text }}</td>
             </tr>
           </ng-template>

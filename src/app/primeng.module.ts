@@ -1,4 +1,3 @@
-import { ConfirmationService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 
 import { ToolbarModule } from 'primeng/toolbar';
@@ -9,6 +8,9 @@ import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const modules: any[] = [
   ToolbarModule,
@@ -18,12 +20,16 @@ const modules: any[] = [
   MenuModule,
   MenubarModule,
   TableModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  InputTextModule,
+  DropdownModule,
+  DynamicDialogModule
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  declarations: []
+  declarations: [],
+  providers: []
 })
 export class PrimengModule {}

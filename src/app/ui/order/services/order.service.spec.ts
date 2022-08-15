@@ -1,3 +1,4 @@
+import { NewOrderComponent } from './../page/components/new-order/new-order.component';
 import { ConfirmationService } from 'primeng/api';
 import { ORDER_FEATURE_KEY, orderReducer } from './../store/reducers';
 import { OrderComponent } from './../page/order/order.component';
@@ -13,8 +14,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { StoreModule } from '@ngrx/store';
 
 describe('OrderService', () => {
-  let fixture: ComponentFixture<OrderComponent>;
-  let component: OrderComponent;
   let service: OrderService;
   let confirmationService: ConfirmationService;
   let httpTestingController: HttpTestingController;
@@ -31,7 +30,6 @@ describe('OrderService', () => {
         ConfirmationService
       ],
       declarations: [
-        OrderComponent
       ]
     }).compileComponents();
 
@@ -39,19 +37,12 @@ describe('OrderService', () => {
     confirmationService = TestBed.inject(ConfirmationService);
 
     httpTestingController = TestBed.inject(HttpTestingController);
-
-    fixture = TestBed.createComponent(OrderComponent);
-    component = fixture.componentInstance;
   });
 
   let apiUrl = `${environment.apiUrl}`;
 
   it('should create service', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should create component', () => {
-    expect(component).toBeTruthy();
   });
 
   describe('#getOrders', () => {
@@ -116,8 +107,6 @@ describe('OrderService', () => {
           expect(response).toEqual(dataSuccess);
         })
 
-      component.onDeleteOrder(params.id, params.name);
-
       expect(service.deleteOrder).toHaveBeenCalled();
     });
 
@@ -125,8 +114,46 @@ describe('OrderService', () => {
       spyOn(service, 'deleteOrder');
       spyOn(confirmationService, 'confirm').and.callFake((confirmation: any) => {return confirmation.reject()});
 
-      component.onDeleteOrder(params.id, params.name);
       expect(service.deleteOrder).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('#addOrder', () => {
+    const addOrderUrl = `${apiUrl}/order_reg`;
+    const params = {
+      article: "1б",
+      name: 'test data',
+      duration_type: 1,
+      desc: '',
+      link: 'http://',
+    };
+    const dataSuccess = {
+      result: `Приказ ${params.name} успешно зарегистрирован для статьи: ${params.article}`
+    };
+
+    it('should be add record', () => {
+      spyOn(service, 'addOrder').and.callThrough();
+      service.addOrder(params)
+        .subscribe(response => {
+          expect(response).toEqual(dataSuccess);
+        })
+
+      expect(service.addOrder).toHaveBeenCalled();
+    });
+
+    it('should call http with the expected url and params', () => {
+      service.addOrder(params)
+        .subscribe(response => {
+          expect(response).toEqual(dataSuccess);
+        })
+
+      const req = httpTestingController.expectOne(addOrderUrl);
+
+      expect(req.request.method).toEqual('POST');
+      expect(req.request.responseType).toEqual('json');
+      expect(req.request.url).toEqual(addOrderUrl);
+
+      req.flush(dataSuccess);
     });
   });
 });

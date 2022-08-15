@@ -21,4 +21,12 @@ export class OrderService {
 
     return this.http.delete(`${url}/${id}`)
   }
+
+  addOrder(data: any) {
+    const url = `${environment.apiUrl}/order_reg`;
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.post(url, data, { headers: headers})
+  }
 }

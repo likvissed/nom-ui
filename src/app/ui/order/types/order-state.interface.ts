@@ -3,4 +3,5 @@ export interface OrderStateInterface {
   response: any
   orders: any,
   errors: any
+  duration_types: any
 }

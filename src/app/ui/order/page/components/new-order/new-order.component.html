@@ -1,0 +1,90 @@
+<div class="p-fluid grid">
+
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="py-2">
+        <label> Статья </label>
+
+        <div class="flex">
+          <div class="w-9 pr-2">
+            <input type="text" pInputText formControlName="article"/>
+          </div>
+          <div class="w-3">
+            <button pButton pRipple label="Выбрать" icon="pi pi-search" (click)="onOpenModalListArticles()" class="p-button-primary p-button-outlined"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Наименование приказа </label>
+        <input type="text" pInputText formControlName="name"/>
+
+        <div class="p-error" *ngIf="form.get('name')!.invalid && (form.get('name')!.dirty || form.get('name')!.touched)">
+          <small *ngIf="form.get('name')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+          <small *ngIf="form.get('name')?.errors?.['maxlength']">
+            Наименование приказа должно быть не более {{form.get('name')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Длительность хранения </label>
+        <p-dropdown [options]="durationTypes" formControlName="duration_type" optionLabel="duration" optionValue="id"></p-dropdown>
+
+        <div class="p-error" *ngIf="form.get('duration_type')!.invalid && (form.get('duration_type')!.dirty || form.get('duration_type')!.touched)">
+          <small *ngIf="form.get('duration_type')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Ссылка на приказ </label>
+        <input type="text" pInputText formControlName="link"/>
+
+        <div class="p-error" *ngIf="form.get('link')!.invalid && (form.get('link')!.dirty || form.get('link')!.touched)">
+          <small *ngIf="form.get('link')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+          <small *ngIf="form.get('link')?.errors?.['maxlength']">
+            Ссылка должна содержать не более {{form.get('link')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Примечание </label>
+        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="false" formControlName="desc" class="w-full p-inputtext"></textarea>
+
+        <div class="p-error" *ngIf="form.get('desc')!.invalid && (form.get('desc')!.dirty || form.get('desc')!.touched)">
+          <small *ngIf="form.get('desc')?.errors?.['maxlength']">
+            Примечание должно быть не более {{form.get('desc')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-content-end mt-3">
+      <p-button
+        label="Сохранить"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        class="mr-2"
+        styleClass="p-button-outlined p-button-success"
+        (click)="onSaveOrder()"
+      ></p-button>
+
+      <p-button
+        label="Отмена"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        class="mr-2"
+        styleClass="p-button-outlined p-button-secondary"
+        (click)="onCloseModal()"
+      ></p-button>
+    </div>
+
+  </div>
+
+</div>
+
