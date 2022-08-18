@@ -24,17 +24,19 @@ export class HeaderComponent implements OnInit {
         icon: "pi pi-fw pi-book",
         items: [
           {
-            label: 'Создать'
+            label: 'Создать',
+            routerLink: ['/nomenclature/new']
           },
           {
-            label: 'Текущая'
+            label: 'Текущая',
+            routerLink: ['/nomenclature/current']
           }
         ]
       },
       {
         label: "Список номенклатур",
         icon: "pi pi-fw pi-align-justify",
-        routerLink: '/'
+        routerLink: ['/nomenclature/list']
       },
       {
         icon: "pi pi-fw pi-cog",

@@ -27,6 +27,10 @@ const routes: Routes = [
         path: 'orders',
         loadChildren: (): Promise<any> => import('src/app/ui/order/shared/order.module').then((modules) => modules.OrderModule),
       },
+      {
+        path: 'nomenclature',
+        loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/shared/nomenclature.module').then((modules) => modules.NomenclatureModule),
+      },
     ],
   },
   // {

@@ -1,3 +1,4 @@
+import { NomenclatureModule } from './ui/nomenclature/shared/nomenclature.module';
 import { SharedModule } from './ui/shared/shared.module';
 import { OrderModule } from './ui/order/shared/order.module';
 import { ArticleModule } from './ui/article/shared/article.module';
@@ -29,7 +30,8 @@ const appModules: any[] = [
   LayoutModule,
   ArticleModule,
   OrderModule,
-  SharedModule
+  SharedModule,
+  NomenclatureModule
 ];
 
 @NgModule({
