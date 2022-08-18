@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
 import { selectAllArticles } from '../../../store/selectors';
@@ -34,7 +35,17 @@ export class ModalSelectArticleComponent implements OnInit {
   }
 
   onLoadArticles() {
-    this.articles$ = this.store.pipe(select(selectAllArticles));
+    this.articles$ = this.store.pipe(
+      select(selectAllArticles),
+      map((data: any) => {
+        if (data) {
+          return data.map((item: any, index: number) => ({
+            ...item,
+            index: index + 1
+          }));
+        }
+      } )
+    );
   }
 
   onSelected(col: any) {

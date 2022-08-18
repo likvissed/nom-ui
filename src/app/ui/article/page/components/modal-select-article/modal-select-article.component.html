@@ -4,7 +4,7 @@
       <p-table
         #dtable
         [value]="data"
-        dataKey="article_id"
+        dataKey="index"
         styleClass="p-datatable-sm"
         [paginator]="true"
         [rows]="7"
@@ -40,7 +40,7 @@
             <td>
               <button type="button" pButton pRipple [pRowToggler]="column" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
             </td>
-            <td style="text-align:center">{{ i + 1 }}</td>
+            <td style="text-align:center">{{ column.article_id }}</td>
             <td style="text-align:center">{{ column.sub }}</td>
             <td>{{ column.text }}</td>
             <td>

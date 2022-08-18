@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
 import { selectAllArticles } from './../../../store/selectors';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -30,6 +31,16 @@ export class ArticleComponent implements OnInit {
   }
 
   onLoadArticles() {
-    this.articles$ = this.store.pipe(select(selectAllArticles));
+    this.articles$ = this.store.pipe(
+      select(selectAllArticles),
+      map((data: any) => {
+        if (data) {
+          return data.map((item: any, index: number) => ({
+            ...item,
+            index: index + 1
+          }));
+        }
+      } )
+    );
   }
 }

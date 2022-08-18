@@ -7,4 +7,5 @@ export interface ArticleInterface {
   sub: string
   text: string
   tips: string
+  index?: number
 }
