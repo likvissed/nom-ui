@@ -30,7 +30,7 @@ export class ModalSelectArticleComponent implements OnInit {
   }
 
   initializeValues() {
-    this.store.dispatch(getArticlesAction( { data: {}  }));
+    this.store.dispatch(getArticlesAction( { data: {} }));
     this.onLoadArticles();
   }
 

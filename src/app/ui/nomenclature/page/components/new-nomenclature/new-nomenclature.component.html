@@ -1,3 +1,327 @@
-<p>
-  new-nomenclature works!
-</p>
+<div class="p-fluid grid">
+  <div class="container">
+    <div class="card">
+      <h5 class="pb-3"> Создание номенклатуры дел </h5>
+      <form [formGroup]="form">
+
+        <div class="mb-3">
+
+          <p-panel header="Шапка документа">
+            <!-- Вводные поля -->
+            <div class=flex>
+
+              <div class="py-2 pr-3 w-full">
+                <label> Наименование участка делопроизводства: </label>
+                <input type="text" pInputText formControlName="head_dept"/>
+
+                <div class="p-error" *ngIf="form.get('head_dept')!.invalid && (form.get('head_dept')!.dirty || form.get('head_dept')!.touched)">
+                  <small *ngIf="form.get('head_dept')?.errors?.['required']">
+                    Не может быть пустым
+                  </small>
+
+                  <small *ngIf="form.get('head_dept')?.errors?.['maxlength']">
+                    Наименование должно содержать не более {{form.get('head_dept')?.errors?.['maxlength'].requiredLength }} символов.
+                    Сейчас длина равна {{ form.get('head_dept')?.errors?.['maxlength'].actualLength }} символа
+                  </small>
+                </div>
+              </div>
+
+              <div class="py-2 pr-3 w-4">
+                <label> Утверждающий: </label>
+                <p-autoComplete
+                  #autoComplete
+                  id="employee"
+                  formControlName="sign_main"
+                  [suggestions]="employees$ | async"
+                  (completeMethod)="searchEmployee($event)"
+                  field="fio"
+                  [minLength]="1"
+                  [forceSelection]="true"
+                  [showEmptyMessage]="true"
+                  appendTo="body"
+                  placeholder="Введите ФИО или таб.номер"
+                  [autofocus]="true"
+                >
+                  <ng-template let-employee pTemplate="item">
+                    <span class="ml-3">{{ employee.fio }}</span>
+                    <span> (отд. {{ employee.dept }}) </span>
+                  </ng-template>
+
+                </p-autoComplete>
+
+                <div class="p-error" *ngIf="form.get('sign_main')!.invalid && (form.get('sign_main')!.dirty || form.get('sign_main')!.touched)">
+                  <small *ngIf="form.get('sign_main')?.errors?.['required']">
+                    Не может быть пустым
+                  </small>
+                </div>
+              </div>
+
+              <div class="py-2">
+                <label> На год: </label>
+                <p-dropdown [options]="years" formControlName="year" optionLabel="name" optionValue="name"></p-dropdown>
+
+                <div class="p-error" *ngIf="form.get('year')!.invalid && (form.get('year')!.dirty || form.get('year')!.touched)">
+                  <small *ngIf="form.get('year')?.errors?.['required']">
+                    Не может быть пустым
+                  </small>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+
+        <div class="mb-3">
+
+          <p-panel header="Список номенклатуры дел">
+            <!-- Основная таблица -->
+            <div class="row">
+              <ng-container>
+                <div>
+                  <p-table
+                    [value]="allRecords.controls"
+                    [reorderableColumns]="true"
+                  >
+                  <ng-template pTemplate="caption">
+                    <div class="flex">
+                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewRecord()" class="mr-2" pTooltip="Добавить запись" tooltipPosition="bottom"></button>
+                    </div>
+                  </ng-template>
+
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th></th>
+                      <th width="15%"> Индекс дел </th>
+                      <th width="40%"> Наименование разделов и дел </th>
+                      <th width="15%"> Дата заведения и закрытия </th>
+                      <th width="7%"> Срок хранения </th>
+                      <th width="2%"> Номер статьи </th>
+                      <th width="15%"> Примечание </th>
+                      <th width="2%"></th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                    <ng-container formArrayName="tableRowArray">
+                      <tr [formGroupName]="rowIndex" [pReorderableRow]="rowIndex">
+                        <td>
+                          <span class="pi pi-bars" [pReorderableRowHandle]="rowIndex"></span>
+                        </td>
+
+                        <td>
+                          <div class="flex">
+                            <div class="w-6 pr-1">
+                              <label class="pr-1"> {{ leftIndex }} - {{ rowIndex + 1 }} </label>
+                            </div>
+                            <div class="w-2">
+                              <p-checkbox name="dsp" [binary]="true" label="ДСП" formControlName="is_dsp"></p-checkbox>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="flex">
+                            <div class="w-full pr-1">
+                              <label> {{ rowData.get('text').value }} </label>
+
+                              <div class="p-error" *ngIf="rowData.get('text')!.invalid">
+                                <small *ngIf="rowData.get('text')?.errors?.['required']">
+                                  Необходимо выбрать
+                                </small>
+                              </div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center justify-content-end">
+                              <button
+                                pButton
+                                pRipple
+                                icon="pi pi-search"
+                                (click)="onOpenModalSelectArticle(rowIndex)"
+                                class="p-button-primary p-button-outlined"
+                                pTooltip="Выбрать статью"
+                                tooltipPosition="top"
+                              ></button>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="flex">
+                            <div class="w-9 pr-1">
+                              <label> {{ rowData.get('toms').value | showStr }} </label>
+
+                              <div class="p-error" *ngIf="rowData.get('toms')!.invalid">
+                                <small *ngIf="rowData.get('toms')?.errors?.['required']">
+                                  Необходимо выбрать
+                                </small>
+                              </div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center justify-content-end">
+                              <button
+                                pButton
+                                pRipple
+                                icon="pi pi-list"
+                                (click)="onOpenModalCreateTome(rowIndex)"
+                                class="p-button-primary p-button-outlined"
+                                pTooltip="Редактировать тома"
+                                tooltipPosition="top"
+                              ></button>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <label> {{ rowData.get('duration').value }} </label>
+
+                          <div class="p-error" *ngIf="rowData.get('duration')!.invalid">
+                            <small *ngIf="rowData.get('duration')?.errors?.['required']">
+                              Необходимо выбрать
+                            </small>
+                          </div>
+                        </td>
+
+                        <td>
+                          <label> {{ rowData.get('article_number').value }} </label>
+
+                          <div class="p-error" *ngIf="rowData.get('article_number')!.invalid">
+                            <small *ngIf="rowData.get('article_number')?.errors?.['required']">
+                              Необходимо выбрать
+                            </small>
+                          </div>
+                        </td>
+
+                        <td>
+                          <input type="text" pInputText formControlName="tips"/>
+
+                          <div class="p-error" *ngIf="rowData.get('tips')!.invalid && (rowData.get('tips')!.dirty || rowData.get('tips')!.touched)">
+                            <small *ngIf="rowData.get('tips')?.errors?.['maxlength']">
+                              Примечание должно содержать не более {{rowData.get('tips')?.errors?.['maxlength'].requiredLength }} символов
+                            </small>
+                          </div>
+                        </td>
+
+                        <td>
+                          <button
+                            pButton
+                            pRipple
+                            icon="pi pi-trash"
+                            (click)="onDeleteRecord(rowIndex)"
+                            class="p-button-danger p-button-outlined"
+                            pTooltip="Удалить запись"
+                            tooltipPosition="top"
+                          ></button>
+                        </td>
+
+                      </tr>
+                    </ng-container>
+                  </ng-template>
+
+                  </p-table>
+                </div>
+
+              </ng-container>
+
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="mb-3">
+          <p-panel header="Список согласующих">
+            <!-- Согласующие -->
+            <div class="row">
+              <ng-container>
+                <p-table
+                  [value]="allSigns.controls"
+                  [reorderableColumns]="true"
+                >
+                  <ng-template pTemplate="caption">
+                    <div class="flex">
+                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewSign()" class="mr-2" pTooltip="Добавить согласующего" tooltipPosition="bottom"></button>
+                    </div>
+                  </ng-template>
+
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th width=""> ФИО </th>
+                      <th width=""> Должность </th>
+                      <th width=""></th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                    <ng-container formArrayName="signs_tns">
+                      <tr [formGroupName]="rowIndex">
+                        <td>
+                          <p-autoComplete
+                            #autoComplete
+                            [suggestions]="employees$ | async"
+                            (completeMethod)="searchEmployee($event)"
+                            field="fio"
+                            [minLength]="1"
+                            [forceSelection]="true"
+                            [showEmptyMessage]="true"
+                            appendTo="body"
+                            placeholder="Введите ФИО или таб.номер"
+                            [autofocus]="true"
+                            (onSelect)="selectEmpSign($event, rowIndex)"
+                          >
+                            <ng-template let-employee pTemplate="item">
+                              <span class="ml-3">{{ employee.fio }}</span>
+                              <span> (отд. {{ employee.dept }}) </span>
+                            </ng-template>
+
+                          </p-autoComplete>
+
+                          <!-- <div class="p-error" *ngIf="rowData.get('fio')!.invalid && (rowData.get('fio')!.dirty || rowData.get('fio')!.touched)">
+                            <small *ngIf="rowData.get('fio')?.errors?.['required']">
+                              Не может быть пустым
+                            </small>
+                          </div> -->
+                        </td>
+
+                        <td>
+                          <input type="text" pInputText formControlName="title"/>
+                        </td>
+
+                        <td>
+                          <button
+                            pButton
+                            pRipple
+                            icon="pi pi-trash"
+                            (click)="onDeleteSign(rowIndex)"
+                            class="p-button-danger p-button-outlined"
+                            pTooltip="Удалить согласующего"
+                            tooltipPosition="top"
+                          ></button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </ng-template>
+
+
+                </p-table>
+              </ng-container>
+            </div>
+
+
+            <div class="pt-6">
+              <div class="flex justify-content-end mt-3">
+                <p-button
+                  label="Сохранить"
+                  icon="mdi mdi-loading mdi-spin mdi-18px"
+                  class="pr-2"
+                  styleClass="p-button-outlined p-button-success"
+                  (click)="onShowTemplate()"
+                ></p-button>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<pre>
+  {{ form.value | json }}
+</pre>

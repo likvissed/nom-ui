@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="row">
+    <form [formGroup]="form">
+
+      <p-table
+        [value]="tableRowArray.controls"
+        [reorderableColumns]="true"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button type="button" pButton pRipple icon="pi pi-plus" (click)="onAddRow()" class="mr-2" pTooltip="Добавить" tooltipPosition="bottom"></button>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th width="15%"> № Тома </th>
+          <th width="25%"> Дата заведения </th>
+          <th width="45%"> Дата закрытия </th>
+          <th width="5%"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-column let-i="rowIndex" let-expanded="expanded">
+        <ng-container formArrayName="toms">
+          <tr [formGroupName]="i">
+            <td>
+              <label class="pr-1"> Том - </label>
+              <input type="text" pInputText formControlName="index" class="w-5"/>
+            </td>
+
+            <td>
+              <p-calendar
+                formControlName="date_start"
+                appendTo="body"
+                dateFormat="dd.mm.yy"
+                placeholder="Выберите дату"
+                [showIcon]="true"
+                [readonlyInput]="true"
+                (onSelect)="onSelectDateStart(i)"
+              >
+              </p-calendar>
+            </td>
+
+            <td>
+              <div class="flex">
+                <div class="w-full pr-1">
+                  <p-dropdown
+                    [options]="durationTypes"
+                    formControlName="date_end_string"
+                    optionLabel="duration"
+                    placeholder="Выберите значение"
+                    (onChange)="onClearSelectDateEnd(i)"
+                  ></p-dropdown>
+                </div>
+
+                <div class="w-full">
+                  <div *ngIf="column.get('date_end_string').value.id == -1">
+                    <p-calendar
+                      formControlName="date_end"
+                      appendTo="body"
+                      dateFormat="dd.mm.yy"
+                      placeholder="Выберите дату"
+                      [showIcon]="true"
+                      [readonlyInput]="true"
+                      (onSelect)="onSelectDateEnd(i)"
+                    >
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+
+            </td>
+
+            <td>
+              <button pButton pRipple icon="pi pi-trash" (click)="onDeleteRow(i)" class="p-button-danger p-button-outlined" ></button>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-template>
+      </p-table>
+    </form>
+  </div>
+
+</div>
+<div class="pt-6">
+  <div class="flex justify-content-end mt-3">
+    <p-button
+      label="Сохранить"
+      icon="mdi mdi-loading mdi-spin mdi-18px"
+      class="pr-2"
+      styleClass="p-button-outlined p-button-success"
+      (click)="onSaveTome()"
+      [disabled]="form.invalid"
+    ></p-button>
+
+    <p-button
+      label="Отмена"
+      icon="mdi mdi-loading mdi-spin mdi-18px"
+      styleClass="p-button-outlined p-button-secondary"
+      (click)="onCloseModal()"
+    ></p-button>
+  </div>
+</div>

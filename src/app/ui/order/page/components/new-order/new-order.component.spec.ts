@@ -1,4 +1,4 @@
-import { DURATIONS_STUB } from './../../../store/effects/duration.stub';
+import { DURATIONS_STUB } from '../../../store/duration.stub';
 import { ORDER_FEATURE_KEY, orderReducer } from './../../../store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';

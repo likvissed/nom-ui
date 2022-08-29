@@ -1,4 +1,4 @@
-import { DurationTypeInterface } from './../../types/duration-type.interface';
+import { DurationTypeInterface } from '../types/duration-type.interface';
 
 export const DURATION_STUB = {
   id: 1,

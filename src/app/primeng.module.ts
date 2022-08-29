@@ -11,6 +11,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PanelModule } from 'primeng/panel';
+
 
 const modules: any[] = [
   ToolbarModule,
@@ -23,7 +28,11 @@ const modules: any[] = [
   ConfirmDialogModule,
   InputTextModule,
   DropdownModule,
-  DynamicDialogModule
+  DynamicDialogModule,
+  AutoCompleteModule,
+  CalendarModule,
+  CheckboxModule,
+  PanelModule
 ];
 
 @NgModule({

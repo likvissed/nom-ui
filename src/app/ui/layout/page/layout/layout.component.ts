@@ -1,4 +1,7 @@
+import { primeLocale } from './../../../../lib/primeng.locale';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-layout',
@@ -8,9 +11,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private config: PrimeNGConfig
+  ) { }
 
   ngOnInit(): void {
+    this.config.setTranslation(primeLocale);
   }
 
 }
