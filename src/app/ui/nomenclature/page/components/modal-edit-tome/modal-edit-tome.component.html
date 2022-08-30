@@ -30,10 +30,11 @@
             </td>
 
             <td>
+              <!-- TODO: dateFormat="dd.mm.yy" -->
               <p-calendar
                 formControlName="date_start"
                 appendTo="body"
-                dateFormat="dd.mm.yy"
+                dateFormat="yy-mm-dd"
                 placeholder="Выберите дату"
                 [showIcon]="true"
                 [readonlyInput]="true"
@@ -59,7 +60,7 @@
                     <p-calendar
                       formControlName="date_end"
                       appendTo="body"
-                      dateFormat="dd.mm.yy"
+                      dateFormat="yy-mm-dd"
                       placeholder="Выберите дату"
                       [showIcon]="true"
                       [readonlyInput]="true"

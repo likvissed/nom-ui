@@ -37,9 +37,8 @@ describe('NewOrderComponent', () => {
     component = fixture.componentInstance;
 
     formBuilder = TestBed.inject(FormBuilder);
-    console.log('form', component.form);
     component.durationTypes = DURATIONS_STUB;
-    // fixture.detectChanges();
+     // fixture.detectChanges();
   });
 
   it('should create', () => {

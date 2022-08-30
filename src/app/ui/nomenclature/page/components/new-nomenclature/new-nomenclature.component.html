@@ -9,7 +9,6 @@
           <p-panel header="Шапка документа">
             <!-- Вводные поля -->
             <div class=flex>
-
               <div class="py-2 pr-3 w-full">
                 <label> Наименование участка делопроизводства: </label>
                 <input type="text" pInputText formControlName="head_dept"/>
@@ -73,7 +72,7 @@
 
         <div class="mb-3">
 
-          <p-panel header="Список номенклатуры дел">
+          <p-panel header="Список разделов и дел">
             <!-- Основная таблица -->
             <div class="row">
               <ng-container>
@@ -102,7 +101,7 @@
                   </ng-template>
 
                   <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                    <ng-container formArrayName="tableRowArray">
+                    <ng-container formArrayName="table">
                       <tr [formGroupName]="rowIndex" [pReorderableRow]="rowIndex">
                         <td>
                           <span class="pi pi-bars" [pReorderableRowHandle]="rowIndex"></span>
@@ -279,7 +278,7 @@
                         </td>
 
                         <td>
-                          <input type="text" pInputText formControlName="title"/>
+                          <input type="text" pInputText formControlName="title" placeholder="Должность"/>
                         </td>
 
                         <td>
@@ -303,25 +302,26 @@
             </div>
 
 
-            <div class="pt-6">
-              <div class="flex justify-content-end mt-3">
-                <p-button
-                  label="Сохранить"
-                  icon="mdi mdi-loading mdi-spin mdi-18px"
-                  class="pr-2"
-                  styleClass="p-button-outlined p-button-success"
-                  (click)="onShowTemplate()"
-                ></p-button>
-              </div>
-            </div>
           </p-panel>
         </div>
 
+        <div class="pt-6">
+
+          <pre>
+            | {{ isSubmitting$ | async }}
+          </pre>
+          <div class="flex justify-content-end mt-3">
+            <p-button
+              label="Сформировать образец документа"
+              icon="mdi mdi-loading mdi-spin mdi-18px"
+              class="pr-2"
+              styleClass="p-button-outlined p-button-success"
+              (click)="onShowTemplate()"
+              [disabled]="(isSubmitting$  | async) || false"
+            ></p-button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
-
-<pre>
-  {{ form.value | json }}
-</pre>

@@ -20,19 +20,12 @@ export class FindEmployeeEffect {
       switchMap((value) => {
         return this.employeeService.findUsers(value.data).pipe(
           map((response: any) => {
-            console.log('employee success', response);
-
             return findEmployeeSuccessAction({response});
           }),
 
-          catchError((error: HttpErrorResponse) => {
-            console.log('employee err', error);
-
-            return of(findEmployeeFailureAction(error));
-          })
-          // catchError((errorResponse: HttpErrorResponse) => of(
-          //   findEmployeeFailureAction({error: errorResponse.error.message})
-          // ))
+          catchError((errorResponse: HttpErrorResponse) => of(
+            findEmployeeFailureAction({error: errorResponse.error.message})
+          ))
         )
       })
     )

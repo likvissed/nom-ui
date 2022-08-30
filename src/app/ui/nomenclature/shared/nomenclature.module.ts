@@ -1,3 +1,9 @@
+import { ModalTemplateComponent } from './../page/components/modal-template/modal-template.component';
+import { CreateTemplateEffect } from './../store/effects/create-template.effect';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { NOMENCLATURE_FEATURE_KEY, nomenclatureReducer } from './../store/reducers';
+import { NomenclatureServiceModule } from './../services/nomenclature.service.module';
 import { ModalEditTomeComponent } from './../page/components/modal-edit-tome/modal-edit-tome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../../shared/shared.module';
@@ -13,30 +19,26 @@ import { NgModule } from '@angular/core';
     NewNomenclatureComponent,
     CurrentNomenclatureComponent,
     ListNomenclatureComponent,
-    ModalEditTomeComponent
+    ModalEditTomeComponent,
+    ModalTemplateComponent
   ],
   imports: [
     CommonModule,
     NomenclatureRoutingModule,
-    // OrderServiceModule,
+    NomenclatureServiceModule,
 
-    // StoreModule.forFeature(ORDER_FEATURE_KEY, orderReducer),
-    // EffectsModule.forFeature(
-    //   [
-    //     GetOrdersEffect,
-    //     DeleteOrderEffect,
-    //     AddOrderEffect
-    //   ]
-    // ),
+    StoreModule.forFeature(NOMENCLATURE_FEATURE_KEY, nomenclatureReducer),
+    EffectsModule.forFeature(
+      [
+        CreateTemplateEffect,
+      ]
+    ),
 
     PrimengModule,
     SharedModule,
 
     FormsModule,
     ReactiveFormsModule
-  ],
-  // entryComponents: [
-  //   ModalSelectArticleComponent
-  // ]
+  ]
 })
 export class NomenclatureModule { }

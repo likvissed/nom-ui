@@ -1,9 +1,12 @@
+import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
+import { ModalTemplateComponent } from './../modal-template/modal-template.component';
+import { createTemplateAction } from './../../../store/actions/create-template.action';
 import { selectAllDurationTypes } from './../../../../order/store/selectors';
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
 import { ModalSelectArticleComponent } from './../../../../article/page/components/modal-select-article/modal-select-article.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { searchUsers } from './../../../../shared/store/selectors';
 import { Store, select } from '@ngrx/store';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
@@ -31,6 +34,7 @@ export class NewNomenclatureComponent implements OnInit {
   employees$!: Observable<any>;
   leftIndex: any;
   durationTypes = [];
+  isSubmitting$!: Observable<boolean>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +53,8 @@ export class NewNomenclatureComponent implements OnInit {
     this.onLoadDurationTypes();
     // TODO: Заменить после авторизации
     this.leftIndex = 'УИВТ';
+
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
   }
 
   onLoadDurationTypes() {
@@ -67,9 +73,12 @@ export class NewNomenclatureComponent implements OnInit {
       year: new FormControl(this.years[0].name, [Validators.required]),
       sign_main: new FormControl('', [Validators.required]),
 
-      tableRowArray: this.formBuilder.array([], [Validators.required]),
+      table: this.formBuilder.array([], [Validators.required]),
 
-      signs_tns: this.formBuilder.array([], [Validators.required])
+      signs_tns: this.formBuilder.array([], [Validators.required]),
+
+      // TODO: Убрать параметр `left_index`
+      left_index: this.leftIndex
     })
   }
 
@@ -85,7 +94,7 @@ export class NewNomenclatureComponent implements OnInit {
   }
 
   get allRecords(): FormArray {
-    return this.form.get("tableRowArray") as FormArray;
+    return this.form.get("table") as FormArray;
   }
 
   private createTableRow(): FormGroup {
@@ -95,7 +104,7 @@ export class NewNomenclatureComponent implements OnInit {
       text: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
       article_number: new FormControl('', [Validators.required]),
-      tips: new FormControl('', [Validators.maxLength(5)]),
+      tips: new FormControl('', [Validators.maxLength(500)]),
       toms: this.formBuilder.array([], [Validators.required])
     })
   }
@@ -119,11 +128,11 @@ export class NewNomenclatureComponent implements OnInit {
 
     ref.onClose.subscribe((result: any) => {
       if (result) {
-        (((<FormArray>this.form.controls['tableRowArray']).at(recordIndex)) as FormGroup).controls['text'].setValue(result.text);
-        (((<FormArray>this.form.controls['tableRowArray']).at(recordIndex)) as FormGroup).controls['duration'].setValue(result.duration);
+        (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['text'].setValue(result.text);
+        (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['duration'].setValue(result.duration);
 
         let articleValue = result.order_name ? result.order_name : result.article_id+result.sub;
-        (((<FormArray>this.form.controls['tableRowArray']).at(recordIndex)) as FormGroup).controls['article_number'].setValue(articleValue);
+        (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['article_number'].setValue(articleValue);
 
         // Для запуска обнаружения изменений
         this.cdr.detectChanges();
@@ -152,8 +161,7 @@ export class NewNomenclatureComponent implements OnInit {
   }
 
   onOpenModalCreateTome(recordIndex: number) {
-    let currentTome = (((<FormArray>this.form.controls['tableRowArray']).at(recordIndex)) as FormGroup).controls['toms'].value;
-    console.log('currentTome', currentTome);
+    let currentTome = (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['toms'].value;
 
     const ref = this.dialogService.open(ModalEditTomeComponent, {
       header: 'Выбор дат заведения и закрытия',
@@ -166,7 +174,6 @@ export class NewNomenclatureComponent implements OnInit {
 
     ref.onClose.subscribe((result: any) => {
       if (result) {
-        console.log('result', result);
         this.onDeleteTom(recordIndex);
 
         result.toms.forEach((element: any) => {
@@ -200,21 +207,52 @@ export class NewNomenclatureComponent implements OnInit {
   }
 
   onRecalculationIndex() {
-    const control = <FormArray>this.form.controls['tableRowArray'];
+    const control = <FormArray>this.form.controls['table'];
 
     control.value.map((x: any, index: any)=>{
-      (((<FormArray>this.form.controls['tableRowArray']).at(index)) as FormGroup).controls['index'].setValue(index + 1);
+      (((<FormArray>this.form.controls['table']).at(index)) as FormGroup).controls['index'].setValue(index + 1);
     });
   }
 
   onShowTemplate() {
     this.onRecalculationIndex();
 
-    console.log('Form', this.form.value.tableRowArray);
+    if (this.form.invalid) {
+      alert('Заполнены не все поля для документа');
 
-    console.log('getRawValue', this.form.getRawValue());
+      return
+    }
 
+    let request = {
+      info: {
+        left_index: this.form.value.left_index,
+        head_dept: this.form.value.head_dept,
+        year: this.form.value.year,
+        sign_main: {
+          fio: this.form.value.sign_main.fio,
+          title: this.form.value.sign_main.prof
+        },
+        signs_tns: this.form.value.signs_tns,
+      },
+      table: this.form.value.table
+    }
 
+    this.store.dispatch(createTemplateAction({ data: request }));
+
+    this.store.pipe(select(selectFileTemplate))
+      .subscribe((templateFile: Blob) => {
+        if (templateFile) {
+
+          this.dialogService.open(ModalTemplateComponent, {
+            header: 'Документ сформирован',
+            width: '80%',
+            data: {
+              document: templateFile,
+              request: request
+            }
+          });
+        }
+      });
   }
 
 }

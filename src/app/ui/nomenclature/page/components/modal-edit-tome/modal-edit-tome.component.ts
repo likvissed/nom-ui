@@ -110,7 +110,8 @@ export class ModalEditTomeComponent implements OnInit {
     let month = (date.getMonth() + 1).toString();
     let year = date.getFullYear().toString();
 
-    return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year;
+    // return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year; // TODO: вернуть формат даты
+    return year + '-' + (month[1]?month:"0"+month[0]) + '-' + (day[1]?day:"0"+day[0]);
   }
 
   onSelectDateStart(index: number) {
@@ -126,7 +127,6 @@ export class ModalEditTomeComponent implements OnInit {
   }
 
   onSaveTome() {
-    // console.log('getRawValue', this.form.getRawValue());
     if (this.form.valid) {
       this.ref.close(this.form.getRawValue());
     } else {
