@@ -17,4 +17,12 @@ export class NomenclatureService {
 
     return this.http.post(url, data , requestOptions);
   }
+
+  sendDocumentToSsd(data: any) {
+    const url = `${environment.apiUrl}/create_nomenclature`;
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.post (url, data, { headers: headers });
+  }
 }

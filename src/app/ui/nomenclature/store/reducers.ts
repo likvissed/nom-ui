@@ -1,3 +1,4 @@
+import { sendToSsdAction, sendToSsdActionSuccess, sendToSsdActionFailure } from './actions/send-to-ssd.action';
 import { NomenclatureStateInterface } from './../types/nomenclature-state.interface';
 import { createTemplateAction, createTemplateSuccessAction, createTemplateFailureAction } from './actions/create-template.action';
 
@@ -24,6 +25,21 @@ const reducer = createReducer(
     response: action.response
   })),
   on(createTemplateFailureAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error
+  })),
+
+  on(sendToSsdAction, (state): NomenclatureStateInterface => ({
+    ...state,
+    isSubmitting: true
+  })),
+  on(sendToSsdActionSuccess, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response
+  })),
+  on(sendToSsdActionFailure, (state, action): any => ({
     ...state,
     isSubmitting: false,
     errors: action.error

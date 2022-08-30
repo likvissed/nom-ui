@@ -1,3 +1,7 @@
+import { sendToSsdAction } from './../../../store/actions/send-to-ssd.action';
+import { isSubmittingSelector } from './../../../store/selectors';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,11 +15,13 @@ export class ModalTemplateComponent implements OnInit {
   templateFile!: Blob;
   request: any;
   pdfObj: any;
+  isSubmitting$!: Observable<boolean>;
 
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private store: Store
   ) { }
 
   ngOnInit() {
@@ -26,14 +32,18 @@ export class ModalTemplateComponent implements OnInit {
   initializeValues() {
     this.templateFile = this.config.data?.document;
     this.request = this.config.data?.request;
+
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
   }
 
   displayFile() {
     let objUrl = URL.createObjectURL(this.templateFile);
+
     this.pdfObj = this.sanitizer.bypassSecurityTrustResourceUrl(objUrl);
   }
 
   onSendToSsd() {
+    this.store.dispatch(sendToSsdAction({ data: this.request }));
   }
 
   onCloseModal() {

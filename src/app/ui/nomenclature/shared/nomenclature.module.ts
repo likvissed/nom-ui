@@ -1,3 +1,4 @@
+import { SendToSsdEffect } from './../store/effects/send-to-ssd.effect';
 import { ModalTemplateComponent } from './../page/components/modal-template/modal-template.component';
 import { CreateTemplateEffect } from './../store/effects/create-template.effect';
 import { EffectsModule } from '@ngrx/effects';
@@ -31,6 +32,7 @@ import { NgModule } from '@angular/core';
     EffectsModule.forFeature(
       [
         CreateTemplateEffect,
+        SendToSsdEffect
       ]
     ),
 
