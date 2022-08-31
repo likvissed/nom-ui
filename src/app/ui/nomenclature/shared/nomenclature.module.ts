@@ -1,3 +1,4 @@
+import { CreateBasedOnEffect } from './../store/effects/create-based-on.effect';
 import { DeleteEffect } from './../store/effects/delete.effect';
 import { DownloadEffect } from './../store/effects/download.effect';
 import { GetListEffect } from './../store/effects/get-list.effect';
@@ -38,7 +39,8 @@ import { NgModule } from '@angular/core';
         SendToSsdEffect,
         GetListEffect,
         DownloadEffect,
-        DeleteEffect
+        DeleteEffect,
+        CreateBasedOnEffect
       ]
     ),
 

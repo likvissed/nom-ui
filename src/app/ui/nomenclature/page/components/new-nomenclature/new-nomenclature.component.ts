@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@ang
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { findEmployeeAction } from 'src/app/ui/shared/store/actions/find-employee.action';
 import { getOrdersAction } from 'src/app/ui/order/store/actions/get-orders.action';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-nomenclature',
@@ -40,15 +41,17 @@ export class NewNomenclatureComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store,
     public dialogService: DialogService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.oninitializeValues();
+    this.onInitializeValues();
     this.onInitializeFrom();
+    this.onSetValuesForm();
   }
 
-  oninitializeValues() {
+  onInitializeValues() {
     this.store.dispatch(getOrdersAction());
     this.onLoadDurationTypes();
     // TODO: Заменить после авторизации
@@ -82,6 +85,23 @@ export class NewNomenclatureComponent implements OnInit {
     })
   }
 
+  onSetValuesForm() {
+    this.route.data.subscribe((data: any) => {
+      if (data) {
+        this.form.controls['head_dept'].setValue(data.presentNom.info.head_dept);
+        this.form.controls['sign_main'].setValue(data.presentNom.info.sign_main);
+
+        data.presentNom.table.forEach((object: any) => {
+          this.allRecords.push(this.createTableRowBasedOn(object));
+        });
+
+        data.presentNom.info.signs_info.forEach((object: any) => {
+          this.allSigns.push(this.createSignRowBasedOn(object));
+        });
+      }
+    });
+  }
+
   searchEmployee(event: any) {
     this.store.dispatch(findEmployeeAction({ data: event.query.trim()}));
     this.employees$ = this.store.pipe(select(searchUsers));
@@ -106,6 +126,18 @@ export class NewNomenclatureComponent implements OnInit {
       article_number: new FormControl('', [Validators.required]),
       tips: new FormControl('', [Validators.maxLength(500)]),
       toms: this.formBuilder.array([], [Validators.required])
+    })
+  }
+
+  private createTableRowBasedOn(data: any): FormGroup {
+    return this.formBuilder.group({
+      index: '',
+      is_dsp: data.is_dsp,
+      text: new FormControl(data.text, [Validators.required]),
+      duration: new FormControl(data.duration, [Validators.required]),
+      article_number: new FormControl(data.article_number, [Validators.required]),
+      tips: new FormControl(data.tips, [Validators.maxLength(500)]),
+      toms: this.formBuilder.array([data.toms], [Validators.required])
     })
   }
 
@@ -195,6 +227,14 @@ export class NewNomenclatureComponent implements OnInit {
       tn: new FormControl('', [Validators.required]),
       fio: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required])
+    })
+  }
+
+  private createSignRowBasedOn(data: any): FormGroup {
+    return this.formBuilder.group({
+      // tn: new FormControl(data.tn, [Validators.required]), // TODO: signs_info поменять на signs_tns !!!!
+      fio: new FormControl(data.fio, [Validators.required]),
+      title: new FormControl(data.title, [Validators.required])
     })
   }
 

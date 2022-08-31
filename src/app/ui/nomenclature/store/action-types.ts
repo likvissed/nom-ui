@@ -12,10 +12,14 @@ export enum ActionTypes {
   GET_LIST_NOMENCLATURE_FAILURE = '[Nomenclature] List failure',
 
   DOWNLOAD_NOMENCLATURE = '[Nomenclature] Download',
-  DOWNLOAD_NOMENCLATURE_SUCCESS = '[Nomenclature] Download',
-  DOWNLOAD_NOMENCLATURE_FAILURE = '[Nomenclature] Download',
+  DOWNLOAD_NOMENCLATURE_SUCCESS = '[Nomenclature] Download success',
+  DOWNLOAD_NOMENCLATURE_FAILURE = '[Nomenclature] Download failure',
 
   DELETE_NOMENCLATURE = '[Nomenclature] Delete',
-  DELETE_NOMENCLATURE_SUCCESS = '[Nomenclature] Delete',
-  DELETE_NOMENCLATURE_FAILURE = '[Nomenclature] Delete'
+  DELETE_NOMENCLATURE_SUCCESS = '[Nomenclature] Delete success',
+  DELETE_NOMENCLATURE_FAILURE = '[Nomenclature] Delete failure',
+
+  CREATE_BASED_ON = '[Nomenclature] Create based on',
+  CREATE_BASED_ON_SUCCESS = '[Nomenclature] Create based on success',
+  CREATE_BASED_ON_FAILURE = '[Nomenclature] Create based on failure'
 }

@@ -38,7 +38,6 @@ export class NomenclatureService {
   }
 
   downloadNomenclature(id: number) {
-    console.log('service', id);
     const url = `${environment.apiUrl}/download_nomenclature`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -53,5 +52,13 @@ export class NomenclatureService {
     const url = `${environment.apiUrl}/download_nomenclature`;
 
     return this.http.delete(`${url}/${id}`)
+  }
+
+  createBasedOn(id: number) {
+    const url = `${environment.apiUrl}/create_nomenclature_like`;
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get(`${url}/${id}`,  { headers: headers });
   }
 }

@@ -12,3 +12,6 @@ export const selectFileTemplate = createSelector(nomenclatureFeatureSelector, (s
 export const selectAllNomenclatures = createSelector(nomenclatureFeatureSelector, (state: any) => state.nomenclatures);
 
 export const selectStatusesNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.statuses);
+
+export const getDataPresentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
+

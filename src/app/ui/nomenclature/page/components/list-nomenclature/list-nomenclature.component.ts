@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { ConfirmationService } from 'primeng/api';
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
@@ -25,7 +26,8 @@ export class ListNomenclatureComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,5 +69,9 @@ export class ListNomenclatureComponent implements OnInit {
         this.store.dispatch(deleteNomenclatureAction({ id: id }));
       }
     });
+  }
+
+  onCreateBasedOn(id: number) {
+    this.router.navigateByUrl(`/nomenclature/new/${id}`);
   }
 }

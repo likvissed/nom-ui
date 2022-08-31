@@ -26,6 +26,7 @@
           <th width="7%" style="text-align:center"> Статус </th>
           <th width="1%"> </th>
           <th width="1%"> </th>
+          <th width="1%"> </th>
         </tr>
 
         <tr>
@@ -58,6 +59,7 @@
           </th>
           <th></th>
           <th></th>
+          <th></th>
       </ng-template>
 
       <ng-template pTemplate="body" let-column let-i="rowIndex">
@@ -78,6 +80,17 @@
               (click)="onDownloadNom(column.id)"
               class="p-button-primery p-button-outlined"
               pTooltip="Скачать"
+              tooltipPosition="top"
+            ></button>
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-clone"
+              (click)="onCreateBasedOn(column.id)"
+              class="p-button-help p-button-outlined"
+              pTooltip="Создать на основе"
               tooltipPosition="top"
             ></button>
           </td>
