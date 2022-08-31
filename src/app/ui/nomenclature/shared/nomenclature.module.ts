@@ -1,3 +1,6 @@
+import { DeleteEffect } from './../store/effects/delete.effect';
+import { DownloadEffect } from './../store/effects/download.effect';
+import { GetListEffect } from './../store/effects/get-list.effect';
 import { SendToSsdEffect } from './../store/effects/send-to-ssd.effect';
 import { ModalTemplateComponent } from './../page/components/modal-template/modal-template.component';
 import { CreateTemplateEffect } from './../store/effects/create-template.effect';
@@ -32,7 +35,10 @@ import { NgModule } from '@angular/core';
     EffectsModule.forFeature(
       [
         CreateTemplateEffect,
-        SendToSsdEffect
+        SendToSsdEffect,
+        GetListEffect,
+        DownloadEffect,
+        DeleteEffect
       ]
     ),
 

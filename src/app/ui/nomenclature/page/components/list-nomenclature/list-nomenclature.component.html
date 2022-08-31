@@ -1,3 +1,71 @@
-<p>
-  list-nomenclature works!
-</p>
+<div class="container">
+  <p-confirmDialog [style]="{width: '700px'}" [baseZIndex]="10000"></p-confirmDialog>
+
+  <div class="row">
+    <ng-container *ngIf="nomenclatures$ | async as data">
+      <p-table
+        #dtable
+        [value]="data"
+        dataKey="id"
+        styleClass="p-datatable-sm"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Показано с {first} по {last} из {totalRecords} записей"
+        [rowsPerPageOptions]="[10,25,50]"
+      >
+
+      <ng-template pTemplate="caption">
+        <span class="caption-table"> Список номенклатур </span>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th width="1%" style="text-align:center"> № </th>
+          <th width="5%" style="text-align:center"> Год </th>
+          <th width="7%" style="text-align:center"> Статус </th>
+          <th width="1%"> </th>
+          <th width="1%"> </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-column let-i="rowIndex">
+        <tr>
+          <td style="text-align:center">{{ i + 1 }}</td>
+          <td style="text-align:center"> {{ column.year }} </td>
+          <td style="text-align:center">
+            <span
+              [innerHtml]="column.proc_state | describeStatusNum: filters.statuses"
+              [class]="'list-badge status-' + column.proc_state">
+            </span>
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-download"
+              (click)="onDownloadNom(column.id)"
+              class="p-button-primery p-button-outlined"
+              pTooltip="Скачать"
+              tooltipPosition="top"
+            ></button>
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              (click)="onDeleteNom(column.id, i + 1)"
+              class="p-button-danger p-button-outlined"
+              pTooltip="Удалить"
+              tooltipPosition="top"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      </p-table>
+    </ng-container>
+  </div>
+
+</div>

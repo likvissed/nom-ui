@@ -1,3 +1,4 @@
+import { NameForStatusNomPipe } from './pipes/name-for-status-nom.pipe';
 import { FindEmployeeEffect } from './store/effects/find-employee.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { sharedReducer, SHARED_FEATURE_KEY } from './store/reducers';
@@ -11,7 +12,8 @@ import { ArrayToStringTomesPipe } from './pipes/array-to-string-tomes.pipe';
 
 const pipes: any[] = [
   EmptyValuePipe,
-  ArrayToStringTomesPipe
+  ArrayToStringTomesPipe,
+  NameForStatusNomPipe
 ];
 
 const components: any[] = [
