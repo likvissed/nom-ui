@@ -19,6 +19,7 @@ import { ListNomenclatureComponent } from './../page/components/list-nomenclatur
 import { CurrentNomenclatureComponent } from './../page/components/current-nomenclature/current-nomenclature.component';
 import { NewNomenclatureComponent } from './../page/components/new-nomenclature/new-nomenclature.component';
 import { NgModule } from '@angular/core';
+import { GetCurrentEffect } from '../store/effects/get-current.effect';
 @NgModule({
   declarations: [
     NewNomenclatureComponent,
@@ -40,7 +41,8 @@ import { NgModule } from '@angular/core';
         GetListEffect,
         DownloadEffect,
         DeleteEffect,
-        CreateBasedOnEffect
+        CreateBasedOnEffect,
+        GetCurrentEffect
       ]
     ),
 

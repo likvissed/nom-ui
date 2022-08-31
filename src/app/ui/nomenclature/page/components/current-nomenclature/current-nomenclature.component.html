@@ -1,3 +1,103 @@
-<p>
-  current-nomenclature works!
-</p>
+
+<span *ngIf="nomenclature$ | async as data; else emptyNom">
+  <div class="p-fluid grid">
+    <div class="container">
+      <div class="card">
+        <h5 class="pb-3"> Текущая номенклатура дел </h5>
+
+        <p-toolbar styleClass="mb-4">
+          <ng-template pTemplate="left">
+            <button pButton pRipple label="Скачать документ" icon="pi pi-download" (click)="onDownloadNom()" class="p-button-primary p-button-outlined"></button>
+          </ng-template>
+        </p-toolbar>
+
+        <div class="mb-3">
+          <p-panel header="Шапка документа">
+            <div>
+              <div class="py-2 pr-3 w-full">
+                <label> Наименование участка делопроизводства: </label>
+                <b class="pr-3">
+                  {{ data.head_dept }}
+                </b>
+              </div>
+
+              <div class="py-2 pr-3 w-full">
+                <label> Утверждающий: </label>
+                <b class="pr-3">
+                  {{ data.sign_main.fio }}
+                </b>
+              </div>
+
+              <div class="py-2 pr-3 w-full">
+                <label> На год: </label>
+                <b class="pr-3">
+                  {{ data.year }}
+                </b>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+
+        <div class="mb-3">
+          <p-panel header="Список разделов и дел">
+            <p-table
+              [value]="data.table"
+            >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th width="15%"> Индекс дел </th>
+                  <th width="40%"> Наименование разделов и дел </th>
+                  <th width="15%"> Дата заведения и закрытия </th>
+                  <th width="7%"> Срок хранения </th>
+                  <th width="2%"> Номер статьи </th>
+                  <th width="15%"> Примечание </th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr>
+                  <td> {{rowData.index}} </td>
+                  <td> {{rowData.article}} </td>
+                  <td> {{rowData.toms | showStr: true }} </td>
+                  <td> {{rowData.duration}} </td>
+                  <td> {{rowData.article_number}} </td>
+                  <td> {{rowData.tips}} </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-panel>
+        </div>
+
+        <div class="mb-3">
+          <p-panel header="Список согласующих">
+            <p-table
+            [value]="data.signs_info"
+          >
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th width="30%"> ФИО </th>
+                <th width="70%"> Должность </th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr>
+                <td> {{rowData.fio}} </td>
+                <td> {{rowData.title}} </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          </p-panel>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</span>
+
+<ng-template #emptyNom>
+  <div class="card-title text-center mt-7">
+    <h5> Текущая номенклатура дел отсутствует </h5>
+  </div>
+</ng-template>

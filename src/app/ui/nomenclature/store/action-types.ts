@@ -21,5 +21,9 @@ export enum ActionTypes {
 
   CREATE_BASED_ON = '[Nomenclature] Create based on',
   CREATE_BASED_ON_SUCCESS = '[Nomenclature] Create based on success',
-  CREATE_BASED_ON_FAILURE = '[Nomenclature] Create based on failure'
+  CREATE_BASED_ON_FAILURE = '[Nomenclature] Create based on failure',
+
+  GET_CURRENT = '[Nomenclature] Get current',
+  GET_CURRENT_SUCCESS = '[Nomenclature] Get current success',
+  GET_CURRENT_FAILURE = '[Nomenclature] Get current failure'
 }

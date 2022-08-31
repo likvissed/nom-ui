@@ -87,7 +87,7 @@ export class NewNomenclatureComponent implements OnInit {
 
   onSetValuesForm() {
     this.route.data.subscribe((data: any) => {
-      if (data) {
+      if (data.presentNom) {
         this.form.controls['head_dept'].setValue(data.presentNom.info.head_dept);
         this.form.controls['sign_main'].setValue(data.presentNom.info.sign_main);
 

@@ -61,4 +61,16 @@ export class NomenclatureService {
 
     return this.http.get(`${url}/${id}`,  { headers: headers });
   }
+
+  getCurrentNom() {
+    const url = `${environment.apiUrl}/nomenclature_detail`;
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    // return this.http.get(url,  { headers: headers });
+    // TODO: Переделать filters={"left_index":"УИВТ"} !
+    let dt = {"left_index": 'УИВТ'}
+
+    return this.http.get(`${url}?filters=${encodeURIComponent(JSON.stringify(dt))}`,  { headers: headers });
+  }
 }

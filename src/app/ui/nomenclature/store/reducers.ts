@@ -1,3 +1,4 @@
+import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from './actions/get-current.action';
 import { createBasedOnAction, createBasedOnActionSuccess, createBasedOnActionFailure } from './actions/create-based-on.action';
 import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './actions/download.action';
 import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';
@@ -112,6 +113,21 @@ const reducer = createReducer(
     response: action.response
   })),
   on(createBasedOnActionFailure, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error
+  })),
+
+  on(getCurrentAction, (state): NomenclatureStateInterface => ({
+    ...state,
+    isSubmitting: true
+  })),
+  on(getCurrentActionSuccess, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response
+  })),
+  on(getCurrentActionFailure, (state, action): any => ({
     ...state,
     isSubmitting: false,
     errors: action.error
