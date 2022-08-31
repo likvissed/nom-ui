@@ -1,10 +1,11 @@
+import { Table } from 'primeng/table';
 import { ConfirmationService } from 'primeng/api';
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
 import { selectAllNomenclatures, selectStatusesNom } from './../../../store/selectors';
 import { getListAction } from './../../../store/actions/get-list.action';
 import { Observable, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
 
 @Component({
@@ -16,6 +17,7 @@ import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
   ]
 })
 export class ListNomenclatureComponent implements OnInit {
+  @ViewChild('dtable') table!: Table;
   nomenclatures$!: Observable<any>;
   filters = {
     statuses: []

@@ -27,6 +27,37 @@
           <th width="1%"> </th>
           <th width="1%"> </th>
         </tr>
+
+        <tr>
+          <th width="1%"></th>
+          <th width="5%">
+            <input
+              pInputText
+              type="text"
+              [value]="$any(dtable.filters['year'])?.value"
+              (input)="dtable.filter($any($event.target)?.value, 'year', 'contains')"
+              class="form-control col-lg-12"
+            >
+          </th>
+          <th width="7%">
+            <p-dropdown
+                [options]="filters.statuses"
+                optionValue="id"
+                (onChange)="dtable.filter($event.value, 'proc_state', 'equals')"
+                placeholder="Все статусы"
+                [showClear]="true"
+                optionLabel="type"
+                [style]="{'width':'100%'}"
+                panelStyleClass="p-dropdown"
+                >
+
+                <ng-template let-option pTemplate="item">
+                  <span [class]="'list-badge status-' + option.id">{{option.type}}</span>
+                </ng-template>
+              </p-dropdown>
+          </th>
+          <th></th>
+          <th></th>
       </ng-template>
 
       <ng-template pTemplate="body" let-column let-i="rowIndex">
