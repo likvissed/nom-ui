@@ -26,7 +26,7 @@ export class GetArticlesEffect {
           }),
 
           catchError((errorResponse: HttpErrorResponse) => of(
-            getArticlesFailureAction({error: errorResponse.error.message})
+            getArticlesFailureAction({error: errorResponse.error})
           ))
         )
       })

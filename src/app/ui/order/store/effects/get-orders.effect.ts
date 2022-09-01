@@ -26,7 +26,7 @@ export class GetOrdersEffect {
           }),
 
           catchError((errorResponse: HttpErrorResponse) => of(
-            getOrdersFailureAction({error: errorResponse.error.message})
+            getOrdersFailureAction({error: errorResponse.error})
           ))
         )
       })

@@ -29,11 +29,9 @@ export class AddOrderEffect {
             getOrdersAction(),
           ]),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(addOrderFailureAction({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            addOrderFailureAction({error: errorResponse.error})
+          ))
         )
       })
     )

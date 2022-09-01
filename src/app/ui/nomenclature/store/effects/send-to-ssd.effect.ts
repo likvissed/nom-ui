@@ -26,11 +26,9 @@ export class SendToSsdEffect {
             return sendToSsdActionSuccess(response);
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(sendToSsdActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            sendToSsdActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )

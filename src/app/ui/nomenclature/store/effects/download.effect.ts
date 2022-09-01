@@ -26,11 +26,9 @@ export class DownloadEffect {
             return downloadNomenclatureActionSuccess(response);
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(downloadNomenclatureActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            downloadNomenclatureActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )

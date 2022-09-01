@@ -24,11 +24,9 @@ export class CreateTemplateEffect {
             return createTemplateSuccessAction({ response: response });
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(createTemplateFailureAction({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            createTemplateFailureAction({error: errorResponse.error})
+          ))
         )
       })
     )

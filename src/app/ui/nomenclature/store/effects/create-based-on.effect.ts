@@ -24,11 +24,9 @@ export class CreateBasedOnEffect {
             return createBasedOnActionSuccess({ response: response });
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(createBasedOnActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            createBasedOnActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )

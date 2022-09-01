@@ -30,11 +30,9 @@ export class DeleteOrderEffect {
             getOrdersAction(),
           ]),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(deleteOrderFailureAction({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            deleteOrderFailureAction({error: errorResponse.error})
+          ))
         )
       })
     )

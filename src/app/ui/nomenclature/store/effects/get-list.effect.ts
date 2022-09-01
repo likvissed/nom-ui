@@ -24,11 +24,9 @@ export class GetListEffect {
             return getListActionSuccess({ response: response });
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(getListActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            getListActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )

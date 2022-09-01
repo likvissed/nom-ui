@@ -26,11 +26,9 @@ export class DeleteEffect {
             return deleteNomenclatureActionSuccess(response);
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(deleteNomenclatureActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            deleteNomenclatureActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )

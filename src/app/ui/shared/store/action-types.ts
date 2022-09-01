@@ -1,5 +1,5 @@
 export enum ActionTypes {
-  GET_EMPLOYEE = '[Employee] Find',
-  GET_EMPLOYEE_SUCCESS = '[Employee] Find success',
-  GET_EMPLOYEE_FAILURE = '[Employee] Find failure',
+  GET_EMPLOYEE = '[Shared] Find employee',
+  GET_EMPLOYEE_SUCCESS = '[Shared] Find employee success',
+  GET_EMPLOYEE_FAILURE = '[Shared] Find employee failure'
 }

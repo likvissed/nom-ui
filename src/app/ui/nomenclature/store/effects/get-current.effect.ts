@@ -24,11 +24,9 @@ export class GetCurrentEffect {
             return getCurrentActionSuccess({response: response});
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            alert(errorResponse.error.error_description);
-
-            return of(getCurrentActionFailure({error: errorResponse.error.error_description}))
-          })
+          catchError((errorResponse: HttpErrorResponse) => of(
+            getCurrentActionFailure({error: errorResponse.error})
+          ))
         )
       })
     )
