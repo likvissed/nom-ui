@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { DeleteOrderResponseInterface } from './../../types/delete-order-response.interface';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -13,7 +14,8 @@ import { getOrdersAction } from '../actions/get-orders.action';
 export class DeleteOrderEffect {
   constructor(
     private actions$: Actions,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private messageService: MessageService
   ) {}
 
   delete$ = createEffect(() =>
@@ -22,7 +24,7 @@ export class DeleteOrderEffect {
       exhaustMap((value) => {
         return this.orderService.deleteOrder(value.id).pipe(
           tap((response: any ) => {
-            alert(response.result);
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
           }),
           switchMap((response: any) => [
             deleteOrderSuccessAction(response.result),

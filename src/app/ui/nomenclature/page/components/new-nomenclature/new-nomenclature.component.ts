@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';
 import { createTemplateAction } from './../../../store/actions/create-template.action';
@@ -42,7 +43,8 @@ export class NewNomenclatureComponent implements OnInit {
     private store: Store,
     public dialogService: DialogService,
     private cdr: ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -259,7 +261,7 @@ export class NewNomenclatureComponent implements OnInit {
     this.onRecalculationIndex();
 
     if (this.form.invalid) {
-      alert('Заполнены не все поля для документа');
+      this.messageService.add({severity: 'warn', summary: 'Внимание', detail: 'Заполнены не все поля для документа' });
 
       return
     }

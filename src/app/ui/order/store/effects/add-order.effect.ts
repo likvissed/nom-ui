@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { addOrderAction, addOrderSuccessAction, addOrderFailureAction } from './../actions/add-order.action';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -12,7 +13,8 @@ import { getOrdersAction } from '../actions/get-orders.action';
 export class AddOrderEffect {
   constructor(
     private actions$: Actions,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private messageService: MessageService
   ) {}
 
   add$ = createEffect(() =>
@@ -21,7 +23,7 @@ export class AddOrderEffect {
       exhaustMap((value) => {
         return this.orderService.addOrder(value.data).pipe(
           tap((response: any ) => {
-            alert(response.result);
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
           }),
           switchMap((response: any) => [
             addOrderSuccessAction(response),

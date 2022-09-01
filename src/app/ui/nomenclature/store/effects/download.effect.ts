@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './../actions/download.action';
 import { NomenclatureService } from './../../services/nomenclature.service';
 
@@ -12,7 +13,8 @@ import { Injectable } from "@angular/core";
 export class DownloadEffect {
   constructor(
     private actions$: Actions,
-    private nomenclatureService: NomenclatureService
+    private nomenclatureService: NomenclatureService,
+    private messageService: MessageService
   ) {}
 
   download$ = createEffect(() =>
@@ -21,7 +23,7 @@ export class DownloadEffect {
       switchMap((value) => {
         return this.nomenclatureService.downloadNomenclature(value.data).pipe(
           map((response: any ) => {
-            alert(response.result);
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
 
             return downloadNomenclatureActionSuccess(response);
           }),

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { sendToSsdAction, sendToSsdActionSuccess, sendToSsdActionFailure } from './../actions/send-to-ssd.action';
 import { NomenclatureService } from './../../services/nomenclature.service';
 
@@ -12,7 +13,8 @@ import { Injectable } from "@angular/core";
 export class SendToSsdEffect {
   constructor(
     private actions$: Actions,
-    private nomenclatureService: NomenclatureService
+    private nomenclatureService: NomenclatureService,
+    private messageService: MessageService
   ) {}
 
   send$ = createEffect(() =>
@@ -21,7 +23,7 @@ export class SendToSsdEffect {
       switchMap((value) => {
         return this.nomenclatureService.sendDocumentToSsd(value.data).pipe(
           map((response: any ) => {
-            alert(response.result);
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
 
             return sendToSsdActionSuccess(response);
           }),

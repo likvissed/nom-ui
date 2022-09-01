@@ -15,6 +15,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PanelModule } from 'primeng/panel';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 
 
 const modules: any[] = [
@@ -32,7 +35,10 @@ const modules: any[] = [
   AutoCompleteModule,
   CalendarModule,
   CheckboxModule,
-  PanelModule
+  PanelModule,
+  MessagesModule,
+  MessageModule,
+  ToastModule
 ];
 
 @NgModule({

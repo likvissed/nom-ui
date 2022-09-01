@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from '../actions/delete.action';
 import { NomenclatureService } from './../../services/nomenclature.service';
 
@@ -12,7 +13,8 @@ import { Injectable } from "@angular/core";
 export class DeleteEffect {
   constructor(
     private actions$: Actions,
-    private nomenclatureService: NomenclatureService
+    private nomenclatureService: NomenclatureService,
+    private messageService: MessageService
   ) {}
 
   delete$ = createEffect(() =>
@@ -21,7 +23,7 @@ export class DeleteEffect {
       switchMap((value) => {
         return this.nomenclatureService.deleteNomenclature(value.id).pipe(
           map((response: any ) => {
-            alert(response.result);
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
 
             return deleteNomenclatureActionSuccess(response);
           }),

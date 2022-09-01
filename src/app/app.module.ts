@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { NomenclatureModule } from './ui/nomenclature/shared/nomenclature.module';
 import { SharedModule } from './ui/shared/shared.module';
 import { OrderModule } from './ui/order/shared/order.module';
@@ -61,7 +62,8 @@ const appModules: any[] = [
     {
       provide: LOCALE_ID,
       useValue: 'ru-RU',
-    }
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

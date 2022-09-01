@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthHelper } from '@iss/ng-auth-center';
@@ -7,7 +8,8 @@ export class ErrorHandlerService {
   str_severity = 'error';
 
   constructor(
-    private authHelper: AuthHelper
+    private authHelper: AuthHelper,
+    private messageService: MessageService
   ) {}
 
   handleError(error: HttpErrorResponse) {
@@ -15,24 +17,24 @@ export class ErrorHandlerService {
 
     switch (error.status) {
       case 422:
-        alert(error.error.error_description);
+        this.messageService.add({severity: this.str_severity, summary: 'Ошибка загрузки данных с сервера', detail: error.error.error_description});
 
         break;
       case 403:
-        alert('Доступ запрещён');
-        // this.authHelper.logout();
+        this.messageService.add({severity: this.str_severity, summary: 'Доступ запрещён'});
+        this.authHelper.logout();
 
         break;
       case 404:
-        alert('Данные не найдены');
+        this.messageService.add({severity: this.str_severity, summary: 'Данные не найдены'});
 
         break;
       case 500:
-        alert('Сервер временно недоступен');
+        this.messageService.add({severity: this.str_severity, summary: 'Сервер временно недоступен'});
 
         break;
       default:
-        alert('Сервер временно недоступен');
+        this.messageService.add({severity: this.str_severity, summary: 'Сервер временно недоступен', detail: error.statusText});
 
         break;
     }
