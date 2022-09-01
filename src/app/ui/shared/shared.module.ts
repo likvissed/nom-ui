@@ -1,3 +1,4 @@
+import { NotFoundModule } from './modules/not-found.module';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ErrorHandlerServiceModule } from './services/error-handler.service.module';
 import { NameForStatusNomPipe } from './pipes/name-for-status-nom.pipe';
@@ -32,13 +33,14 @@ const components: any[] = [
     CommonModule,
     EmployeeServiceModule,
     ErrorHandlerServiceModule,
+    NotFoundModule,
 
     StoreModule.forFeature(SHARED_FEATURE_KEY, sharedReducer),
     EffectsModule.forFeature(
       [
         FindEmployeeEffect
       ]
-    ),
+    )
   ],
   exports: [
     ...pipes,

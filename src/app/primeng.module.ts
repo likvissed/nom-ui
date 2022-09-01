@@ -18,6 +18,8 @@ import { PanelModule } from 'primeng/panel';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
 
 
 const modules: any[] = [
@@ -38,7 +40,9 @@ const modules: any[] = [
   PanelModule,
   MessagesModule,
   MessageModule,
-  ToastModule
+  ToastModule,
+  CardModule,
+  ImageModule
 ];
 
 @NgModule({

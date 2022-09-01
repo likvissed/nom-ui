@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './ui/shared/components/not-found/not-found.component';
 import { OrderComponent } from './ui/order/page/order/order.component';
 import { ArticleComponent } from './ui/article/page/components/article/article.component';
 import { LayoutModule } from './ui/layout/shared/layout.module';
@@ -33,9 +34,10 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: '**'
-  // },
+  {
+    path: '**',
+    loadChildren: (): Promise<any> => import('src/app/ui/shared/modules/not-found.module').then((modules) => modules.NotFoundModule),
+  }
 ];
 
 @NgModule({
