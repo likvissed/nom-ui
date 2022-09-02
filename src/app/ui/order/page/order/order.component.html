@@ -10,8 +10,8 @@
       </p-toolbar>
     </div>
 
-    <div class="row">
-      <ng-container *ngIf="orders$ | async as data">
+    <div class="row" *ngIf="orders$ | async as data; else emptyOrder">
+      <ng-container>
         <p-table
           #dtable
           [value]="data"
@@ -106,3 +106,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #emptyOrder>
+  <div class="card-title text-center mt-7">
+    <h5> Приказы отсутствуют </h5>
+  </div>
+</ng-template>
