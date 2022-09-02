@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { MessageService } from 'primeng/api';
 import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';
@@ -6,7 +7,7 @@ import { selectAllDurationTypes } from './../../../../order/store/selectors';
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
 import { ModalSelectArticleComponent } from './../../../../article/page/components/modal-select-article/modal-select-article.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { searchUsers } from './../../../../shared/store/selectors';
 import { Store, select } from '@ngrx/store';
@@ -280,8 +281,6 @@ export class NewNomenclatureComponent implements OnInit {
       table: this.form.value.table
     }
 
-    this.store.dispatch(createTemplateAction({ data: request }));
-
     this.store.pipe(select(selectFileTemplate))
       .subscribe((templateFile: Blob) => {
         if (templateFile) {
@@ -294,8 +293,11 @@ export class NewNomenclatureComponent implements OnInit {
               request: request
             }
           });
+        } else {
+          this.store.dispatch(createTemplateAction({ data: request }));
         }
       });
+
   }
 
 }

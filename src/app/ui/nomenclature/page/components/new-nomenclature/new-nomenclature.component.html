@@ -314,6 +314,7 @@
               styleClass="p-button-outlined p-button-success"
               (click)="onShowTemplate()"
               [disabled]="(isSubmitting$  | async) || false"
+              [ngClass]="{'waiting': isSubmitting$  | async}"
             ></p-button>
           </div>
         </div>
