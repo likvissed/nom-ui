@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { LoaderService } from './../../../../shared/services/loader.service';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 
@@ -10,11 +11,21 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
   items!: MenuItem[];
+  loading: boolean = false;
 
-  constructor() { }
+  constructor(
+    private loaderService: LoaderService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.onFillMenu();
+
+    this.loaderService.isLoading$.subscribe(value =>{
+      this.loading = value;
+
+      this.cdr.detectChanges();
+    });
   }
 
   onFillMenu() {

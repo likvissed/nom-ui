@@ -1,3 +1,5 @@
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderModule } from './modules/loader.module';
 import { NotFoundModule } from './modules/not-found.module';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ErrorHandlerServiceModule } from './services/error-handler.service.module';
@@ -34,6 +36,7 @@ const components: any[] = [
     EmployeeServiceModule,
     ErrorHandlerServiceModule,
     NotFoundModule,
+    LoaderModule,
 
     StoreModule.forFeature(SHARED_FEATURE_KEY, sharedReducer),
     EffectsModule.forFeature(
@@ -52,6 +55,11 @@ const components: any[] = [
       useClass: ErrorInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
   ]
 })
 export class SharedModule { }
