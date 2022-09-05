@@ -15,5 +15,8 @@ module.exports = {
   ],
   testRunner: 'jest-jasmine2',
   moduleNameMapper: {},
-  modulePaths: [ "<rootDir>" ]
+  modulePaths: [ "<rootDir>" ],
+  setupFiles: [
+    '<rootDir>/tests/jest.stub.js',
+  ]
 };

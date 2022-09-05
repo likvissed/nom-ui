@@ -1,3 +1,4 @@
+import { LoaderService } from './../../../shared/services/loader.service';
 import { HeaderComponent } from './../components/header/header.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
@@ -7,21 +8,14 @@ describe('LayoutComponent', () => {
   let component: LayoutComponent;
   let fixture: ComponentFixture<LayoutComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-      imports: [
-
-      ],
-      providers: []
-    })
-    .compileComponents();
-  }));
-
+  let service: LoaderService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
+      declarations: [ LayoutComponent ],
+      providers: [
+        LoaderService
+      ]
     })
     .compileComponents();
   });
@@ -29,6 +23,8 @@ describe('LayoutComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
+
+    service = TestBed.inject(LoaderService);
     fixture.detectChanges();
   });
 

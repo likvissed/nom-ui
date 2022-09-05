@@ -1,4 +1,6 @@
-/* tslint:disable:no-unused-variable */
+import { RouterTestingModule } from '@angular/router/testing';
+import { ORDER_FEATURE_KEY, orderReducer } from './../../../../order/store/reducers';
+import { StoreModule } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -11,7 +13,12 @@ describe('ListNomenclatureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListNomenclatureComponent ]
+      declarations: [ ListNomenclatureComponent ],
+      imports: [
+        StoreModule.forRoot({}),
+        StoreModule.forFeature(ORDER_FEATURE_KEY, orderReducer),
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));

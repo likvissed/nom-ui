@@ -1,3 +1,4 @@
+import { getListAction } from './../actions/get-list.action';
 import { MessageService } from 'primeng/api';
 import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from '../actions/delete.action';
 import { NomenclatureService } from './../../services/nomenclature.service';
@@ -22,11 +23,13 @@ export class DeleteEffect {
       ofType(deleteNomenclatureAction),
       switchMap((value) => {
         return this.nomenclatureService.deleteNomenclature(value.id).pipe(
-          map((response: any ) => {
+          map((response: any) => {
             this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
-
-            return deleteNomenclatureActionSuccess(response);
           }),
+          switchMap((response: any) => [
+            deleteNomenclatureActionSuccess(response),
+            getListAction()
+          ]),
 
           catchError((errorResponse: HttpErrorResponse) => of(
             deleteNomenclatureActionFailure({error: errorResponse.error})

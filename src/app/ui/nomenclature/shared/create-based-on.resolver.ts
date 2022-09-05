@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
-import { filter, take } from 'rxjs/operators';
+import { filter, take, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 
@@ -23,8 +23,8 @@ export class CreateBasedOnResolver implements Resolve<any> {
 
     return this.store.pipe(
       select(getDataPresentNom),
-      filter(data => !!data),
+      filter((data: any) => !!data.table),
       take(1)
-    );
+    )
   }
 }

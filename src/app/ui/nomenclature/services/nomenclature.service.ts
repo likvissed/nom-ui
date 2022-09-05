@@ -49,7 +49,7 @@ export class NomenclatureService {
   }
 
   deleteNomenclature(id: number) {
-    const url = `${environment.apiUrl}/download_nomenclature`;
+    const url = `${environment.apiUrl}/delete_nomenclature`;
 
     return this.http.delete(`${url}/${id}`)
   }
