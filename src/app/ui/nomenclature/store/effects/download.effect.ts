@@ -23,9 +23,9 @@ export class DownloadEffect {
       switchMap((value) => {
         return this.nomenclatureService.downloadNomenclature(value.data).pipe(
           map((response: any ) => {
-            this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
+            this.messageService.add({severity: 'success', summary: 'Успешно', detail: 'Файл загружен' });
 
-            return downloadNomenclatureActionSuccess(response);
+            return downloadNomenclatureActionSuccess({ response: response });
           }),
 
           catchError((errorResponse: HttpErrorResponse) => of(

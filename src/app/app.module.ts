@@ -53,7 +53,7 @@ const appModules: any[] = [
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      logOnly: environment.debugRedux
     }),
 
     ...appModules

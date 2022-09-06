@@ -13,9 +13,6 @@ export class EmployeeService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // TODO: Переделать filters={"text":"data"} !
-    let dt = {"text": data}
-
-    return this.http.get(`${url}?filters=${encodeURIComponent(JSON.stringify(dt))}`,  { headers: headers });
+    return this.http.get(`${url}?text=${data}`,  { headers: headers });
   }
 }

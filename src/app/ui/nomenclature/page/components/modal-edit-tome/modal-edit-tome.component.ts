@@ -14,8 +14,13 @@ export class ModalEditTomeComponent implements OnInit {
     id: -1,
     duration: 'Выбрать дату',
   }
+  nextDate = {
+    id: 0,
+    duration: 'перех.',
+  }
   durationTypes: any = [
-    this.selectedDate
+    this.selectedDate,
+    this.nextDate
   ];
   selectDateEnd: any;
 
@@ -31,8 +36,6 @@ export class ModalEditTomeComponent implements OnInit {
   }
 
   initializeValues() {
-    this.durationTypes.push(this.config.data?.durationTypes);
-    this.durationTypes = this.durationTypes.flat();
   }
 
   onInitializeFrom() {
@@ -110,8 +113,7 @@ export class ModalEditTomeComponent implements OnInit {
     let month = (date.getMonth() + 1).toString();
     let year = date.getFullYear().toString();
 
-    // return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year; // TODO: вернуть формат даты
-    return year + '-' + (month[1]?month:"0"+month[0]) + '-' + (day[1]?day:"0"+day[0]);
+    return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year;
   }
 
   onSelectDateStart(index: number) {

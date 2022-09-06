@@ -1,9 +1,8 @@
-import { async } from '@angular/core/testing';
+import { AuthHelper } from '@iss/ng-auth-center';
 import { MessageService } from 'primeng/api';
 import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';
 import { createTemplateAction } from './../../../store/actions/create-template.action';
-import { selectAllDurationTypes } from './../../../../order/store/selectors';
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
 import { ModalSelectArticleComponent } from './../../../../article/page/components/modal-select-article/modal-select-article.component';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -36,7 +35,6 @@ export class NewNomenclatureComponent implements OnInit {
   users: any = [];
   employees$!: Observable<any>;
   leftIndex: any;
-  durationTypes = [];
   isSubmitting$!: Observable<boolean>;
 
   constructor(
@@ -45,7 +43,8 @@ export class NewNomenclatureComponent implements OnInit {
     public dialogService: DialogService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authHelper: AuthHelper
   ) { }
 
   ngOnInit() {
@@ -56,21 +55,10 @@ export class NewNomenclatureComponent implements OnInit {
 
   onInitializeValues() {
     this.store.dispatch(getOrdersAction());
-    this.onLoadDurationTypes();
-    // TODO: Заменить после авторизации
-    this.leftIndex = 'УИВТ';
+
+    this.leftIndex = this.authHelper.getJwtPayload()['left_index'];
 
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-  }
-
-  onLoadDurationTypes() {
-    // TODO: Перенести в отдельный запрос в компонент ModalEditTomeComponent
-    this.store.pipe(select(selectAllDurationTypes))
-      .subscribe((durationValues: any) => {
-        if (durationValues) {
-          this.durationTypes = durationValues;
-        }
-      });
   }
 
   onInitializeFrom() {
@@ -81,25 +69,20 @@ export class NewNomenclatureComponent implements OnInit {
 
       table: this.formBuilder.array([], [Validators.required]),
 
-      signs_tns: this.formBuilder.array([], [Validators.required]),
-
-      // TODO: Убрать параметр `left_index`
-      left_index: this.leftIndex
+      signs_info: this.formBuilder.array([], [Validators.required])
     })
   }
 
   onSetValuesForm() {
     this.route.data.subscribe((data: any) => {
-      // TODO: Выполняются 2 запроса (второй - список номенклатур)
       if (data.presentNom) {
-        this.form.controls['head_dept'].setValue(data.presentNom.info.head_dept);
-        this.form.controls['sign_main'].setValue(data.presentNom.info.sign_main);
+        this.form.patchValue(data.presentNom);
 
         data.presentNom.table.forEach((object: any) => {
           this.allRecords.push(this.createTableRowBasedOn(object));
         });
 
-        data.presentNom.info.signs_info.forEach((object: any) => {
+        data.presentNom.signs_info.forEach((object: any) => {
           this.allSigns.push(this.createSignRowBasedOn(object));
         });
       }
@@ -112,9 +95,9 @@ export class NewNomenclatureComponent implements OnInit {
   }
 
   selectEmpSign(event: any, index: number) {
-    (((<FormArray>this.form.controls['signs_tns']).at(index)) as FormGroup).controls['tn'].setValue(event.tn);
-    (((<FormArray>this.form.controls['signs_tns']).at(index)) as FormGroup).controls['fio'].setValue(event.fio);
-    (((<FormArray>this.form.controls['signs_tns']).at(index)) as FormGroup).controls['title'].setValue(event.prof);
+    (((<FormArray>this.form.controls['signs_info']).at(index)) as FormGroup).controls['tn'].setValue(event.tn);
+    (((<FormArray>this.form.controls['signs_info']).at(index)) as FormGroup).controls['fio'].setValue(event.fio);
+    (((<FormArray>this.form.controls['signs_info']).at(index)) as FormGroup).controls['prof'].setValue(event.prof);
   }
 
   get allRecords(): FormArray {
@@ -203,8 +186,7 @@ export class NewNomenclatureComponent implements OnInit {
       header: 'Выбор дат заведения и закрытия',
       width: '50%',
       data: {
-        tome: currentTome,
-        durationTypes: this.durationTypes
+        tome: currentTome
       }
     });
 
@@ -222,23 +204,22 @@ export class NewNomenclatureComponent implements OnInit {
   }
 
   get allSigns(): FormArray {
-    return this.form.get("signs_tns") as FormArray;
+    return this.form.get("signs_info") as FormArray;
   }
 
-  // TODO: Добавить поле `tn` в апи
   private createSignRow(): FormGroup {
     return this.formBuilder.group({
       tn: new FormControl('', [Validators.required]),
       fio: new FormControl('', [Validators.required]),
-      title: new FormControl('', [Validators.required])
+      prof: new FormControl('', [Validators.required])
     })
   }
 
   private createSignRowBasedOn(data: any): FormGroup {
     return this.formBuilder.group({
-      // tn: new FormControl(data.tn, [Validators.required]), // TODO: signs_info поменять на signs_tns !!!!
+      tn: new FormControl(data.tn, [Validators.required]),
       fio: new FormControl(data.fio, [Validators.required]),
-      title: new FormControl(data.title, [Validators.required])
+      prof: new FormControl(data.prof, [Validators.required])
     })
   }
 
@@ -267,20 +248,6 @@ export class NewNomenclatureComponent implements OnInit {
       return
     }
 
-    let request = {
-      info: {
-        left_index: this.form.value.left_index,
-        head_dept: this.form.value.head_dept,
-        year: this.form.value.year,
-        sign_main: {
-          fio: this.form.value.sign_main.fio,
-          title: this.form.value.sign_main.prof
-        },
-        signs_tns: this.form.value.signs_tns,
-      },
-      table: this.form.value.table
-    }
-
     this.store.pipe(select(selectFileTemplate))
       .subscribe((templateFile: Blob) => {
         if (templateFile) {
@@ -290,11 +257,11 @@ export class NewNomenclatureComponent implements OnInit {
             width: '80%',
             data: {
               document: templateFile,
-              request: request
+              request: this.form.getRawValue()
             }
           });
         } else {
-          this.store.dispatch(createTemplateAction({ data: request }));
+          this.store.dispatch(createTemplateAction({ data: this.form.getRawValue() }));
         }
       });
 
