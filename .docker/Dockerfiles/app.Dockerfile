@@ -16,7 +16,7 @@ COPY . .
 RUN yarn run build --configuration=${ENVIRONMENT}
 
 # Deploy
-FROM nginx:1.23.1-alpine
+FROM docker-hub-proxy.***REMOVED***.ru/nginx:1.23.1-alpine
 ARG APP_HOSTNAME
 
 COPY ./.docker/tls/ /etc/pki/tls/nginx/
