@@ -1,5 +1,6 @@
 export const  environment = {
   production: ${IS_PRODUCTION},
+  debugRedux: ${DEBUG_REDUX},
 
   auth: {
     clientId: "${CLIENT_ID}",

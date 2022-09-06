@@ -247,7 +247,7 @@
                   </ng-template>
 
                   <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                    <ng-container formArrayName="signs_tns">
+                    <ng-container formArrayName="signs_info">
                       <tr [formGroupName]="rowIndex">
                         <td>
                           <p-autoComplete
@@ -265,7 +265,7 @@
                           >
                             <ng-template let-employee pTemplate="item">
                               <span class="ml-3">{{ employee.fio }}</span>
-                              <span> (отд. {{ employee.dept }}) </span>
+                              <span> (отд. {{ employee.prof }}) </span>
                             </ng-template>
 
                           </p-autoComplete>
@@ -278,7 +278,7 @@
                         </td>
 
                         <td>
-                          <input type="text" pInputText formControlName="title" placeholder="Должность"/>
+                          <input type="text" pInputText formControlName="prof" placeholder="Должность"/>
                         </td>
 
                         <td>

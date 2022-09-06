@@ -31,10 +31,7 @@ export class NomenclatureService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // TODO: Вернуть запрос
-    // return this.http.get (url,  { headers: headers });
-    let leftIndex = 'УИВТ';
-    return this.http.get(`${url}?left_index=${leftIndex}`,  { headers: headers });
+    return this.http.get (url,  { headers: headers });
   }
 
   downloadNomenclature(id: number) {
@@ -42,10 +39,7 @@ export class NomenclatureService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // TODO: Переделать filters={"id":"1"} !
-    let dt = {"id": id}
-
-    return this.http.get(`${url}?filters=${encodeURIComponent(JSON.stringify(dt))}`,  { headers: headers });
+    return this.http.get(`${url}/${id}`,  { headers,  responseType: 'blob' });
   }
 
   deleteNomenclature(id: number) {
@@ -67,10 +61,6 @@ export class NomenclatureService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // return this.http.get(url,  { headers: headers });
-    // TODO: Переделать filters={"left_index":"УИВТ"} !
-    let dt = {"left_index": 'УИВТ'}
-
-    return this.http.get(`${url}?filters=${encodeURIComponent(JSON.stringify(dt))}`,  { headers: headers });
+    return this.http.get(url,  { headers: headers });
   }
 }
