@@ -61,7 +61,7 @@ services:
     mac_address: ***REMOVED***
     networks:
       macvlan:
-        ipv4_address: 10.0.45.
+        ipv4_address: ***REMOVED***
     deploy:
       resources:
         reservations:
