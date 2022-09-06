@@ -3,7 +3,7 @@ version: "3.9"
 x-common-labels: &common-labels
   labels:
     project-name: "nom-ui"
-    comment: "Система отслеживания почтовых отправлений (frontend)"
+    comment: "Номенклатура дел (frontend)"
     domain: "staging-nom"
     environment: "staging"
     git: "***REMOVED***"
