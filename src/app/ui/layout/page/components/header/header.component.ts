@@ -1,5 +1,6 @@
+import { AuthHelper } from '@iss/ng-auth-center';
 import { LoaderService } from './../../../../shared/services/loader.service';
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 
@@ -12,19 +13,39 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
   items!: MenuItem[];
   loading: boolean = false;
+  currentUser = {
+    isAuthenticated: false,
+    fioInitials: '',
+    role: '',
+    indexDept: ''
+  }
 
   constructor(
     private loaderService: LoaderService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authHelper: AuthHelper
   ) { }
 
   ngOnInit(): void {
+    this.onLoadUser();
     this.onFillMenu();
 
     this.loaderService.isLoading$.subscribe(value =>{
       this.loading = value;
 
       this.cdr.detectChanges();
+    });
+  }
+
+  onLoadUser() {
+    this.authHelper.isAuthenticated$.subscribe((isAuth: any) => {
+      this.currentUser.isAuthenticated = isAuth;
+
+      if (this.currentUser.isAuthenticated) {
+        this.currentUser.fioInitials = this.authHelper.getJwtPayload()['fio_initials'];
+        this.currentUser.role = this.authHelper.getJwtPayload()['role'];
+        this.currentUser.indexDept = this.authHelper.getJwtPayload()['left_index'];
+      }
     });
   }
 
@@ -65,6 +86,10 @@ export class HeaderComponent implements OnInit {
         ]
       }
     ];
+  }
+
+  onLogout() {
+    this.authHelper.logout();
   }
 
 }

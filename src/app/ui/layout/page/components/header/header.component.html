@@ -17,23 +17,26 @@
 
   <div class="navbar-form"></div>
 
-  <p-divider layout="vertical"></p-divider>
+  <div class="flex" *ngIf="currentUser.isAuthenticated">
+    <p-divider layout="vertical"></p-divider>
 
-  <ul class="navbar-navu">
-    <li class="nav-item-el">
-      <div class="icon-group">
-        <i class="pi pi-user user-icon"></i>
-        <span> Current-user </span>
-      </div>
-    </li>
+    <ul class="navbar-navu">
+      <li class="nav-item-el">
+        <div class="icon-group">
+          <i class="pi pi-user user-icon"></i>
+          <span> {{ currentUser.fioInitials }} </span>
+        </div>
+      </li>
 
-    <li class="nav-item-el">
-      <p-button
-        icon="pi pi-sign-out"
-        styleClass="p-button-text p-button-plain"
-      ></p-button>
-    </li>
-  </ul>
+      <li class="nav-item-el">
+        <p-button
+          icon="pi pi-sign-out"
+          styleClass="p-button-text p-button-plain"
+          (click)="onLogout()"
+        ></p-button>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <p-toast [style]="{'font-size': '14px'}" class="custom-toast" position="top-right"></p-toast>
@@ -53,7 +56,6 @@
     </li>
   </ul>
 </nav> -->
-
 
 <p-menubar [model]="items">
 </p-menubar>

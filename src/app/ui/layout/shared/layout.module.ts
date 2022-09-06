@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { PrimengModule } from '../../../primeng.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -10,7 +11,8 @@ import { FooterComponent } from '../page/components/footer/footer.component';
 @NgModule({
   imports: [
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    CommonModule
   ],
   declarations: [
     HeaderComponent,
