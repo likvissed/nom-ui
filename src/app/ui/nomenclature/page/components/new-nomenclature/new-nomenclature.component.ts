@@ -6,8 +6,7 @@ import { createTemplateAction } from './../../../store/actions/create-template.a
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
 import { ModalSelectArticleComponent } from './../../../../article/page/components/modal-select-article/modal-select-article.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { map, take } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { searchUsers } from './../../../../shared/store/selectors';
 import { Store, select } from '@ngrx/store';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
@@ -32,7 +31,6 @@ export class NewNomenclatureComponent implements OnInit {
       name: new Date().getFullYear() + 1
     }
   ];
-  users: any = [];
   employees$!: Observable<any>;
   leftIndex: any;
   isSubmitting$!: Observable<boolean>;
@@ -82,8 +80,11 @@ export class NewNomenclatureComponent implements OnInit {
           this.allRecords.push(this.createTableRowBasedOn(object));
         });
 
-        data.presentNom.signs_info.forEach((object: any) => {
+        data.presentNom.signs_info.forEach((object: any, index: number) => {
           this.allSigns.push(this.createSignRowBasedOn(object));
+          // this.onNewSign();
+          // this.searchEmployee(object.tn);
+          // this.selectEmpSign(object, index);
         });
       }
     });
@@ -149,9 +150,7 @@ export class NewNomenclatureComponent implements OnInit {
       if (result) {
         (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['text'].setValue(result.text);
         (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['duration'].setValue(result.duration);
-
-        let articleValue = result.order_name ? result.order_name : result.article_id+result.sub;
-        (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['article_number'].setValue(articleValue);
+        (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['article_number'].setValue(result.article_id+result.sub);
 
         // Для запуска обнаружения изменений
         this.cdr.detectChanges();
@@ -248,11 +247,16 @@ export class NewNomenclatureComponent implements OnInit {
       return
     }
 
-    this.store.pipe(select(selectFileTemplate))
+    this.store.dispatch(createTemplateAction({ data: this.form.getRawValue() }));
+
+    let isOpenModal = false;
+
+    const subscription = this.store.pipe(select(selectFileTemplate))
       .subscribe((templateFile: Blob) => {
         if (templateFile) {
+          isOpenModal = true;
 
-          this.dialogService.open(ModalTemplateComponent, {
+          const ref = this.dialogService.open(ModalTemplateComponent, {
             header: 'Документ сформирован',
             width: '80%',
             data: {
@@ -260,11 +264,16 @@ export class NewNomenclatureComponent implements OnInit {
               request: this.form.getRawValue()
             }
           });
-        } else {
-          this.store.dispatch(createTemplateAction({ data: this.form.getRawValue() }));
+
+          ref.onClose.subscribe(() => {
+            subscription.unsubscribe();
+          });
         }
       });
 
-  }
+    if (isOpenModal){
+      subscription.unsubscribe();
+    }
 
+  }
 }

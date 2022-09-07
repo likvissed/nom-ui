@@ -29,7 +29,7 @@ export class DownloadEffect {
             let fileLink = document.createElement('a');
             fileLink.href = fileURL;
 
-            let nameFile = 'Номенклатура_дел'
+            let nameFile = 'Номенклатура_дел';
             fileLink.download = `${nameFile}`;
 
             fileLink.click();

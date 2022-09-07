@@ -16,5 +16,3 @@ export const selectStatusesNom = createSelector(nomenclatureFeatureSelector, (st
 export const getDataPresentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
 
 export const getCurrentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
-
-

@@ -26,7 +26,7 @@
               </div>
 
               <div class="py-2 pr-3 w-4">
-                <label> Утверждающий: </label>
+                <label> Утверждено: </label>
                 <p-autoComplete
                   #autoComplete
                   id="employee"
@@ -83,7 +83,7 @@
                   >
                   <ng-template pTemplate="caption">
                     <div class="flex">
-                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewRecord()" class="mr-2" pTooltip="Добавить запись" tooltipPosition="bottom"></button>
+                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewRecord()" class="mr-2" pTooltip="Добавить запись" tooltipPosition="top"></button>
                     </div>
                   </ng-template>
 
@@ -231,10 +231,11 @@
                 <p-table
                   [value]="allSigns.controls"
                   [reorderableColumns]="true"
+                  dataKey="tn"
                 >
                   <ng-template pTemplate="caption">
                     <div class="flex">
-                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewSign()" class="mr-2" pTooltip="Добавить согласующего" tooltipPosition="bottom"></button>
+                      <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewSign()" class="mr-2" pTooltip="Добавить согласующего" tooltipPosition="top"></button>
                     </div>
                   </ng-template>
 
@@ -265,7 +266,7 @@
                           >
                             <ng-template let-employee pTemplate="item">
                               <span class="ml-3">{{ employee.fio }}</span>
-                              <span> (отд. {{ employee.prof }}) </span>
+                              <span> (отд. {{ employee.dept }}) </span>
                             </ng-template>
 
                           </p-autoComplete>

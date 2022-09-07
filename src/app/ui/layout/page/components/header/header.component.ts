@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
   onFillMenu() {
     this.items = [
       {
-        label: "Норменклатура",
+        label: "Номенклатура",
         icon: "pi pi-fw pi-book",
         items: [
           {

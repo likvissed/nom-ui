@@ -1,3 +1,4 @@
+import { downloadNomenclatureAction } from './../../../store/actions/download.action';
 import { getCurrentNom } from './../../../store/selectors';
 import { getCurrentAction } from './../../../store/actions/get-current.action';
 import { Observable } from 'rxjs';
@@ -21,13 +22,19 @@ export class CurrentNomenclatureComponent implements OnInit {
   }
 
   onInitializeValues() {
-    this.store.dispatch(getCurrentAction());
+    this.onLoadNom();
 
     this.nomenclature$ = this.store.pipe(select(getCurrentNom));
   }
 
-  onDownloadNom() {
-    // TODO: Нужен id для запроса на скачивание
+  onLoadNom() {
+    this.store.dispatch(getCurrentAction());
+  }
+
+  onDownloadNom(id: any) {
+    this.store.dispatch(downloadNomenclatureAction({ data: id }));
+
+    this.onLoadNom();
   }
 
 }

@@ -9,6 +9,7 @@
       styleClass="p-button-outlined p-button-success"
       (click)="onSendToSsd()"
       [disabled]="(isSubmitting$  | async) || false"
+      [ngClass]="{'waiting': isSubmitting$  | async}"
     ></p-button>
 
     <p-button

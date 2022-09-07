@@ -7,7 +7,7 @@
 
         <p-toolbar styleClass="mb-4">
           <ng-template pTemplate="left">
-            <button pButton pRipple label="Скачать документ" icon="pi pi-download" (click)="onDownloadNom()" class="p-button-primary p-button-outlined"></button>
+            <button pButton pRipple label="Скачать документ" icon="pi pi-download" (click)="onDownloadNom(data.id)" class="p-button-primary p-button-outlined"></button>
           </ng-template>
         </p-toolbar>
 
@@ -22,9 +22,9 @@
               </div>
 
               <div class="py-2 pr-3 w-full">
-                <label> Утверждающий: </label>
+                <label> Утверждено: </label>
                 <b class="pr-3">
-                  {{ data.sign_main.fio }}
+                  {{ data.sign_main?.fio }}
                 </b>
               </div>
 
