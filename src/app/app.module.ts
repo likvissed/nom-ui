@@ -51,10 +51,7 @@ const appModules: any[] = [
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.debugRedux
-    }),
+    environment.debugRedux ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
 
     ...appModules
   ],
