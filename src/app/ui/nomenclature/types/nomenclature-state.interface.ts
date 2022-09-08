@@ -3,5 +3,5 @@ export interface NomenclatureStateInterface {
   response: any
   errors: any,
   nomenclatures: any,
-  statuses: any
+  filters: any
 }

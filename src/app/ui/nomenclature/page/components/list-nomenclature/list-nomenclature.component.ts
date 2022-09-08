@@ -1,12 +1,14 @@
+import { AuthHelper } from '@iss/ng-auth-center';
+import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { ConfirmationService } from 'primeng/api';
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { selectAllNomenclatures, selectStatusesNom } from './../../../store/selectors';
+import { selectAllNomenclatures, selectFiltersNom } from './../../../store/selectors';
 import { getListAction } from './../../../store/actions/get-list.action';
 import { Observable, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
 import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
 
 @Component({
@@ -17,17 +19,22 @@ import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
     ConfirmationService
   ]
 })
-export class ListNomenclatureComponent implements OnInit {
+export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   @ViewChild('dtable') table!: Table;
   nomenclatures$!: Observable<any>;
   filters = {
-    statuses: []
-  }
+    statuses: [],
+    deptnames: []
+  };
+  roleAdmin: boolean = false;
+  userDeptName = '';
+  example!: any;
 
   constructor(
     private store: Store,
     private confirmationService: ConfirmationService,
-    private router: Router
+    private router: Router,
+    private authHelper: AuthHelper
   ) { }
 
   ngOnInit() {
@@ -35,6 +42,11 @@ export class ListNomenclatureComponent implements OnInit {
   }
 
   initializeValues() {
+    if (this.authHelper.getJwtPayload()['role'] === 'admin') {
+      this.roleAdmin = true;
+      this.userDeptName = this.authHelper.getJwtPayload()['left_index'];
+    }
+
     this.store.dispatch(getListAction());
 
     this.onLoadNomenclatures();
@@ -46,12 +58,19 @@ export class ListNomenclatureComponent implements OnInit {
   }
 
   onLoadStatuses() {
-    this.store.pipe(select(selectStatusesNom))
-        .subscribe((statuses: any) => {
-          if (statuses) {
-            this.filters.statuses = statuses;
+    this.store.pipe(select(selectFiltersNom))
+        .subscribe((filters: any) => {
+          if (filters) {
+            this.filters.statuses = filters.state_types;
+            this.filters.deptnames = filters.dept_names;
           }
         });
+  }
+
+  ngAfterContentChecked(): void {
+    if (this.roleAdmin && this.table) {
+      this.table.filter(this.userDeptName, 'deptname', 'equals');
+    }
   }
 
   onDownloadNom(id: number) {

@@ -19,28 +19,32 @@
         <span class="caption-table"> Список номенклатур </span>
       </ng-template>
 
-      <ng-template pTemplate="header">
+      <ng-template pTemplate="header" class="flex">
         <tr>
-          <th width="1%" style="text-align:center"> № </th>
-          <th width="5%" style="text-align:center"> Год </th>
-          <th width="7%" style="text-align:center"> Статус </th>
-          <th width="1%"> </th>
-          <th width="1%"> </th>
-          <th width="1%"> </th>
+          <th class="w-1" style="text-align:center"> № </th>
+          <th class="w-2" style="text-align:center"> Дата создания </th>
+          <th class="w-1" style="text-align:center"> Год </th>
+          <th class="w-3" style="text-align:center"> Статус </th>
+          <th class="w-3" style="text-align:center" *ngIf="roleAdmin"> Участок </th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
 
         <tr>
-          <th width="1%"></th>
-          <th width="5%">
+          <th></th>
+          <th></th>
+          <th>
             <input
               pInputText
               type="text"
               [value]="$any(dtable.filters['year'])?.value"
               (input)="dtable.filter($any($event.target)?.value, 'year', 'contains')"
+              placeholder="Год"
               class="form-control col-lg-12"
             >
           </th>
-          <th width="7%">
+          <th *ngIf="roleAdmin">
             <p-dropdown
                 [options]="filters.statuses"
                 optionValue="id"
@@ -57,6 +61,23 @@
                 </ng-template>
               </p-dropdown>
           </th>
+          <th >
+            <p-dropdown
+              [options]="filters.deptnames"
+              optionValue="deptname"
+              (onChange)="dtable.filter($event.value, 'deptname', 'equals')"
+              placeholder="Все участки"
+              [showClear]="true"
+              optionLabel="deptname"
+              [style]="{'width':'100%'}"
+              panelStyleClass="p-dropdown"
+              [(ngModel)]="userDeptName"
+            >
+            <ng-template let-option pTemplate="item">
+              {{ option.deptname }}
+            </ng-template>
+          </p-dropdown>
+          </th>
           <th></th>
           <th></th>
           <th></th>
@@ -65,12 +86,16 @@
       <ng-template pTemplate="body" let-column let-i="rowIndex">
         <tr>
           <td style="text-align:center">{{ i + 1 }}</td>
+          <td style="text-align:center"> {{ column.date_create }} </td>
           <td style="text-align:center"> {{ column.year }} </td>
           <td style="text-align:center">
             <span
               [innerHtml]="column.proc_state | describeStatusNum: filters.statuses"
               [class]="'list-badge status-' + column.proc_state">
             </span>
+          </td>
+          <td style="text-align:center" *ngIf="roleAdmin">
+            {{ column.deptname }}
           </td>
           <td>
             <button

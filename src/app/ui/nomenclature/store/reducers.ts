@@ -16,7 +16,7 @@ const initialState: NomenclatureStateInterface = {
   response: null,
   errors: null,
   nomenclatures: null,
-  statuses: null
+  filters: null
 }
 
 const reducer = createReducer(
@@ -56,21 +56,21 @@ const reducer = createReducer(
     ...state,
     isSubmitting: true,
     nomenclatures: null,
-    statuses: null
+    filters: null
   })),
   on(getListActionSuccess, (state, action): any => ({
     ...state,
     isSubmitting: false,
     response: action.response,
     nomenclatures: action.response.nomenclatures,
-    statuses: action.response.data_filters.state_types
+    filters: action.response.data_filters
   })),
   on(getListActionFailure, (state, action): any => ({
     ...state,
     isSubmitting: false,
     errors: action.error,
     nomenclatures: null,
-    statuses: null
+    filters: null
   })),
 
   on(downloadNomenclatureAction, (state): NomenclatureStateInterface => ({
