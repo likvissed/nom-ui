@@ -4,10 +4,10 @@ x-common-labels: &common-labels
   labels:
     project-name: "nom-ui"
     comment: "Номенклатура дел (frontend)"
-    domain: "staging-nom"
-    environment: "staging"
+    domain: "nom"
+    environment: "production"
     git: "***REMOVED***"
-    branch: "develop"
+    branch: "main"
     maintainer: "***REMOVED***"
     devops-engineer: "***REMOVED***"
 
@@ -17,7 +17,7 @@ x-args: &args
     APP_ROOT: /app
     NG_CLI_VERSION: 14.2.1
     ENVIRONMENT: production
-    APP_HOSTNAME: staging-nom
+    APP_HOSTNAME: nom
 
 x-syslog-driver: &syslog-driver
   logging:
@@ -41,7 +41,7 @@ x-common: &common
   tty: true
 
 x-ui: &app
-  image: ${CI_REGISTRY_IMAGE}/nom-ui--staging--app
+  image: ${CI_REGISTRY_IMAGE}/nom-ui--production--app
   build:
     <<: *common-labels
     <<: *args
@@ -56,9 +56,9 @@ x-frontend: &frontend
   <<: *common
 
 services:
-  nom-ui--staging--app:
+  nom-ui--production--app:
     <<: *frontend
-    container_name: nom-ui--staging--app
+    container_name: nom-ui--production--app
     mac_address: ***REMOVED***
     networks:
       macvlan:
