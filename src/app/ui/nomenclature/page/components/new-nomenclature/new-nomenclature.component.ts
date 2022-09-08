@@ -82,9 +82,8 @@ export class NewNomenclatureComponent implements OnInit {
 
         data.presentNom.signs_info.forEach((object: any, index: number) => {
           this.allSigns.push(this.createSignRowBasedOn(object));
-          // this.onNewSign();
-          // this.searchEmployee(object.tn);
-          // this.selectEmpSign(object, index);
+
+          this.selectEmpSign(object, index);
         });
       }
     });
@@ -210,7 +209,8 @@ export class NewNomenclatureComponent implements OnInit {
     return this.formBuilder.group({
       tn: new FormControl('', [Validators.required]),
       fio: new FormControl('', [Validators.required]),
-      prof: new FormControl('', [Validators.required])
+      prof: new FormControl('', [Validators.required]),
+      obj: new FormControl('')
     })
   }
 
@@ -218,7 +218,8 @@ export class NewNomenclatureComponent implements OnInit {
     return this.formBuilder.group({
       tn: new FormControl(data.tn, [Validators.required]),
       fio: new FormControl(data.fio, [Validators.required]),
-      prof: new FormControl(data.prof, [Validators.required])
+      prof: new FormControl(data.prof, [Validators.required]),
+      obj: new FormControl(data)
     })
   }
 

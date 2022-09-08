@@ -252,16 +252,15 @@
                       <tr [formGroupName]="rowIndex">
                         <td>
                           <p-autoComplete
-                            #autoComplete
                             [suggestions]="employees$ | async"
                             (completeMethod)="searchEmployee($event)"
                             field="fio"
+                            formControlName="obj"
                             [minLength]="1"
                             [forceSelection]="true"
                             [showEmptyMessage]="true"
                             appendTo="body"
                             placeholder="Введите ФИО или таб.номер"
-                            [autofocus]="true"
                             (onSelect)="selectEmpSign($event, rowIndex)"
                           >
                             <ng-template let-employee pTemplate="item">
