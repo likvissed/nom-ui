@@ -43,6 +43,7 @@
           <p-panel header="Список разделов и дел">
             <p-table
               [value]="data.table"
+              styleClass="p-datatable-sm p-datatable-gridlines"
             >
               <ng-template pTemplate="header" let-columns>
                 <tr>
@@ -73,6 +74,7 @@
           <p-panel header="Список согласующих">
             <p-table
             [value]="data.signs_info"
+            styleClass="p-datatable-sm p-datatable-gridlines"
           >
             <ng-template pTemplate="header" let-columns>
               <tr>

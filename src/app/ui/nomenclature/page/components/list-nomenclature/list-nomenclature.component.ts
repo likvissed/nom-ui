@@ -68,9 +68,9 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    if (this.roleAdmin && this.table) {
-      this.table.filter(this.userDeptName, 'deptname', 'equals');
-    }
+    // if (this.roleAdmin && this.table) {
+    //   this.table.filter(this.userDeptName, 'deptname', 'equals');
+    // }
   }
 
   onDownloadNom(id: number) {
