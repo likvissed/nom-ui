@@ -21,18 +21,34 @@
               <span class="caption-table"> Список статей </span>
             </ng-template>
 
-            <ng-template pTemplate="header">
+            <ng-template pTemplate="header" class="flex">
               <tr>
-                <th width="7%"></th>
-                <th width="5%" style="text-align:center"> № </th>
-                <th> Подпункт </th>
-                <th> Наименование статьи </th>
+                <th class="w-1"></th>
+                <th class="w-1" style="text-align:center"> № </th>
+                <th class="w-1"> Подпункт </th>
+                <th class="w-full"> Наименование статьи </th>
               </tr>
 
               <tr>
                 <th></th>
-                <th></th>
-                <th></th>
+                <th>
+                  <input pInputText
+                    type="text"
+                    [value]="$any(dtable.filters['article_id'])?.value"
+                    (input)="dtable.filter($any($event.target)?.value, 'article_id', 'equals')"
+                    placeholder="№"
+                    class="form-control col-lg-12"
+                  >
+                </th>
+                <th>
+                  <input pInputText
+                    type="text"
+                    [value]="$any(dtable.filters['sub'])?.value"
+                    (input)="dtable.filter($any($event.target)?.value, 'sub', 'equals')"
+                    placeholder="Подпункт"
+                    class="form-control col-lg-12"
+                  >
+                </th>
                 <th width="">
                   <input pInputText
                     type="text"
