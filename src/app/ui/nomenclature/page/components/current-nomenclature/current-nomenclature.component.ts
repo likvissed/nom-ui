@@ -28,7 +28,7 @@ export class CurrentNomenclatureComponent implements OnInit {
   }
 
   onLoadNom() {
-    this.store.dispatch(getCurrentAction());
+    this.store.dispatch(getCurrentAction({id: ''}));
   }
 
   onDownloadNom(id: any) {

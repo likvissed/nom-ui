@@ -1,3 +1,6 @@
+import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail/modal-nomenclature-detail.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
 import { AuthHelper } from '@iss/ng-auth-center';
 import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -16,7 +19,7 @@ import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
   templateUrl: './list-nomenclature.component.html',
   styleUrls: ['./list-nomenclature.component.scss'],
   providers: [
-    ConfirmationService
+    ConfirmationService, DialogService
   ]
 })
 export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
@@ -34,7 +37,8 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
     private store: Store,
     private confirmationService: ConfirmationService,
     private router: Router,
-    private authHelper: AuthHelper
+    private authHelper: AuthHelper,
+    public dialogService: DialogService
   ) { }
 
   ngOnInit() {
@@ -92,5 +96,15 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
 
   onCreateBasedOn(id: number) {
     this.router.navigateByUrl(`/nomenclature/new/${id}`);
+  }
+
+  onShowNom(id: number) {
+    const ref = this.dialogService.open(ModalNomenclatureDetailComponent, {
+      header: 'Просмотр номенклатуры',
+      width: '80%',
+      data: {
+        id: id
+      }
+    });
   }
 }

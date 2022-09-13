@@ -18,8 +18,8 @@ export class GetCurrentEffect {
   get$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getCurrentAction),
-      switchMap(() => {
-        return this.nomenclatureService.getCurrentNom().pipe(
+      switchMap((value) => {
+        return this.nomenclatureService.getCurrentNom(value.id).pipe(
           map((response: any ) => {
             return getCurrentActionSuccess({response: response});
           }),

@@ -2,7 +2,8 @@ import { ActionTypes } from './../action-types';
 import { createAction, props } from '@ngrx/store';
 
 export const getCurrentAction = createAction(
-  ActionTypes.GET_CURRENT
+  ActionTypes.GET_CURRENT,
+  props<{ id: any }>()
 );
 
 export const getCurrentActionSuccess = createAction(

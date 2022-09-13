@@ -29,6 +29,7 @@
           <th></th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
 
         <tr>
@@ -71,13 +72,14 @@
               optionLabel="deptname"
               [style]="{'width':'100%'}"
               panelStyleClass="p-dropdown"
-              [(ngModel)]="userDeptName"
             >
+            <!-- [(ngModel)]="userDeptName" -->
             <ng-template let-option pTemplate="item">
               {{ option.deptname }}
             </ng-template>
           </p-dropdown>
           </th>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -97,7 +99,18 @@
           <td style="text-align:center" *ngIf="roleAdmin">
             {{ column.deptname }}
           </td>
-          <td>
+          <td style="text-align:center">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-eye"
+              (click)="onShowNom(column.id)"
+              class="p-button-primery p-button-outlined"
+              pTooltip="Посмотреть номенклатуру"
+              tooltipPosition="top"
+            ></button>
+          </td>
+          <td style="text-align:center">
             <button
               pButton
               pRipple
@@ -108,7 +121,7 @@
               tooltipPosition="top"
             ></button>
           </td>
-          <td>
+          <td style="text-align:center">
             <button
               pButton
               pRipple
@@ -119,7 +132,7 @@
               tooltipPosition="top"
             ></button>
           </td>
-          <td>
+          <td style="text-align:center">
             <button
               pButton
               pRipple

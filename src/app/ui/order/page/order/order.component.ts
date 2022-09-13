@@ -49,7 +49,6 @@ export class OrderComponent implements OnInit {
   }
 
   onLoadDurationTypes() {
-    // TODO: Перенести в отдельный запрос в компонент NewOrderComponent
     this.store.pipe(select(selectAllDurationTypes))
         .subscribe((durationValues: any) => {
           if (durationValues) {

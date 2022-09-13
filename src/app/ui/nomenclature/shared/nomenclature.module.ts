@@ -1,3 +1,4 @@
+import { ModalNomenclatureDetailComponent } from './../page/components/modal-nomenclature-detail/modal-nomenclature-detail.component';
 import { CreateBasedOnEffect } from './../store/effects/create-based-on.effect';
 import { DeleteEffect } from './../store/effects/delete.effect';
 import { DownloadEffect } from './../store/effects/download.effect';
@@ -26,7 +27,8 @@ import { GetCurrentEffect } from '../store/effects/get-current.effect';
     CurrentNomenclatureComponent,
     ListNomenclatureComponent,
     ModalEditTomeComponent,
-    ModalTemplateComponent
+    ModalTemplateComponent,
+    ModalNomenclatureDetailComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,9 @@ import { GetCurrentEffect } from '../store/effects/get-current.effect';
 
     FormsModule,
     ReactiveFormsModule
+  ],
+  entryComponents: [
+    ModalNomenclatureDetailComponent
   ]
 })
 export class NomenclatureModule { }

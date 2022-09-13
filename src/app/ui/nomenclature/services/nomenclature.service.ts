@@ -56,11 +56,16 @@ export class NomenclatureService {
     return this.http.get(`${url}/${id}`,  { headers: headers });
   }
 
-  getCurrentNom() {
+  getCurrentNom(id?: number) {
     const url = `${environment.apiUrl}/nomenclature_detail`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get(url,  { headers: headers });
+    if (!id) {
+      return this.http.get(url,  { headers: headers });
+    } else {
+      return this.http.get(`${url}?id=${id}`,  { headers: headers });
+    }
   }
+
 }
