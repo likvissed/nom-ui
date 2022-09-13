@@ -21,6 +21,7 @@ import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DialogModule } from 'primeng/dialog';
 
 
 const modules: any[] = [
@@ -44,7 +45,8 @@ const modules: any[] = [
   ToastModule,
   CardModule,
   ImageModule,
-  ProgressSpinnerModule
+  ProgressSpinnerModule,
+  DialogModule
 ];
 
 @NgModule({

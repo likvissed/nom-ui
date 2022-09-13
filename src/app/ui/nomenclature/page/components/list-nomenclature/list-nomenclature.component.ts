@@ -31,7 +31,8 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   };
   roleAdmin: boolean = false;
   userDeptName = '';
-  example!: any;
+  display: boolean = false;
+  comment = '';
 
   constructor(
     private store: Store,
@@ -106,5 +107,10 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
         id: id
       }
     });
+  }
+
+  onShowComment(comment: any){
+    this.display = true;
+    this.comment = comment;
   }
 }
