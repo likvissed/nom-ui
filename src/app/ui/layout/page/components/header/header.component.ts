@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       if (this.currentUser.isAuthenticated) {
         this.currentUser.fioInitials = this.authHelper.getJwtPayload()['fio_initials'];
         this.currentUser.role = this.authHelper.getJwtPayload()['role'];
-        this.currentUser.indexDept = this.authHelper.getJwtPayload()['left_index'];
+        this.currentUser.indexDept = this.authHelper.getJwtPayload()['left_index'][0];
       }
     });
   }

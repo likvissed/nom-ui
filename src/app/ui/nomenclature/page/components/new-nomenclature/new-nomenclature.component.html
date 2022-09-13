@@ -8,24 +8,25 @@
 
           <p-panel header="Шапка документа">
             <!-- Вводные поля -->
-            <div class=flex>
-              <div class="py-2 pr-3 w-full">
-                <label> Наименование участка делопроизводства: </label>
-                <input type="text" pInputText formControlName="head_dept"/>
 
-                <div class="p-error" *ngIf="form.get('head_dept')!.invalid && (form.get('head_dept')!.dirty || form.get('head_dept')!.touched)">
-                  <small *ngIf="form.get('head_dept')?.errors?.['required']">
+            <div class="flex">
+              <div class="py-2 pr-3 w-4">
+                <label> Участок делопроизводства: </label>
+                <p-dropdown [options]="leftIndex" formControlName="deptname"></p-dropdown>
+              </div>
+
+              <div class="py-2 pr-3 w-2">
+                <label> На год: </label>
+                <p-dropdown [options]="years" formControlName="year" optionLabel="name" optionValue="name"></p-dropdown>
+
+                <div class="p-error" *ngIf="form.get('year')!.invalid && (form.get('year')!.dirty || form.get('year')!.touched)">
+                  <small *ngIf="form.get('year')?.errors?.['required']">
                     Не может быть пустым
-                  </small>
-
-                  <small *ngIf="form.get('head_dept')?.errors?.['maxlength']">
-                    Наименование должно содержать не более {{form.get('head_dept')?.errors?.['maxlength'].requiredLength }} символов.
-                    Сейчас длина равна {{ form.get('head_dept')?.errors?.['maxlength'].actualLength }} символа
                   </small>
                 </div>
               </div>
 
-              <div class="py-2 pr-3 w-4">
+              <div class="py-2 w-full">
                 <label> Утверждено: </label>
                 <p-autoComplete
                   #autoComplete
@@ -54,14 +55,22 @@
                   </small>
                 </div>
               </div>
+            </div>
 
-              <div class="py-2">
-                <label> На год: </label>
-                <p-dropdown [options]="years" formControlName="year" optionLabel="name" optionValue="name"></p-dropdown>
 
-                <div class="p-error" *ngIf="form.get('year')!.invalid && (form.get('year')!.dirty || form.get('year')!.touched)">
-                  <small *ngIf="form.get('year')?.errors?.['required']">
+            <div class=flex>
+              <div class="py-2 w-full">
+                <label> Наименование участка делопроизводства: </label>
+                <input type="text" pInputText formControlName="head_dept"/>
+
+                <div class="p-error" *ngIf="form.get('head_dept')!.invalid && (form.get('head_dept')!.dirty || form.get('head_dept')!.touched)">
+                  <small *ngIf="form.get('head_dept')?.errors?.['required']">
                     Не может быть пустым
+                  </small>
+
+                  <small *ngIf="form.get('head_dept')?.errors?.['maxlength']">
+                    Наименование должно содержать не более {{form.get('head_dept')?.errors?.['maxlength'].requiredLength }} символов.
+                    Сейчас длина равна {{ form.get('head_dept')?.errors?.['maxlength'].actualLength }} символа
                   </small>
                 </div>
               </div>
@@ -111,7 +120,7 @@
                         <td>
                           <div class="flex">
                             <div class="w-6 pr-1">
-                              <label class="pr-1"> {{ leftIndex }} - {{ rowIndex + 1 }} </label>
+                              <label class="pr-1"> {{ form.value.deptname }} - {{ rowIndex + 1 }} </label>
                             </div>
                             <div class="w-2">
                               <p-checkbox name="dsp" [binary]="true" label="ДСП" formControlName="is_dsp"></p-checkbox>

@@ -61,6 +61,7 @@ export class NewNomenclatureComponent implements OnInit {
 
   onInitializeFrom() {
     this.form = this.formBuilder.group({
+      deptname:  new FormControl(this.leftIndex[0], [Validators.required]),
       head_dept: new FormControl('', [Validators.required, Validators.maxLength(600)]),
       year: new FormControl(this.years[0].name, [Validators.required]),
       sign_main: new FormControl('', [Validators.required]),
