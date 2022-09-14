@@ -16,15 +16,51 @@
       </div>
 
       <div class="py-2">
-        <label> Наименование приказа </label>
-        <input type="text" pInputText formControlName="name"/>
+        <label> Номер приказа </label>
+        <input type="text" pInputText formControlName="number"/>
 
-        <div class="p-error" *ngIf="form.get('name')!.invalid && (form.get('name')!.dirty || form.get('name')!.touched)">
-          <small *ngIf="form.get('name')?.errors?.['required']">
+        <div class="p-error" *ngIf="form.get('number')!.invalid && (form.get('number')!.dirty || form.get('number')!.touched)">
+          <small *ngIf="form.get('number')?.errors?.['required']">
             Не может быть пустым
           </small>
-          <small *ngIf="form.get('name')?.errors?.['maxlength']">
-            Наименование приказа должно быть не более {{form.get('name')?.errors?.['maxlength'].requiredLength }} символов
+          <small *ngIf="form.get('number')?.errors?.['maxlength']">
+            Номер приказа должно быть не более {{form.get('number')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+          <small *ngIf="form.get('number')?.errors?.['pattern']">
+            Может содержать только цифры
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Дата </label>
+        <p-calendar
+          formControlName="date_order"
+          appendTo="body"
+          dateFormat="dd.mm.yy"
+          placeholder="Выберите дату"
+          [showIcon]="true"
+          [readonlyInput]="true"
+        >
+        </p-calendar>
+
+        <div class="p-error" *ngIf="form.get('date_order')!.invalid && (form.get('date_order')!.dirty || form.get('date_order')!.touched)">
+          <small *ngIf="form.get('date_order')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Содержимое приказа </label>
+        <input type="text" pInputText formControlName="desc"/>
+
+        <div class="p-error" *ngIf="form.get('desc')!.invalid && (form.get('desc')!.dirty || form.get('desc')!.touched)">
+          <small *ngIf="form.get('desc')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+          <small *ngIf="form.get('desc')?.errors?.['maxlength']">
+            Содержимое приказа должно быть не более {{form.get('desc')?.errors?.['maxlength'].requiredLength }} символов
           </small>
         </div>
       </div>
@@ -56,11 +92,11 @@
 
       <div class="py-2">
         <label> Примечание </label>
-        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="false" formControlName="desc" class="w-full p-inputtext"></textarea>
+        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="false" formControlName="note" class="w-full p-inputtext"></textarea>
 
-        <div class="p-error" *ngIf="form.get('desc')!.invalid && (form.get('desc')!.dirty || form.get('desc')!.touched)">
-          <small *ngIf="form.get('desc')?.errors?.['maxlength']">
-            Примечание должно быть не более {{form.get('desc')?.errors?.['maxlength'].requiredLength }} символов
+        <div class="p-error" *ngIf="form.get('note')!.invalid && (form.get('note')!.dirty || form.get('note')!.touched)">
+          <small *ngIf="form.get('note')?.errors?.['maxlength']">
+            Примечание должно быть не более {{form.get('note')?.errors?.['maxlength'].requiredLength }} символов
           </small>
         </div>
       </div>

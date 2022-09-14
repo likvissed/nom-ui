@@ -42,10 +42,12 @@ export class NewOrderComponent implements OnInit {
   onInitializeFrom() {
     this.form = this.formBuilder.group({
       article: new FormControl({value: '', disabled: true}, [Validators.required]),
-      name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      number: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
+      date_order: new FormControl('', [Validators.required]),
+      desc: new FormControl('', [Validators.required, Validators.maxLength(500)]),
       duration_type: new FormControl(this.durationTypes[0]['id'], [Validators.required]),
-      desc: new FormControl('', [Validators.maxLength(500)]),
-      link: new FormControl('', [Validators.required, Validators.maxLength(255)])
+      link: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      note: new FormControl('', [Validators.maxLength(500)])
     })
   }
 

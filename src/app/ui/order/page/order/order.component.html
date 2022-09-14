@@ -31,7 +31,8 @@
           <ng-template pTemplate="header">
             <tr>
               <th width="5%" style="text-align:center"> № </th>
-              <th width="30%"> Наименование приказа </th>
+              <th width="10%"> Дата приказа </th>
+              <th width="30%"> Содержимое приказа </th>
               <th width="7%"> № статьи </th>
               <th width="15%"> Срок хранения </th>
               <th width="15%"> Примечание </th>
@@ -39,13 +40,22 @@
             </tr>
 
             <tr>
+              <th>
+                <input
+                  pInputText
+                  type="text"
+                  [value]="$any(dtable.filters['number'])?.value"
+                  (input)="dtable.filter($any($event.target)?.value, 'number', 'equals')"
+                  class="form-control col-lg-12"
+                >
+              </th>
               <th></th>
               <th>
                 <input
                   pInputText
                   type="text"
-                  [value]="$any(dtable.filters['name'])?.value"
-                  (input)="dtable.filter($any($event.target)?.value, 'name', 'contains')"
+                  [value]="$any(dtable.filters['desc'])?.value"
+                  (input)="dtable.filter($any($event.target)?.value, 'desc', 'contains')"
                   class="form-control col-lg-12"
                 >
               </th>
@@ -74,8 +84,8 @@
                 <input
                   pInputText
                   type="text"
-                  [value]="$any(dtable.filters['desc'])?.value"
-                  (input)="dtable.filter($any($event.target)?.value, 'desc', 'contains')"
+                  [value]="$any(dtable.filters['note'])?.value"
+                  (input)="dtable.filter($any($event.target)?.value, 'note', 'contains')"
                   class="form-control col-lg-12"
                 >
               </th>
@@ -86,13 +96,14 @@
 
           <ng-template pTemplate="body" let-column let-i="rowIndex" let-expanded="expanded">
             <tr>
-              <td style="text-align:center">{{ i + 1 }}</td>
+              <td style="text-align:center">{{ column.number }}</td>
+              <td style="text-align:center">{{ column.date_order }}</td>
               <td>
-                <a href="{{ column.link }}" target="_blank"> {{ column.name }} </a>
+                <a href="{{ column.link }}" target="_blank"> {{ column.desc }} </a>
               </td>
               <td style="text-align:center">{{ column.article }}</td>
               <td style="text-align:center">{{ column.duration }}</td>
-              <td>{{ column.desc }}</td>
+              <td>{{ column.note }}</td>
 
               <td>
                 <button pButton pRipple icon="pi pi-trash" (click)="onDeleteOrder(column.id, column.name)" class="p-button-danger p-button-outlined" ></button>
