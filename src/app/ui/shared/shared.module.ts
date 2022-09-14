@@ -1,3 +1,4 @@
+import { ColorLineForYearDirective } from './directives/color-line-for-year.directive';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { LoaderModule } from './modules/loader.module';
 import { NotFoundModule } from './modules/not-found.module';
@@ -26,10 +27,15 @@ const pipes: any[] = [
 const components: any[] = [
 ]
 
+const directives: any[] = [
+  ColorLineForYearDirective
+]
+
 @NgModule({
   declarations: [
     ...pipes,
-    ...components
+    ...components,
+    ...directives
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,8 @@ const components: any[] = [
   ],
   exports: [
     ...pipes,
-    ...components
+    ...components,
+    ...directives
   ],
   providers: [
     {

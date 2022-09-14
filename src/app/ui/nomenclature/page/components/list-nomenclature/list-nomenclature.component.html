@@ -91,7 +91,7 @@
       </ng-template>
 
       <ng-template pTemplate="body" let-column let-i="rowIndex">
-        <tr>
+        <tr colorYear [col]="column">
           <td style="text-align:center">{{ i + 1 }}</td>
           <td style="text-align:center"> {{ column.date_create }} </td>
           <td style="text-align:center"> {{ column.year }} </td>
@@ -117,13 +117,25 @@
           </td>
           <td style="text-align:center">
             <button
-            [disabled]="column.proc_state == 3 || column.proc_state == 4"
+              *ngIf="column.proc_state != 2"
+              [disabled]="column.proc_state == 1 || column.proc_state == 2"
               pButton
               pRipple
               icon="pi pi-download"
               (click)="onDownloadNom(column.id)"
               class="p-button-primery p-button-outlined"
               pTooltip="Скачать"
+              tooltipPosition="top"
+            ></button>
+
+            <button
+              *ngIf="column.proc_state == 2"
+              pButton
+              pRipple
+              icon="pi pi-ellipsis-h"
+              (click)="onShowComment(column.sign_comment)"
+              class="p-button-secondary p-button-outlined"
+              pTooltip="Комментарий"
               tooltipPosition="top"
             ></button>
           </td>
@@ -140,25 +152,13 @@
           </td>
           <td style="text-align:center">
             <button
-              *ngIf="column.proc_state != 2"
-              [disabled]="column.proc_state == 1 || column.proc_state == 2"
+              [disabled]="column.proc_state == 3 || column.proc_state == 4"
               pButton
               pRipple
               icon="pi pi-trash"
               (click)="onDeleteNom(column.id, i + 1)"
               class="p-button-danger p-button-outlined"
               pTooltip="Удалить"
-              tooltipPosition="top"
-            ></button>
-
-            <button
-              *ngIf="column.proc_state == 2"
-              pButton
-              pRipple
-              icon="pi pi-ellipsis-h"
-              (click)="onShowComment(column.sign_comment)"
-              class="p-button-secondary p-button-outlined"
-              pTooltip="Комментарий"
               tooltipPosition="top"
             ></button>
           </td>
