@@ -128,72 +128,50 @@
                           </div>
                         </td>
 
-                        <td>
+                        <td (click)="onOpenModalSelectArticle(rowIndex)">
                           <div class="flex">
                             <div class="w-full pr-1">
                               <label> {{ rowData.get('text').value }} </label>
 
                               <div class="p-error" *ngIf="rowData.get('text')!.invalid">
                                 <small *ngIf="rowData.get('text')?.errors?.['required']">
-                                  Необходимо выбрать
+                                  Нажмите для выбора
                                 </small>
                               </div>
-                            </div>
-                            <div class="flex align-items-center justify-content-center justify-content-end">
-                              <button
-                                pButton
-                                pRipple
-                                icon="pi pi-search"
-                                (click)="onOpenModalSelectArticle(rowIndex)"
-                                class="p-button-primary p-button-outlined"
-                                pTooltip="Выбрать статью"
-                                tooltipPosition="top"
-                              ></button>
                             </div>
                           </div>
                         </td>
 
-                        <td>
+                        <td (click)="onOpenModalCreateTome(rowIndex)">
                           <div class="flex">
                             <div class="w-9 pr-1">
                               <label> {{ rowData.get('toms').value | showStr }} </label>
 
                               <div class="p-error" *ngIf="rowData.get('toms')!.invalid">
                                 <small *ngIf="rowData.get('toms')?.errors?.['required']">
-                                  Необходимо выбрать
+                                  Нажмите для выбора
                                 </small>
                               </div>
-                            </div>
-                            <div class="flex align-items-center justify-content-center justify-content-end">
-                              <button
-                                pButton
-                                pRipple
-                                icon="pi pi-list"
-                                (click)="onOpenModalCreateTome(rowIndex)"
-                                class="p-button-primary p-button-outlined"
-                                pTooltip="Редактировать тома"
-                                tooltipPosition="top"
-                              ></button>
                             </div>
                           </div>
                         </td>
 
-                        <td>
+                        <td (click)="onOpenModalSelectArticle(rowIndex)">
                           <label> {{ rowData.get('duration').value }} </label>
 
                           <div class="p-error" *ngIf="rowData.get('duration')!.invalid">
                             <small *ngIf="rowData.get('duration')?.errors?.['required']">
-                              Необходимо выбрать
+                              Нажмите для выбора
                             </small>
                           </div>
                         </td>
 
-                        <td>
+                        <td (click)="onOpenModalSelectArticle(rowIndex)">
                           <label> {{ rowData.get('article_number').value }} </label>
 
                           <div class="p-error" *ngIf="rowData.get('article_number')!.invalid">
                             <small *ngIf="rowData.get('article_number')?.errors?.['required']">
-                              Необходимо выбрать
+                              Нажмите для выбора
                             </small>
                           </div>
                         </td>
