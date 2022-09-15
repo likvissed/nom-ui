@@ -87,8 +87,15 @@
 
                           <li>
                             <div>
-                              <span class="attribute"> Наименование приказа: </span>
-                              <span>{{ column.order_name | nameEmpty }}</span>
+                              <span class="attribute"> Номер приказа: </span>
+                              <span>{{ column.order_number | nameEmpty }}</span>
+                            </div>
+                          </li>
+
+                          <li>
+                            <div>
+                              <span class="attribute"> Дата приказа: </span>
+                              <span>{{ column.order_date | nameEmpty }}</span>
                             </div>
                           </li>
 

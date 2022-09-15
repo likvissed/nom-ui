@@ -22,8 +22,24 @@
 
           <tr>
             <th></th>
-            <th></th>
-            <th></th>
+            <th>
+              <input pInputText
+                type="text"
+                [value]="$any(dtable.filters['article_id'])?.value"
+                (input)="dtable.filter($any($event.target)?.value, 'article_id', 'equals')"
+                placeholder="№"
+                class="form-control col-lg-12"
+              >
+            </th>
+            <th>
+              <input pInputText
+                type="text"
+                [value]="$any(dtable.filters['sub'])?.value"
+                (input)="dtable.filter($any($event.target)?.value, 'sub', 'equals')"
+                placeholder="Подпункт"
+                class="form-control col-lg-12"
+              >
+            </th>
             <th width="">
               <input pInputText
                 type="text"
@@ -64,8 +80,15 @@
 
                       <li>
                         <div>
-                          <span class="attribute"> Наименование приказа: </span>
-                          <span>{{ column.order_name | nameEmpty }}</span>
+                          <span class="attribute"> Номер приказа: </span>
+                          <span>{{ column.order_number | nameEmpty }}</span>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div>
+                          <span class="attribute"> Дата приказа: </span>
+                          <span>{{ column.order_date | nameEmpty }}</span>
                         </div>
                       </li>
 
