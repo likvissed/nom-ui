@@ -77,4 +77,16 @@ export class NewOrderComponent implements OnInit {
     this.ref.close();
   }
 
+  onSelectDate() {
+    let dt = this.form.value.date_order;
+
+    let day = dt.getDate().toString();
+    let month = (dt.getMonth() + 1).toString();
+    let year = dt.getFullYear().toString();
+
+    let date = (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year;
+
+    this.form.controls['date_order'].setValue(date);
+  }
+
 }
