@@ -3,5 +3,6 @@ export interface NomenclatureStateInterface {
   response: any
   errors: any,
   nomenclatures: any,
-  filters: any
+  filters: any,
+  file: Blob | null
 }

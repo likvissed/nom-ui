@@ -7,7 +7,7 @@ export const nomenclatureFeatureSelector = createFeatureSelector<NomenclatureSta
 
 export const isSubmittingSelector = createSelector(nomenclatureFeatureSelector, (state: any) => state.isSubmitting);
 
-export const selectFileTemplate = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
+export const selectFileTemplate = createSelector(nomenclatureFeatureSelector, (state: any) => state.file);
 
 export const selectAllNomenclatures = createSelector(nomenclatureFeatureSelector, (state: any) => state.nomenclatures);
 
