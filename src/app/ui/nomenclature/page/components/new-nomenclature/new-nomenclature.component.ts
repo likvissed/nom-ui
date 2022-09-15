@@ -113,7 +113,10 @@ export class NewNomenclatureComponent implements OnInit {
       duration: new FormControl('', [Validators.required]),
       article_number: new FormControl('', [Validators.required]),
       tips: new FormControl('', [Validators.maxLength(500)]),
-      toms: this.formBuilder.array([], [Validators.required])
+      toms: this.formBuilder.array([], [Validators.required]),
+      order_date: '',
+      order_number: '',
+      order_desc: ''
     })
   }
 
@@ -125,7 +128,10 @@ export class NewNomenclatureComponent implements OnInit {
       duration: new FormControl(data.duration, [Validators.required]),
       article_number: new FormControl(data.article_number, [Validators.required]),
       tips: new FormControl(data.tips, [Validators.maxLength(500)]),
-      toms: this.formBuilder.array([data.toms], [Validators.required])
+      toms: this.formBuilder.array([data.toms], [Validators.required]),
+      order_date: data.order.date_order,
+      order_number: data.order.number,
+      order_desc: data.order.desc
     })
   }
 
@@ -151,6 +157,12 @@ export class NewNomenclatureComponent implements OnInit {
         (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['text'].setValue(result.text);
         (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['duration'].setValue(result.duration);
         (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['article_number'].setValue(result.article_id+result.sub);
+
+        if (result.order_number) {
+          (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['order_number'].setValue(result.order_number);
+          (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['order_date'].setValue(result.order_date);
+          (((<FormArray>this.form.controls['table']).at(recordIndex)) as FormGroup).controls['order_desc'].setValue(result.order_desc);
+        }
 
         // Для запуска обнаружения изменений
         this.cdr.detectChanges();

@@ -104,7 +104,7 @@
                       <th width="40%"> Наименование разделов и дел </th>
                       <th width="15%"> Дата заведения и закрытия </th>
                       <th width="7%"> Срок хранения </th>
-                      <th width="2%"> Номер статьи </th>
+                      <th width="7%"> Номер статьи </th>
                       <th width="15%"> Примечание </th>
                       <th width="2%"></th>
                     </tr>
@@ -168,6 +168,13 @@
 
                         <td (click)="onOpenModalSelectArticle(rowIndex)">
                           <label> {{ rowData.get('article_number').value }} </label>
+                          <div *ngIf="rowData.get('order_number').value">
+                            <label
+                              class=""
+                              pTooltip="{{ rowData.get('order_desc').value }}"
+                              tooltipPosition="top"
+                            >  №{{ rowData.get('order_number').value }} от {{ rowData.get('order_date').value }} </label>
+                          </div>
 
                           <div class="p-error" *ngIf="rowData.get('article_number')!.invalid">
                             <small *ngIf="rowData.get('article_number')?.errors?.['required']">
