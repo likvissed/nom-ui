@@ -1,3 +1,4 @@
+import { UserModule } from './ui/user/modules/user.module';
 import { CurrentNomenclatureComponent } from './ui/nomenclature/page/components/current-nomenclature/current-nomenclature.component';
 import { NotFoundComponent } from './ui/shared/components/not-found/not-found.component';
 import { OrderComponent } from './ui/order/page/order/order.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'nomenclature',
         loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/shared/nomenclature.module').then((modules) => modules.NomenclatureModule),
+      },
+      {
+        path: 'users',
+        loadChildren: (): Promise<any> => import('src/app/ui/user/modules/user.module').then((modules) => modules.UserModule),
       },
     ],
   },
