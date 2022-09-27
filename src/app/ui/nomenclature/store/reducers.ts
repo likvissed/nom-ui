@@ -17,7 +17,8 @@ const initialState: NomenclatureStateInterface = {
   errors: null,
   nomenclatures: null,
   filters: null,
-  file: null
+  file: null,
+  send_ssd: false
 }
 
 const reducer = createReducer(
@@ -43,17 +44,20 @@ const reducer = createReducer(
 
   on(sendToSsdAction, (state): NomenclatureStateInterface => ({
     ...state,
-    isSubmitting: true
+    isSubmitting: true,
+    send_ssd: false
   })),
   on(sendToSsdActionSuccess, (state, action): any => ({
     ...state,
     isSubmitting: false,
-    response: action.response
+    response: action.response,
+    send_ssd: true
   })),
   on(sendToSsdActionFailure, (state, action): any => ({
     ...state,
     isSubmitting: false,
-    errors: action.error
+    errors: action.error,
+    send_ssd: false
   })),
 
   on(getListAction, (state): NomenclatureStateInterface => ({

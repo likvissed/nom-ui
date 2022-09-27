@@ -1,5 +1,5 @@
 import { sendToSsdAction } from './../../../store/actions/send-to-ssd.action';
-import { isSubmittingSelector } from './../../../store/selectors';
+import { isSubmittingSelector, flagSendSsd } from './../../../store/selectors';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -44,6 +44,13 @@ export class ModalTemplateComponent implements OnInit {
 
   onSendToSsd() {
     this.store.dispatch(sendToSsdAction({ data: this.request }));
+
+    this.store.pipe(select(flagSendSsd))
+      .subscribe((flag: any) => {
+        if (flag) {
+          this.ref.close();
+        }
+      });
   }
 
   onCloseModal() {

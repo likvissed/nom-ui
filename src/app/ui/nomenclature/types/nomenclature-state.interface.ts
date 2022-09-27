@@ -4,5 +4,6 @@ export interface NomenclatureStateInterface {
   errors: any,
   nomenclatures: any,
   filters: any,
-  file: Blob | null
+  file: Blob | null,
+  send_ssd: boolean
 }
