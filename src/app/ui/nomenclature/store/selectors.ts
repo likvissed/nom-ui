@@ -16,3 +16,5 @@ export const selectFiltersNom = createSelector(nomenclatureFeatureSelector, (sta
 export const getDataPresentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
 
 export const getCurrentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
+
+export const flagSendSsd = createSelector(nomenclatureFeatureSelector, (state: any) => state.send_ssd);
