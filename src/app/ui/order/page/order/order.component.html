@@ -31,7 +31,7 @@
           <ng-template pTemplate="header">
             <tr>
               <th width="5%" style="text-align:center"> № </th>
-              <th width="10%"> Дата приказа </th>
+              <th width="15%"> Дата приказа </th>
               <th width="30%"> Содержимое приказа </th>
               <th width="7%"> № статьи </th>
               <th width="15%"> Срок хранения </th>
@@ -49,7 +49,21 @@
                   class="form-control col-lg-12"
                 >
               </th>
-              <th></th>
+              <th>
+                <p-columnFilter type="date" field="date" matchMode="is" [showMenu]="true">
+                  <ng-template pTemplate="filter" let-filter="filterCallback">
+                    <p-calendar
+                    [ngModel]="$any(dtable.filters['date'])?.value"
+                      (onSelect)="filter($event)"
+                      dateFormat="dd.mm.yy"
+                      [showButtonBar]="true"
+                      appendTo="body"
+                      (onClearClick)="filter(null)"
+                    ></p-calendar>
+                  </ng-template>
+                </p-columnFilter>
+
+              </th>
               <th>
                 <input
                   pInputText
@@ -97,7 +111,7 @@
           <ng-template pTemplate="body" let-column let-i="rowIndex" let-expanded="expanded">
             <tr>
               <td style="text-align:center">{{ column.number }}</td>
-              <td style="text-align:center">{{ column.date_order }}</td>
+              <td style="text-align:center">{{ column.date | date: 'dd.MM.yyyy' }}</td>
               <td>
                 <a href="{{ column.link }}" target="_blank"> {{ column.desc }} </a>
               </td>
@@ -105,7 +119,7 @@
               <td style="text-align:center">{{ column.duration }}</td>
               <td>{{ column.note }}</td>
 
-              <td>
+              <td style="text-align:center">
                 <button pButton pRipple icon="pi pi-trash" (click)="onDeleteOrder(column.id, column.name)" class="p-button-danger p-button-outlined" ></button>
               </td>
             </tr>

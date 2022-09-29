@@ -3,7 +3,7 @@
   <div class="container">
     <form [formGroup]="form">
       <div class="py-2">
-        <label> Статья </label>
+        <label>* Статья </label>
 
         <div class="flex">
           <div class="w-9 pr-2">
@@ -16,7 +16,7 @@
       </div>
 
       <div class="py-2">
-        <label> Номер приказа </label>
+        <label>* Номер приказа </label>
         <input type="text" pInputText formControlName="number"/>
 
         <div class="p-error" *ngIf="form.get('number')!.invalid && (form.get('number')!.dirty || form.get('number')!.touched)">
@@ -33,7 +33,7 @@
       </div>
 
       <div class="py-2">
-        <label> Дата </label>
+        <label>* Дата </label>
         <p-calendar
           formControlName="date_order"
           appendTo="body"
@@ -53,7 +53,7 @@
       </div>
 
       <div class="py-2">
-        <label> Содержимое приказа </label>
+        <label>* Содержимое приказа </label>
         <input type="text" pInputText formControlName="desc"/>
 
         <div class="p-error" *ngIf="form.get('desc')!.invalid && (form.get('desc')!.dirty || form.get('desc')!.touched)">
@@ -67,7 +67,7 @@
       </div>
 
       <div class="py-2">
-        <label> Длительность хранения </label>
+        <label>* Длительность хранения </label>
         <p-dropdown [options]="durationTypes" formControlName="duration_type" optionLabel="duration" optionValue="id"></p-dropdown>
 
         <div class="p-error" *ngIf="form.get('duration_type')!.invalid && (form.get('duration_type')!.dirty || form.get('duration_type')!.touched)">
@@ -78,7 +78,7 @@
       </div>
 
       <div class="py-2">
-        <label> Ссылка на приказ </label>
+        <label>* Ссылка на приказ </label>
         <input type="text" pInputText formControlName="link"/>
 
         <div class="p-error" *ngIf="form.get('link')!.invalid && (form.get('link')!.dirty || form.get('link')!.touched)">
@@ -101,6 +101,8 @@
           </small>
         </div>
       </div>
+
+      <label>* Обязательные поля для заполнения </label>
     </form>
 
     <div class="flex justify-content-end mt-3">
