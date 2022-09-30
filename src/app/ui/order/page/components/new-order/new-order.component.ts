@@ -1,7 +1,8 @@
+import { flagResponseTrue } from './../../../store/selectors';
 import { DurationTypeInterface } from './../../../types/duration-type.interface';
 import { addOrderAction } from './../../../store/actions/add-order.action';
 import { ModalSelectArticleComponent } from '../../../../article/page/components/modal-select-article/modal-select-article.component';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 
 import { DynamicDialogRef, DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
@@ -70,7 +71,12 @@ export class NewOrderComponent implements OnInit {
   onSaveOrder() {
     this.store.dispatch(addOrderAction({ data: this.form.getRawValue() }));
 
-    this.onCloseModal();
+    this.store.pipe(select(flagResponseTrue))
+      .subscribe((flag: any) => {
+        if (flag) {
+          this.onCloseModal();
+        }
+      });
   }
 
   onCloseModal() {
