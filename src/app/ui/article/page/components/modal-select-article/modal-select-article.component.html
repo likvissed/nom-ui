@@ -58,7 +58,7 @@
             </td>
             <td style="text-align:center">{{ column.article_id }}</td>
             <td style="text-align:center">{{ column.sub }}</td>
-            <td>{{ column.text }}</td>
+            <td (click)="dtable.toggleRow(column, $event)" style="cursor: pointer;">{{ column.text }}</td>
             <td>
               <button pButton pRipple label="Выбрать" (click)="onSelected(column)" class="p-button-primary p-button-outlined"></button>
             </td>
