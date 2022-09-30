@@ -24,6 +24,12 @@ export class ModalEditTomeComponent implements OnInit {
   ];
   selectDateEnd: any;
 
+  currentYear = new Date().getFullYear();
+  minDateFirst = new Date(`${this.currentYear}-01-01`);
+  maxDateFirst = new Date(`${this.currentYear + 1}-12-31`);
+  minDateSecond = new Date(`${this.currentYear}-01-01`);
+  maxDateSecond = new Date(`${this.currentYear + 1}-12-31`);
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -116,16 +122,38 @@ export class ModalEditTomeComponent implements OnInit {
     return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year;
   }
 
+  onCalcDatePluseOne(date: any) {
+    let str_date = date.split('.').reverse().join('-');
+
+    const today = new Date(str_date);
+    const tomorrow = new Date(str_date)
+    tomorrow.setDate(today.getDate() + 1);
+
+    return tomorrow;
+  }
+
+  onCalcDateMinusOne(date: any) {
+    let str_date = date.split('.').reverse().join('-');
+
+    const today = new Date(str_date);
+    const yesterday = new Date(str_date)
+    yesterday.setDate(today.getDate() - 1);
+
+    return yesterday;
+  }
+
   onSelectDateStart(index: number) {
     let fullStartDate = (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'];
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'].setValue(this.onChangeDate(fullStartDate.value));
+    this.minDateSecond = this.onCalcDatePluseOne(fullStartDate.value);
   }
 
   onSelectDateEnd(index: number) {
     let fullEndDate = (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_end'];
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_end'].setValue(this.onChangeDate(fullEndDate.value));
+    this.maxDateFirst = this.onCalcDateMinusOne(fullEndDate.value);
   }
 
   onSaveTome() {
