@@ -59,4 +59,15 @@ export class UserComponent implements OnInit {
     });
   }
 
+  onEditUser(column: any, fio: string) {
+    this.dialogService.open(NewUserComponent, {
+      header: fio,
+      width: '50%',
+      data: {
+        roles: this.filters.roles,
+        data: column
+      }
+    });
+  }
+
 }

@@ -1,3 +1,4 @@
+import { updateUserAction, updateUserSuccessAction, updateUserFailureAction } from './actions/update-user.action';
 import { addUserAction, addUserSuccessAction, addUserFailureAction } from './actions/add-user.action';
 import { getUsersAction, getUsersFailureAction, getUsersSuccessAction } from './actions/get-users.action';
 import { UserStateInterface } from './../types/user-state.interface';
@@ -59,6 +60,28 @@ const reducer = createReducer(
     flag: true
   })),
   on(addUserFailureAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error,
+    flag: false
+  })),
+
+  on(updateUserAction, (state): UserStateInterface => ({
+    ...state,
+    isSubmitting: true,
+    response: null,
+    errors: null,
+    users: null,
+    filters: null,
+    flag: false
+  })),
+  on(updateUserSuccessAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response,
+    flag: true
+  })),
+  on(updateUserFailureAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
     errors: action.error,

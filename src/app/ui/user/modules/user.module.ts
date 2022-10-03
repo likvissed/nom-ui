@@ -1,3 +1,4 @@
+import { UpdateUserEffect } from './../store/effects/update-user.effect';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './../page/components/new-user/new-user.component';
 import { GetUsersEffect } from './../store/effects/get-users.effect';
@@ -30,7 +31,8 @@ import { AddUserEffect } from '../store/effects/add-user.effect';
     EffectsModule.forFeature(
       [
         GetUsersEffect,
-        AddUserEffect
+        AddUserEffect,
+        UpdateUserEffect
       ]
     )
   ]

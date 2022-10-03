@@ -1,3 +1,4 @@
+import { updateUserAction } from './../../../store/actions/update-user.action';
 import { flagResponse } from './../../../store/selectors';
 import { addUserAction } from './../../../store/actions/add-user.action';
 import { Store, select } from '@ngrx/store';
@@ -14,6 +15,7 @@ import { Component, OnInit } from '@angular/core';
 export class NewUserComponent implements OnInit {
   form!: FormGroup;
   roles: RoleInterface[] = [];
+  data: any;
 
   constructor(
     public config: DynamicDialogConfig,
@@ -33,25 +35,47 @@ export class NewUserComponent implements OnInit {
 
   onLoadRoles() {
     this.roles = this.config.data?.roles;
+    this.data = this.config.data?.data;
   }
 
   onInitializeFrom() {
-    this.form = this.formBuilder.group({
-      tn: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern("^[0-9]*$")]),
-      role_id: new FormControl(this.roles[0]['id'], [Validators.required]),
-      deptname: new FormControl('', Validators.maxLength(30))
-    })
+    if (!this.data) {
+      this.form = this.formBuilder.group({
+        tn: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern("^[0-9]*$")]),
+        role_id: new FormControl(this.roles[0]['id'], [Validators.required])
+        // deptname: new FormControl('', Validators.maxLength(30))
+      })
+    } else {
+      let role = this.roles.find((el: any) => el.id == this.data.role_id )
+
+      this.form = this.formBuilder.group({
+        tn: new FormControl({ value: this.data.tn, disabled: true }),
+        role_id: new FormControl(role?.id, [Validators.required])
+        // deptname: new FormControl(this.data.deptname, Validators.maxLength(30))
+      })
+    }
   }
 
   onSaveUser() {
-    this.store.dispatch(addUserAction({ data: this.form.getRawValue() }));
+    if (!this.data) {
+      this.store.dispatch(addUserAction({ data: this.form.getRawValue() }));
 
-    this.store.pipe(select(flagResponse))
-      .subscribe((flag: any) => {
-        if (flag) {
-          this.onCloseModal();
-        }
-      });
+      this.store.pipe(select(flagResponse))
+        .subscribe((flag: any) => {
+          if (flag) {
+            this.onCloseModal();
+          }
+        });
+    } else {
+      this.store.dispatch(updateUserAction({ data: this.form.getRawValue() }));
+
+      this.store.pipe(select(flagResponse))
+        .subscribe((flag: any) => {
+          if (flag) {
+            this.onCloseModal();
+          }
+        });
+    }
   }
 
   onCloseModal() {

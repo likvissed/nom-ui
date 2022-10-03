@@ -23,4 +23,12 @@ export class UserService {
 
     return this.http.post(url, data, { headers: headers})
   }
+
+  updateUser(data: any) {
+    const url = `${environment.apiUrl}/change_user`;
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.put(url, data , { headers: headers })
+  }
 }
