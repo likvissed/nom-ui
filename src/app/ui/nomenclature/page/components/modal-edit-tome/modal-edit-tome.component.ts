@@ -26,9 +26,10 @@ export class ModalEditTomeComponent implements OnInit {
 
   currentYear = new Date().getFullYear();
   minDateFirst = new Date(`${this.currentYear}-01-01`);
-  maxDateFirst = new Date(`${this.currentYear + 1}-12-31`);
-  minDateSecond = new Date(`${this.currentYear}-01-01`);
   maxDateSecond = new Date(`${this.currentYear + 1}-12-31`);
+
+  arrMaxDateFirst: Date[] = [];
+  arrMinDateSecond: Date[] = [];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -57,6 +58,9 @@ export class ModalEditTomeComponent implements OnInit {
 
     if (tomes) {
       tomes.forEach((element: any) => {
+        this.arrMaxDateFirst.push(this.onCalcDateMinusOne(element.date_end));
+        this.arrMinDateSecond.push(this.onCalcDatePluseOne(element.date_start));
+
         this.tableRowArray.push(this.addTomsRow(element));
       });
     }
@@ -98,6 +102,9 @@ export class ModalEditTomeComponent implements OnInit {
 
   onAddRow() {
     this.tableRowArray.push(this.createTomsRow());
+
+    this.arrMaxDateFirst.push(new Date(`${this.currentYear + 1}-12-31`));
+    this.arrMinDateSecond.push(new Date(`${this.currentYear}-01-01`));
   }
 
   onDeleteRow(recordIndex: number) {
@@ -146,14 +153,16 @@ export class ModalEditTomeComponent implements OnInit {
     let fullStartDate = (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'];
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'].setValue(this.onChangeDate(fullStartDate.value));
-    this.minDateSecond = this.onCalcDatePluseOne(fullStartDate.value);
+
+    this.arrMinDateSecond[index] = this.onCalcDatePluseOne(fullStartDate.value);
   }
 
   onSelectDateEnd(index: number) {
     let fullEndDate = (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_end'];
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_end'].setValue(this.onChangeDate(fullEndDate.value));
-    this.maxDateFirst = this.onCalcDateMinusOne(fullEndDate.value);
+
+    this.arrMaxDateFirst[index] = this.onCalcDateMinusOne(fullEndDate.value);
   }
 
   onSaveTome() {
