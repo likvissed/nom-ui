@@ -68,7 +68,7 @@
                 <!-- <td style="text-align:center">{{ i + 1 }}</td> -->
                 <td style="text-align:center">{{ column.article_id }}</td>
                 <td style="text-align:center">{{ column.sub }}</td>
-                <td>{{ column.text }}</td>
+                <td (click)="dtable.toggleRow(column, $event)" style="cursor: pointer;">{{ column.text }}</td>
               </tr>
             </ng-template>
 

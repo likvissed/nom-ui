@@ -2,7 +2,7 @@ import { MessageService } from 'primeng/api';
 import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './../actions/download.action';
 import { NomenclatureService } from './../../services/nomenclature.service';
 
-import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
@@ -44,6 +44,6 @@ export class DownloadEffect {
           ))
         )
       })
-    )
+    ), { dispatch: false }
   );
 }

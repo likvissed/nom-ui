@@ -16,6 +16,11 @@ export class ErrorHandlerService {
     console.error(error);
 
     switch (error.status) {
+      case 401:
+        this.authHelper.logout();
+        this.messageService.add({severity: 'warn', summary: 'Не авторизован', detail: 'Авторизуйтесь снова'});
+
+        break;
       case 422:
         this.messageService.add({severity: this.str_severity, summary: 'Ошибка загрузки данных с сервера', detail: error.error.error_description});
 

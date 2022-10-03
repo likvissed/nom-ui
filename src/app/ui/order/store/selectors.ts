@@ -8,3 +8,5 @@ export const orderFeatureSelector = createFeatureSelector<OrderStateInterface>(O
 export const selectAllOrders = createSelector(orderFeatureSelector, (state: any) => state.orders);
 
 export const selectAllDurationTypes = createSelector(orderFeatureSelector, (state: any) => state.duration_types);
+
+export const flagResponseTrue = createSelector(orderFeatureSelector, (state: any) => state.flag);

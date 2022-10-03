@@ -11,7 +11,8 @@ const initialState: OrderStateInterface = {
   response: null,
   orders: null,
   errors: null,
-  duration_types: null
+  duration_types: null,
+  flag: false
 }
 
 const reducer = createReducer(
@@ -50,15 +51,18 @@ const reducer = createReducer(
   })),
 
   on(addOrderAction, (state): any => ({
-    ...state
+    ...state,
+    flag: false
   })),
   on(addOrderSuccessAction, (state, action): any => ({
     ...state,
-    response: action
+    response: action,
+    flag: true
   })),
   on(addOrderFailureAction, (state, action): any => ({
     ...state,
     errors: action.error,
+    flag: false
   })),
 )
 

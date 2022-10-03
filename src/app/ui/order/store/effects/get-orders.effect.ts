@@ -21,6 +21,17 @@ export class GetOrdersEffect {
       ofType(getOrdersAction),
       switchMap(() => {
         return this.orderService.getOrders().pipe(
+          map((response: any ) => {
+            if (response) {
+              response.orders.map((el: any) => {
+                let srt_date = el['date_order'].split('.').reverse().join('-');
+
+                el['date'] = new Date(srt_date);
+              });
+            }
+
+            return response;
+          }),
           map((response: any ) => {//GetOrdersResponseInterface
             return getOrdersSuccessAction({response});
           }),

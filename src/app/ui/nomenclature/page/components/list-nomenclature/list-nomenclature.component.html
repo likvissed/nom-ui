@@ -59,7 +59,7 @@
                 [showClear]="true"
                 optionLabel="type"
                 [style]="{'width':'100%'}"
-                panelStyleClass="p-dropdown"
+                autoWidth="false"
                 >
 
                 <ng-template let-option pTemplate="item">
@@ -76,7 +76,6 @@
               [showClear]="true"
               optionLabel="deptname"
               [style]="{'width':'100%'}"
-              panelStyleClass="p-dropdown"
             >
             <!-- [(ngModel)]="userDeptName" -->
             <ng-template let-option pTemplate="item">
