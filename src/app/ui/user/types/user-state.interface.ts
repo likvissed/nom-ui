@@ -4,4 +4,5 @@ export interface UserStateInterface {
   errors: any
   users: any
   filters: any
+  flag: boolean
 }

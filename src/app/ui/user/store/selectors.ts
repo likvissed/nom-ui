@@ -9,3 +9,4 @@ export const selectAllUsers = createSelector(userFeatureSelector, (state: any) =
 
 export const selectUserFilters = createSelector(userFeatureSelector, (state: any) => state.filters);
 
+export const flagResponse = createSelector(userFeatureSelector, (state: any) => state.flag);

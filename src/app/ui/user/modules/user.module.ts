@@ -1,3 +1,5 @@
+import { ReactiveFormsModule } from '@angular/forms';
+import { NewUserComponent } from './../page/components/new-user/new-user.component';
 import { GetUsersEffect } from './../store/effects/get-users.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { USER_FEATURE_KEY, userReducer } from './../store/user-reducers';
@@ -8,23 +10,27 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from '../page/user/user.component';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../../../primeng.module';
+import { AddUserEffect } from '../store/effects/add-user.effect';
 
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
+    NewUserComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     UserServiceModule,
+    ReactiveFormsModule,
 
     PrimengModule,
 
     StoreModule.forFeature(USER_FEATURE_KEY, userReducer),
     EffectsModule.forFeature(
       [
-        GetUsersEffect
+        GetUsersEffect,
+        AddUserEffect
       ]
     )
   ]

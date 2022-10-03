@@ -1,0 +1,67 @@
+<div class="p-fluid grid">
+
+  <div class="container">
+    <form [formGroup]="form">
+
+      <div class="py-2">
+        <label> * Табельный номер </label>
+        <input type="text" pInputText formControlName="tn"/>
+
+        <div class="p-error" *ngIf="form.get('tn')!.invalid && (form.get('tn')!.dirty || form.get('tn')!.touched)">
+          <small *ngIf="form.get('tn')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+          <small *ngIf="form.get('tn')?.errors?.['maxlength']">
+            Табельный номер должен быть не более {{form.get('tn')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+          <small *ngIf="form.get('tn')?.errors?.['pattern']">
+            Может содержать только цифры
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> * Роль </label>
+        <p-dropdown [options]="roles" formControlName="role_id" optionLabel="full_role" optionValue="id"></p-dropdown>
+
+        <div class="p-error" *ngIf="form.get('role_id')!.invalid && (form.get('role_id')!.dirty || form.get('role_id')!.touched)">
+          <small *ngIf="form.get('role_id')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Участок </label>
+        <input type="text" pInputText formControlName="deptname"/>
+
+        <div class="p-error" *ngIf="form.get('deptname')!.invalid && (form.get('deptname')!.dirty || form.get('deptname')!.touched)">
+          <small *ngIf="form.get('deptname')?.errors?.['maxlength']">
+            Участок должен быть не более {{form.get('deptname')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+        </div>
+      </div>
+
+      <label>* Обязательные поля для заполнения </label>
+    </form>
+
+    <div class="flex justify-content-end mt-3">
+      <p-button
+        label="Сохранить"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        class="pr-2"
+        styleClass="p-button-outlined p-button-success"
+        (click)="onSaveUser()"
+      ></p-button>
+
+      <p-button
+        label="Отмена"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        styleClass="p-button-outlined p-button-secondary"
+        (click)="onCloseModal()"
+      ></p-button>
+    </div>
+
+  </div>
+
+</div>

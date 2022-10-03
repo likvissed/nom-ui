@@ -1,5 +1,12 @@
 <div class="container">
   <div class="card">
+    <div class="row">
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+          <button pButton pRipple label="Добавить пользователя" icon="pi pi-plus" (click)="onNewUser()" class="p-button-success p-button-outlined"></button>
+        </ng-template>
+      </p-toolbar>
+    </div>
 
     <div class="row" *ngIf="users$ | async as data; else emptyUser">
       <ng-container>

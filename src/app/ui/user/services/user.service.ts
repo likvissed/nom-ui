@@ -15,4 +15,12 @@ export class UserService {
 
     return this.http.get(url, { headers: headers });
   }
+
+  addUser(data: any) {
+    const url = `${environment.apiUrl}/add_user`;
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.post(url, data, { headers: headers})
+  }
 }
