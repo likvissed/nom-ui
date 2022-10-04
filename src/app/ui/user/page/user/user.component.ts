@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
   onNewUser() {
     this.dialogService.open(NewUserComponent, {
       header: 'Добавление пользователя',
-      width: '50%',
+      width: '30%',
       data: {
         roles: this.filters.roles
       }
@@ -63,7 +63,7 @@ export class UserComponent implements OnInit {
   onEditUser(column: any) {
     this.dialogService.open(NewUserComponent, {
       header: column.fio,
-      width: '50%',
+      width: '30%',
       data: {
         roles: this.filters.roles,
         data: column

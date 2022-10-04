@@ -57,9 +57,9 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  onDeleteOrder(id: number, name: string) {
+  onDeleteOrder(id: number, number: string) {
     this.confirmationService.confirm({
-      message: `Вы действительно хотите удалить приказ «‎${name}»?`,
+      message: `Вы действительно хотите удалить приказ № «‎${number}»?`,
       header: 'Подтвердите выбор',
       icon: 'pi pi-info-circle',
       acceptLabel: 'Да',
