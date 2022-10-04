@@ -28,16 +28,14 @@ const reducer = createReducer(
     isSubmitting: false,
     response: action.response,
     users: action.response.users,
-    filters: action.response.filters,
-    // flag: true
+    filters: action.response.filters
   })),
   on(getUsersFailureAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
     users: null,
     errors: action.error,
-    filters: null,
-    flag: false
+    filters: null
   })),
 
   on(addUserAction, (state): UserStateInterface => ({
@@ -81,14 +79,12 @@ const reducer = createReducer(
   on(deleteUserSuccessAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
-    response: action.response,
-    flag: true
+    response: action.response
   })),
   on(deleteUserFailureAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
-    errors: action.error,
-    flag: false
+    errors: action.error
   }))
 )
 

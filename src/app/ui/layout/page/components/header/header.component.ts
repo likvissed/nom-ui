@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
     isAuthenticated: false,
     fioInitials: '',
     role: '',
-    indexDept: ''
+    indexDept: '',
+    fullRole: ''
   }
 
   constructor(
@@ -44,6 +45,7 @@ export class HeaderComponent implements OnInit {
       if (this.currentUser.isAuthenticated) {
         this.currentUser.fioInitials = this.authHelper.getJwtPayload()['fio_initials'];
         this.currentUser.role = this.authHelper.getJwtPayload()['role'];
+        this.currentUser.fullRole = this.authHelper.getJwtPayload()['full_role'];
         this.currentUser.indexDept = this.authHelper.getJwtPayload()['left_index'][0];
       }
     });
