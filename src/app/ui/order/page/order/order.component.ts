@@ -50,11 +50,11 @@ export class OrderComponent implements OnInit {
 
   onLoadDurationTypes() {
     this.store.pipe(select(selectAllDurationTypes))
-        .subscribe((durationValues: any) => {
-          if (durationValues) {
-            this.durationTypes = durationValues;
-          }
-        });
+      .subscribe((durationValues: any) => {
+        if (durationValues) {
+          this.durationTypes = durationValues;
+        }
+      });
   }
 
   onDeleteOrder(id: number, name: string) {
