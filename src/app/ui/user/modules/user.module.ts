@@ -1,5 +1,7 @@
+import { SharedModule } from './../../shared/shared.module';
+import { DeleteUserEffect } from './../store/effects/delete-user.effect';
 import { UpdateUserEffect } from './../store/effects/update-user.effect';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NewUserComponent } from './../page/components/new-user/new-user.component';
 import { GetUsersEffect } from './../store/effects/get-users.effect';
 import { EffectsModule } from '@ngrx/effects';
@@ -23,8 +25,10 @@ import { AddUserEffect } from '../store/effects/add-user.effect';
     CommonModule,
     UserRoutingModule,
     UserServiceModule,
+    FormsModule,
     ReactiveFormsModule,
 
+    SharedModule,
     PrimengModule,
 
     StoreModule.forFeature(USER_FEATURE_KEY, userReducer),
@@ -32,7 +36,8 @@ import { AddUserEffect } from '../store/effects/add-user.effect';
       [
         GetUsersEffect,
         AddUserEffect,
-        UpdateUserEffect
+        UpdateUserEffect,
+        DeleteUserEffect
       ]
     )
   ]

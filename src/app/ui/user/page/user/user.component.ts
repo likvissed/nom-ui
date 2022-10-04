@@ -1,3 +1,5 @@
+import { ConfirmationService } from 'primeng/api';
+import { take } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NewUserComponent } from './../components/new-user/new-user.component';
 import { selectAllUsers, selectUserFilters } from './../../store/selectors';
@@ -5,13 +7,15 @@ import { getUsersAction } from './../../store/actions/get-users.action';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { deleteUserAction } from '../../store/actions/delete-user.action';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   providers: [
-    DialogService
+    DialogService,
+    ConfirmationService
   ]
 })
 export class UserComponent implements OnInit {
@@ -22,7 +26,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private store: Store,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -31,13 +36,9 @@ export class UserComponent implements OnInit {
 
   onInitializeValues() {
     this.store.dispatch(getUsersAction());
-
-    this.onLoadUsers();
-    this.onLoadFilters();
-  }
-
-  onLoadUsers() {
     this.users$ = this.store.pipe(select(selectAllUsers));
+
+    this.onLoadFilters();
   }
 
   onLoadFilters() {
@@ -59,13 +60,26 @@ export class UserComponent implements OnInit {
     });
   }
 
-  onEditUser(column: any, fio: string) {
+  onEditUser(column: any) {
     this.dialogService.open(NewUserComponent, {
-      header: fio,
+      header: column.fio,
       width: '50%',
       data: {
         roles: this.filters.roles,
         data: column
+      }
+    });
+  }
+
+  onDeleteUser(id: number, fio: string) {
+    this.confirmationService.confirm({
+      message: `Вы действительно хотите удалить пользователя «‎${fio}»?`,
+      header: 'Подтвердите выбор',
+      icon: 'pi pi-info-circle',
+      acceptLabel: 'Да',
+      rejectLabel: 'Нет',
+      accept: () => {
+        this.store.dispatch(deleteUserAction({id: id}));
       }
     });
   }

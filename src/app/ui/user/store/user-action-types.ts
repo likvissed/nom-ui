@@ -9,5 +9,9 @@ export enum UserActionTypes {
 
   UPDATE_USER = '[User] Update',
   UPDATE_USER_SUCCESS = '[User] Update success',
-  UPDATE_USER_FAILURE = '[User] Update failure'
+  UPDATE_USER_FAILURE = '[User] Update failure',
+
+  DELETE_USER = '[User] Delete',
+  DELETEE_USER_SUCCESS = '[User] Delete success',
+  DELETE_USER_FAILURE = '[User] Delete failure'
 }

@@ -31,4 +31,10 @@ export class UserService {
 
     return this.http.put(url, data , { headers: headers })
   }
+
+  deleteUser(id: number) {
+    const url = `${environment.apiUrl}/delete_user`;
+
+    return this.http.delete(`${url}/${id}`)
+  }
 }

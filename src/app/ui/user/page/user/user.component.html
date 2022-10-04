@@ -1,4 +1,6 @@
 <div class="container">
+  <p-confirmDialog [style]="{width: '700px'}" [baseZIndex]="10000"></p-confirmDialog>
+
   <div class="card">
     <div class="row">
       <p-toolbar styleClass="mb-4">
@@ -32,6 +34,7 @@
               <th width="7%" style="text-align:center"> Табельный номер </th>
               <th width="30%"> ФИО </th>
               <th width="10%" style="text-align:center"> Роль </th>
+              <th width="2%"></th>
               <th width="2%"></th>
             </tr>
 
@@ -76,6 +79,7 @@
               </th>
 
               <th></th>
+              <th></th>
             </tr>
           </ng-template>
 
@@ -87,7 +91,11 @@
               <td style="text-align:center">{{ column.full_role }}</td>
 
               <td style="text-align:center">
-                <button pButton pRipple icon="pi pi-pencil" (click)="onEditUser(column, column.fio)" class="p-button-primary p-button-outlined" ></button>
+                <button pButton pRipple icon="pi pi-pencil" (click)="onEditUser(column)" class="p-button-primary p-button-outlined" ></button>
+              </td>
+
+              <td style="text-align:center">
+                <button pButton pRipple icon="pi pi-trash" (click)="onDeleteUser(column.id, column.fio)" class="p-button-danger p-button-outlined" ></button>
               </td>
             </tr>
           </ng-template>

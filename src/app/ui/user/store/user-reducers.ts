@@ -3,6 +3,7 @@ import { addUserAction, addUserSuccessAction, addUserFailureAction } from './act
 import { getUsersAction, getUsersFailureAction, getUsersSuccessAction } from './actions/get-users.action';
 import { UserStateInterface } from './../types/user-state.interface';
 import { Action, createReducer, on } from '@ngrx/store';
+import { deleteUserAction, deleteUserFailureAction, deleteUserSuccessAction } from './actions/delete-user.action';
 
 export const USER_FEATURE_KEY = 'user';
 
@@ -20,12 +21,7 @@ const reducer = createReducer(
 
   on(getUsersAction, (state): UserStateInterface => ({
     ...state,
-    isSubmitting: true,
-    response: null,
-    errors: null,
-    users: null,
-    filters: null,
-    flag: false
+    isSubmitting: true
   })),
   on(getUsersSuccessAction, (state, action): any => ({
     ...state,
@@ -33,7 +29,7 @@ const reducer = createReducer(
     response: action.response,
     users: action.response.users,
     filters: action.response.filters,
-    flag: true
+    // flag: true
   })),
   on(getUsersFailureAction, (state, action): any => ({
     ...state,
@@ -46,12 +42,7 @@ const reducer = createReducer(
 
   on(addUserAction, (state): UserStateInterface => ({
     ...state,
-    isSubmitting: true,
-    response: null,
-    errors: null,
-    users: null,
-    filters: null,
-    flag: false
+    isSubmitting: true
   })),
   on(addUserSuccessAction, (state, action): any => ({
     ...state,
@@ -68,12 +59,7 @@ const reducer = createReducer(
 
   on(updateUserAction, (state): UserStateInterface => ({
     ...state,
-    isSubmitting: true,
-    response: null,
-    errors: null,
-    users: null,
-    filters: null,
-    flag: false
+    isSubmitting: true
   })),
   on(updateUserSuccessAction, (state, action): any => ({
     ...state,
@@ -82,6 +68,23 @@ const reducer = createReducer(
     flag: true
   })),
   on(updateUserFailureAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error,
+    flag: false
+  })),
+
+  on(deleteUserAction, (state): UserStateInterface => ({
+    ...state,
+    isSubmitting: true
+  })),
+  on(deleteUserSuccessAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response,
+    flag: true
+  })),
+  on(deleteUserFailureAction, (state, action): any => ({
     ...state,
     isSubmitting: false,
     errors: action.error,
