@@ -89,6 +89,11 @@ export class HeaderComponent implements OnInit {
             label: 'Пользователи',
             visible: this.currentUser.role == 'admin',
             routerLink: ['/users']
+          },
+          {
+            label: 'Участки',
+            visible: this.currentUser.role == 'admin',
+            routerLink: ['/deptnames']
           }
         ]
       }

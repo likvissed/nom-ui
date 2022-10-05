@@ -38,6 +38,10 @@ const routes: Routes = [
         path: 'users',
         loadChildren: (): Promise<any> => import('src/app/ui/user/modules/user.module').then((modules) => modules.UserModule),
       },
+      {
+        path: 'deptnames',
+        loadChildren: (): Promise<any> => import('src/app/ui/deptname/modules/deptname.module').then((modules) => modules.DeptnameModule),
+      }
     ],
   },
   {
