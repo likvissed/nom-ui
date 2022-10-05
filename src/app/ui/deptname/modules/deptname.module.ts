@@ -1,3 +1,10 @@
+import { SharedModule } from './../../shared/shared.module';
+import { DEPTNAME_FEATURE_KEY, deptnameReducer } from './../store/deptname-reducers';
+import { GetDeptnamesffect } from './../store/effects/get-deptnames.effect';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { DeptnameServiceModule } from './../services/deptname.service.module';
+import { DeptnameComponent } from './../page/deptname/deptname.component';
 import { DeptnameRoutingModule } from './deptname-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -6,13 +13,23 @@ import { PrimengModule } from '../../../primeng.module';
 
 @NgModule({
   declarations: [
+    DeptnameComponent
   ],
   imports: [
     CommonModule,
     DeptnameRoutingModule,
+    DeptnameServiceModule,
     ReactiveFormsModule,
 
-    PrimengModule
+    PrimengModule,
+    SharedModule,
+
+    StoreModule.forFeature(DEPTNAME_FEATURE_KEY, deptnameReducer),
+    EffectsModule.forFeature(
+      [
+        GetDeptnamesffect
+      ]
+    )
   ]
 })
 

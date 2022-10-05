@@ -1,3 +1,4 @@
+import { DeptnameInfoPipe } from './pipes/depname-info.pipe';
 import { ColorLineForYearDirective } from './directives/color-line-for-year.directive';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { LoaderModule } from './modules/loader.module';
@@ -21,7 +22,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 const pipes: any[] = [
   EmptyValuePipe,
   ArrayToStringTomesPipe,
-  NameForStatusNomPipe
+  NameForStatusNomPipe,
+  DeptnameInfoPipe
 ];
 
 const components: any[] = [
