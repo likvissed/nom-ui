@@ -1,9 +1,12 @@
+import { DEPTNAME_FEATURE_KEY } from './../../store/deptname-reducers';
+import { StoreModule } from '@ngrx/store';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { DeptnameComponent } from './deptname.component';
+import { deptnameReducer } from '../../store/deptname-reducers';
 
 describe('DeptnameComponent', () => {
   let component: DeptnameComponent;
@@ -11,6 +14,10 @@ describe('DeptnameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({}),
+        StoreModule.forFeature(DEPTNAME_FEATURE_KEY, deptnameReducer)
+      ],
       declarations: [ DeptnameComponent ]
     })
     .compileComponents();

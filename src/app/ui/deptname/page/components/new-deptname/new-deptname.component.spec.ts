@@ -1,3 +1,5 @@
+import { FormBuilder } from '@angular/forms';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +13,12 @@ describe('NewDeptnameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewDeptnameComponent ]
+      declarations: [ NewDeptnameComponent ],
+      roviders: [
+        DynamicDialogRef,
+        DynamicDialogConfig,
+        FormBuilder
+      ]
     })
     .compileComponents();
   }));

@@ -1,3 +1,4 @@
+import { DeleteDeptnameEffect } from './../store/effects/delete-deptname.effect';
 import { UpdateDeptnameEffect } from './../store/effects/update-deptname.effect';
 import { NewDeptnameComponent } from './../page/components/new-deptname/new-deptname.component';
 import { AddDeptnameEffect } from './../store/effects/add-deptname.effect';
@@ -33,7 +34,8 @@ import { PrimengModule } from '../../../primeng.module';
       [
         GetDeptnamesffect,
         AddDeptnameEffect,
-        UpdateDeptnameEffect
+        UpdateDeptnameEffect,
+        DeleteDeptnameEffect
       ]
     )
   ]

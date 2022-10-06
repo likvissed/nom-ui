@@ -1,5 +1,4 @@
 import { DeptnameModule } from './deptname.module';
-import { UserModule } from './user.module';
 import { TestBed } from '@angular/core/testing';
 
 describe('DeptnameModule', () => {

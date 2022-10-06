@@ -1,4 +1,4 @@
-import { DeptnameStateInterface } from './deptname.stub';
+import { DeptnameStateInterface } from './../types/deptname.state.interface';
 import { DEPTNAME_FEATURE_KEY } from './deptname-reducers';
 
 import { createFeatureSelector, createSelector } from "@ngrx/store";

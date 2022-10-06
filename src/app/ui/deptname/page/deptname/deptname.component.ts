@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Component, OnInit } from '@angular/core';
+import { deleteDeptnameAction } from '../../store/actions/delete-deptname.action';
 
 @Component({
   selector: 'app-deptname',
@@ -46,7 +47,6 @@ export class DeptnameComponent implements OnInit {
   }
 
   onEditDeptname(data: any) {
-    console.log('edit', data);
     this.dialogService.open(NewDeptnameComponent, {
       header: 'Редактирование участка',
       width: '35%',
@@ -56,8 +56,17 @@ export class DeptnameComponent implements OnInit {
     });
   }
 
-  onDeleteDeptname(id: number, name: string) {
-
+  onDeleteDeptname(id: number, deptname: string) {
+    this.confirmationService.confirm({
+      message: `Вы действительно хотите удалить участок «‎${deptname}»?`,
+      header: 'Подтвердите выбор',
+      icon: 'pi pi-info-circle',
+      acceptLabel: 'Да',
+      rejectLabel: 'Нет',
+      accept: () => {
+        this.store.dispatch(deleteDeptnameAction({id: id}));
+      }
+    });
   }
 
 }

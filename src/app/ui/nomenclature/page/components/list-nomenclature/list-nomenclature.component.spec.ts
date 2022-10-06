@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { AuthHelper, AuthHelperStub } from '@iss/ng-auth-center';
 
 import { ListNomenclatureComponent } from './list-nomenclature.component';
 
@@ -18,6 +19,9 @@ describe('ListNomenclatureComponent', () => {
         StoreModule.forRoot({}),
         StoreModule.forFeature(ORDER_FEATURE_KEY, orderReducer),
         RouterTestingModule
+      ],
+      providers: [
+        { provide: AuthHelper, useClass: AuthHelperStub }
       ]
     })
     .compileComponents();

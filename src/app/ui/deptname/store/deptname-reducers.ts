@@ -1,8 +1,10 @@
+import { DeptnameStateInterface } from './../types/deptname.state.interface';
+
 import { updateDeptnameAction, updateDeptnameSuccessAction, updateDeptnameFailureAction } from './actions/update-deptname.action';
 import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from './actions/add-deptname.action';
 import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from './actions/get-deptnames.action';
-import { DeptnameStateInterface } from './deptname.stub';
 import { Action, createReducer, on } from '@ngrx/store';
+import { deleteDeptnameAction, deleteDeptnameFailureAction, deleteDeptnameSuccessAction } from './actions/delete-deptname.action';
 
 export const DEPTNAME_FEATURE_KEY = 'deptname';
 
@@ -69,6 +71,21 @@ const reducer = createReducer(
     isSubmitting: false,
     errors: action.error,
     flag: false
+  })),
+
+  on(deleteDeptnameAction, (state): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: true
+  })),
+  on(deleteDeptnameSuccessAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response
+  })),
+  on(deleteDeptnameFailureAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error
   }))
 )
 
