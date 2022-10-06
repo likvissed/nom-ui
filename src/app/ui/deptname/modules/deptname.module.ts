@@ -1,3 +1,6 @@
+import { UpdateDeptnameEffect } from './../store/effects/update-deptname.effect';
+import { NewDeptnameComponent } from './../page/components/new-deptname/new-deptname.component';
+import { AddDeptnameEffect } from './../store/effects/add-deptname.effect';
 import { SharedModule } from './../../shared/shared.module';
 import { DEPTNAME_FEATURE_KEY, deptnameReducer } from './../store/deptname-reducers';
 import { GetDeptnamesffect } from './../store/effects/get-deptnames.effect';
@@ -13,7 +16,8 @@ import { PrimengModule } from '../../../primeng.module';
 
 @NgModule({
   declarations: [
-    DeptnameComponent
+    DeptnameComponent,
+    NewDeptnameComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { PrimengModule } from '../../../primeng.module';
     StoreModule.forFeature(DEPTNAME_FEATURE_KEY, deptnameReducer),
     EffectsModule.forFeature(
       [
-        GetDeptnamesffect
+        GetDeptnamesffect,
+        AddDeptnameEffect,
+        UpdateDeptnameEffect
       ]
     )
   ]

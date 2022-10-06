@@ -1,3 +1,5 @@
+import { updateDeptnameAction, updateDeptnameSuccessAction, updateDeptnameFailureAction } from './actions/update-deptname.action';
+import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from './actions/add-deptname.action';
 import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from './actions/get-deptnames.action';
 import { DeptnameStateInterface } from './deptname.stub';
 import { Action, createReducer, on } from '@ngrx/store';
@@ -31,6 +33,42 @@ const reducer = createReducer(
     isSubmitting: false,
     deptnames: null,
     errors: action.error
+  })),
+
+  on(addDeptnameAction, (state): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: true,
+    flag: false
+  })),
+  on(addDeptnameSuccessAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response,
+    flag: true
+  })),
+  on(addDeptnameFailureAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error,
+    flag: false
+  })),
+
+  on(updateDeptnameAction, (state): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: true,
+    flag: false
+  })),
+  on(updateDeptnameSuccessAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response,
+    flag: true
+  })),
+  on(updateDeptnameFailureAction, (state, action): DeptnameStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error,
+    flag: false
   }))
 )
 

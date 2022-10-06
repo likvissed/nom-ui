@@ -1,3 +1,4 @@
+import { NewDeptnameComponent } from './../components/new-deptname/new-deptname.component';
 import { getDeptnamesAction } from './../../store/actions/get-deptnames.action';
 import { selectAllDeptnames } from './../../store/selectors';
 import { Store, select } from '@ngrx/store';
@@ -38,11 +39,21 @@ export class DeptnameComponent implements OnInit {
   }
 
   onNewDeptname() {
-
+    this.dialogService.open(NewDeptnameComponent, {
+      header: 'Добавление участка',
+      width: '35%'
+    });
   }
 
   onEditDeptname(data: any) {
-
+    console.log('edit', data);
+    this.dialogService.open(NewDeptnameComponent, {
+      header: 'Редактирование участка',
+      width: '35%',
+      data: {
+        data: data
+      }
+    });
   }
 
   onDeleteDeptname(id: number, name: string) {
