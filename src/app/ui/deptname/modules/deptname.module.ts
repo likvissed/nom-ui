@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { DeptnameServiceModule } from './../services/deptname.service.module';
 import { DeptnameComponent } from './../page/deptname/deptname.component';
 import { DeptnameRoutingModule } from './deptname-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../../../primeng.module';
@@ -25,6 +25,7 @@ import { PrimengModule } from '../../../primeng.module';
     DeptnameRoutingModule,
     DeptnameServiceModule,
     ReactiveFormsModule,
+    FormsModule,
 
     PrimengModule,
     SharedModule,

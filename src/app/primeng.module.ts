@@ -23,6 +23,7 @@ import { ImageModule } from 'primeng/image';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 const modules: any[] = [
@@ -48,7 +49,8 @@ const modules: any[] = [
   ImageModule,
   ProgressSpinnerModule,
   DialogModule,
-  ChipModule
+  ChipModule,
+  MultiSelectModule
 ];
 
 @NgModule({

@@ -101,7 +101,7 @@ export class NewDeptnameComponent implements OnInit {
   }
 
   onDeleteUser(index: number) {
-
+    this.allUsers.removeAt(index);
   }
 
   onSave() {

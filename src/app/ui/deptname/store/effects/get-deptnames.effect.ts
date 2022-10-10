@@ -19,6 +19,17 @@ export class GetDeptnamesffect {
       switchMap(() => {
         return this.deptnameService.getDeptnames().pipe(
           map((response: any ) => {
+            if (response) {
+              response.deptnames.map((deptname: any, index: number) => {
+                let arrStr = deptname.users.map((user: any) => user.fio).join(', ');
+
+                response.deptnames[index]['fio_users'] = arrStr;
+              });
+            }
+
+            return response;
+          }),
+          map((response: any ) => {
             return getDeptnamesSuccessAction({response});
           }),
 

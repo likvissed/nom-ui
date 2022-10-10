@@ -1,3 +1,4 @@
+import { Table } from 'primeng/table';
 import { NewDeptnameComponent } from './../components/new-deptname/new-deptname.component';
 import { getDeptnamesAction } from './../../store/actions/get-deptnames.action';
 import { selectAllDeptnames } from './../../store/selectors';
@@ -5,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { deleteDeptnameAction } from '../../store/actions/delete-deptname.action';
 
 @Component({
@@ -18,6 +19,7 @@ import { deleteDeptnameAction } from '../../store/actions/delete-deptname.action
   ]
 })
 export class DeptnameComponent implements OnInit {
+  @ViewChild('dtable') table!: Table;
   deptnames$!: Observable<any>;
 
   constructor(
