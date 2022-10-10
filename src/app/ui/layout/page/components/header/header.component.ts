@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/nomenclature/list']
       },
       {
-        icon: "pi pi-fw pi-cog",
+        icon: "pi pi-fw pi-book",
         label: 'Дополнительно',
         style: {'margin-left': '0px'},
         items: [
@@ -84,11 +84,23 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Приказы',
             routerLink: ['/orders']
-          },
+          }
+        ]
+      },
+      {
+        icon: "pi pi-fw pi-cog",
+        label: 'Администрирование',
+        style: {'margin-left': '0px'},
+        items: [
           {
             label: 'Пользователи',
             visible: this.currentUser.role == 'admin',
             routerLink: ['/users']
+          },
+          {
+            label: 'Участки',
+            visible: this.currentUser.role == 'admin',
+            routerLink: ['/deptnames']
           }
         ]
       }

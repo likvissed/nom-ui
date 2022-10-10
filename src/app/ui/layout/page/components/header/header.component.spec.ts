@@ -2,6 +2,8 @@ import { LoaderService } from './../../../../shared/services/loader.service';
 import { ButtonModule } from 'primeng/button';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
+import { AuthHelper, AuthHelperStub } from '@iss/ng-auth-center';
+
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -17,7 +19,8 @@ describe('HeaderComponent', () => {
         ButtonModule
       ],
       providers: [
-        LoaderService
+        LoaderService,
+        { provide: AuthHelper, useClass: AuthHelperStub }
       ]
     })
     .compileComponents();

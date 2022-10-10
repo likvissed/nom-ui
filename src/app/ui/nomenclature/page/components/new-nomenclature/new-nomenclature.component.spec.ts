@@ -1,3 +1,4 @@
+import { AuthHelperStub, AuthHelper } from '@iss/ng-auth-center';
 import { MessageService } from 'primeng/api';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
@@ -21,7 +22,8 @@ describe('NewNomenclatureComponent', () => {
       declarations: [ NewNomenclatureComponent ],
       providers: [
         FormBuilder,
-        MessageService
+        MessageService,
+        { provide: AuthHelper, useClass: AuthHelperStub }
       ],
       imports: [
         StoreModule.forRoot({}),

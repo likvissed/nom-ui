@@ -1,6 +1,7 @@
+import { DEPTNAME_STUB } from './../store/deptname-stub';
+import { DEPTNAME_FEATURE_KEY, deptnameReducer } from './../store/deptname-reducers';
+import { DeptnameService } from './deptname.service';
 import { ConfirmationService } from 'primeng/api';
-import { USER_STUB } from './../store/user.stub';
-import { USER_FEATURE_KEY, userReducer } from './../store/user-reducers';
 
 import { environment } from 'src/environments/environment';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
@@ -8,10 +9,9 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { StoreModule } from '@ngrx/store';
-import { UserService } from './user.service';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('DeptnameService', () => {
+  let service: DeptnameService;
   let httpTestingController: HttpTestingController;
   let confirmationService: ConfirmationService;
 
@@ -20,17 +20,17 @@ describe('UserService', () => {
       imports: [
         HttpClientTestingModule,
         StoreModule.forRoot({}),
-        StoreModule.forFeature(USER_FEATURE_KEY, userReducer)
+        StoreModule.forFeature(DEPTNAME_FEATURE_KEY, deptnameReducer)
       ],
       providers: [
-        UserService,
+        DeptnameService,
         ConfirmationService
       ],
       declarations: [
       ]
     }).compileComponents();
 
-    service = TestBed.inject(UserService);
+    service = TestBed.inject(DeptnameService);
     confirmationService = TestBed.inject(ConfirmationService);
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -42,154 +42,136 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('#getUsers', () => {
-    const getUsersUrl = `${apiUrl}/users_list`
+  describe('#getDeptnames', () => {
+    const pathUrl = `${apiUrl}/deptnames_list`
     const data = {
-      users: [
-        USER_STUB,
-        USER_STUB
-      ],
-      filters: {
-        roles: [
-          {
-            id: 1,
-            role: "admin",
-            full_role: "Администратор"
-          },
-          {
-            id: 2,
-            role: "clerk",
-            full_role: "Делопроизводитель"
-          }
-        ]
-      }
+      deptnames: [
+        DEPTNAME_STUB,
+        DEPTNAME_STUB
+      ]
     };
 
     it('should return data', () => {
-      service.getUsers()
+      service.getDeptnames()
         .subscribe((response) => {
           expect(response).toEqual(data);
         })
 
-      const req = httpTestingController.expectOne({method: 'GET', url: getUsersUrl});
+      const req = httpTestingController.expectOne({method: 'GET', url: pathUrl});
 
       req.flush(data);
     });
 
     it('should call http with the expected url', () => {
-      service.getUsers()
+      service.getDeptnames()
         .subscribe((response: any) => {
-          expect(response.users).toEqual(data.users);
+          expect(response.users).toEqual(data.deptnames);
           expect(response).toBe(data);
         })
 
-        const req = httpTestingController.expectOne({method: 'GET', url: getUsersUrl});
+        const req = httpTestingController.expectOne({method: 'GET', url: pathUrl});
 
         expect(req.request.method).toEqual('GET');
         expect(req.request.responseType).toEqual('json');
-        expect(req.request.url).toEqual(getUsersUrl);
+        expect(req.request.url).toEqual(pathUrl);
 
         req.flush(data);
     });
   });
 
-  describe('#addUser', () => {
-    const addUserUrl = `${apiUrl}/add_user`
+  describe('#addDeptname', () => {
+    const pathUrl = `${apiUrl}/add_deptname`
     const data = {
-     tn: USER_STUB.tn,
-     role_id: USER_STUB.role_id
+      DEPTNAME_STUB
     };
     const dataSuccess = {
-      result: `Пользователь ${USER_STUB.fio} добавлен`
+      result: `Участок делопроизводства ${DEPTNAME_STUB.deptname} добавлен`
     };
 
     it('should return data', () => {
-      service.addUser(USER_STUB.id)
+      service.addDeptname(DEPTNAME_STUB.id)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
 
-      const req = httpTestingController.expectOne({method: 'POST', url: addUserUrl});
+      const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
 
       req.flush(data);
     });
 
     it('should call http with the expected url', () => {
-      service.addUser(USER_STUB.id)
+      service.addDeptname(DEPTNAME_STUB)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })
 
-        const req = httpTestingController.expectOne({method: 'POST', url: addUserUrl});
+        const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
 
         expect(req.request.method).toEqual('POST');
         expect(req.request.responseType).toEqual('json');
-        expect(req.request.url).toEqual(addUserUrl);
+        expect(req.request.url).toEqual(pathUrl);
 
         req.flush(data);
     });
   });
 
-  describe('#updateUser', () => {
-    const updateUserUrl = `${apiUrl}/change_user`
-    const data = {
-     tn: USER_STUB.tn,
-     role_id: USER_STUB.role_id
-    };
+  describe('#updateDeptname', () => {
+    const pathUrl = `${apiUrl}/change_deptname`
+    const data = DEPTNAME_STUB;
     const dataSuccess = {
-      result: 'Информация обновлена'
+      result: 'Участок делопроизводства изменён'
     };
 
     it('should return data', () => {
-      service.updateUser(USER_STUB.id)
+      service.updateDeptname(DEPTNAME_STUB)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
 
-      const req = httpTestingController.expectOne({method: 'PUT', url: updateUserUrl});
+      const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
 
       req.flush(data);
     });
 
     it('should call http with the expected url', () => {
-      service.getUsers()
+      service.updateDeptname(DEPTNAME_STUB)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })
 
-        const req = httpTestingController.expectOne({method: 'PUT', url: updateUserUrl});
+        const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
 
         expect(req.request.method).toEqual('PUT');
         expect(req.request.responseType).toEqual('json');
-        expect(req.request.url).toEqual(updateUserUrl);
+        expect(req.request.url).toEqual(pathUrl);
 
         req.flush(data);
     });
   });
 
-  describe('#deleteUser', () => {
+  describe('#deleteDeptname', () => {
     const params = {
-      id: USER_STUB.id
+      id: DEPTNAME_STUB.id
     };
     const dataSuccess = {
-      result: `Пользователь ${USER_STUB.fio} удален`
+      result: `Участок ${DEPTNAME_STUB.deptname} удален`
     };
 
     it('should be deleted record', () => {
-      spyOn(service, 'deleteUser').and.callThrough();
-      service.deleteUser(params.id)
+      spyOn(service, 'deleteDeptname').and.callThrough();
+      service.deleteDeptname(params.id)
         .subscribe(response => {
           expect(response).toEqual(dataSuccess);
         })
 
-      expect(service.deleteUser).toHaveBeenCalled();
+      expect(service.deleteDeptname).toHaveBeenCalled();
     });
 
     it('should be not deleted record', async() => {
-      spyOn(service, 'deleteUser');
+      spyOn(service, 'deleteDeptname');
       spyOn(confirmationService, 'confirm').and.callFake((confirmation: any) => {return confirmation.reject()});
 
-      expect(service.deleteUser).not.toHaveBeenCalled();
+      expect(service.deleteDeptname).not.toHaveBeenCalled();
     });
   });
 });

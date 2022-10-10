@@ -1,0 +1,105 @@
+<div class="p-fluid grid">
+
+  <div class="container">
+    <form [formGroup]="form">
+
+      <div class="py-2">
+        <label> * Участок </label>
+        <input type="text" pInputText formControlName="deptname"/>
+
+        <div class="p-error" *ngIf="form.get('deptname')!.invalid && (form.get('deptname')!.dirty || form.get('deptname')!.touched)">
+          <small *ngIf="form.get('deptname')?.errors?.['required']">
+            Не может быть пустым
+          </small>
+          <small *ngIf="form.get('deptname')?.errors?.['maxlength']">
+            Участок должен быть не более {{form.get('deptname')?.errors?.['maxlength'].requiredLength }} символов
+          </small>
+        </div>
+      </div>
+
+      <div class="py-2">
+        <label> Описание </label>
+        <input type="text" pInputText formControlName="info"/>
+      </div>
+
+      <p-table
+        [value]="allUsers.controls"
+        [reorderableColumns]="true"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button type="button" pButton pRipple icon="pi pi-plus" (click)="onNewUser()" class="mr-2" pTooltip="Добавить пользователя" tooltipPosition="top"></button>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th width="80%"> ФИО </th>
+          <th width="2%"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <ng-container formArrayName="users">
+          <tr [formGroupName]="rowIndex">
+            <td>
+              <p-autoComplete
+                [suggestions]="employees$ | async"
+                (completeMethod)="searchEmployee($event)"
+                field="fio"
+                formControlName="obj"
+                [minLength]="1"
+                [forceSelection]="true"
+                [showEmptyMessage]="true"
+                appendTo="body"
+                placeholder="Введите ФИО или таб.номер"
+                (onSelect)="selectEmpUser($event, rowIndex)"
+              >
+                <ng-template let-employee pTemplate="item">
+                  <span class="ml-3">{{ employee.fio }}</span>
+                  <span> (отд. {{ employee.dept }}) </span>
+                </ng-template>
+
+              </p-autoComplete>
+            </td>
+
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                (click)="onDeleteUser(rowIndex)"
+                class="p-button-danger p-button-outlined"
+                pTooltip="Удалить пользователя"
+                tooltipPosition="top"
+              ></button>
+            </td>
+          </tr>
+          </ng-container>
+        </ng-template>
+      </p-table>
+
+      <label>* Обязательное поле для заполнения </label>
+    </form>
+
+    <div class="flex justify-content-end mt-3">
+      <p-button
+        label="Сохранить"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        class="pr-2"
+        styleClass="p-button-outlined p-button-success"
+        (click)="onSave()"
+      ></p-button>
+
+      <p-button
+        label="Отмена"
+        icon="mdi mdi-loading mdi-spin mdi-18px"
+        styleClass="p-button-outlined p-button-secondary"
+        (click)="onCloseModal()"
+      ></p-button>
+    </div>
+
+  </div>
+
+</div>
