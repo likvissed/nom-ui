@@ -1,3 +1,4 @@
+import { DeptnameNamePipe } from './pipes/deptname-name.pipe';
 import { DeptnameInfoPipe } from './pipes/depname-info.pipe';
 import { ColorLineForYearDirective } from './directives/color-line-for-year.directive';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
@@ -23,7 +24,8 @@ const pipes: any[] = [
   EmptyValuePipe,
   ArrayToStringTomesPipe,
   NameForStatusNomPipe,
-  DeptnameInfoPipe
+  DeptnameInfoPipe,
+  DeptnameNamePipe
 ];
 
 const components: any[] = [

@@ -28,14 +28,15 @@
             <span class="caption-table"> Список пользователей </span>
           </ng-template>
 
-          <ng-template pTemplate="header">
+          <ng-template pTemplate="header" class="flex">
             <tr>
-              <th width="5%" style="text-align:center"> № </th>
-              <th width="7%" style="text-align:center"> Табельный номер </th>
-              <th width="30%"> ФИО </th>
-              <th width="10%" style="text-align:center"> Роль </th>
-              <th width="2%"></th>
-              <th width="2%"></th>
+              <th class="w-1" style="text-align:center"> № </th>
+              <th class="w-1" style="text-align:center"> Табельный номер </th>
+              <th class="w-3"> ФИО </th>
+              <th class="w-2" style="text-align:center"> Роль </th>
+              <th class="w-3" style="text-align:center"> Участки </th>
+              <th class="w-1"></th>
+              <th class="w-1"></th>
             </tr>
 
             <tr>
@@ -78,6 +79,17 @@
                 </p-dropdown>
               </th>
 
+              <th>
+                <input
+                  pInputText
+                  type="text"
+                  [value]="$any(dtable.filters['arr_deptnames'])?.value"
+                  (input)="dtable.filter($any($event.target)?.value, 'arr_deptnames', 'contains')"
+                  class="form-control"
+                  placeholder="Участки"
+                >
+              </th>
+
               <th></th>
               <th></th>
             </tr>
@@ -89,6 +101,7 @@
               <td style="text-align:center">{{ column.tn }}</td>
               <td>{{ column.fio }}</td>
               <td style="text-align:center">{{ column.full_role }}</td>
+              <td style="text-align:center">{{ column.deptnames | arrDeptname }}</td>
 
               <td style="text-align:center">
                 <button pButton pRipple icon="pi pi-pencil" (click)="onEditUser(column)" class="p-button-primary p-button-outlined" ></button>

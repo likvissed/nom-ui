@@ -19,6 +19,17 @@ export class GetUsersEffect {
       switchMap(() => {
         return this.userService.getUsers().pipe(
           map((response: any ) => {
+            if (response) {
+              response.users.map((user: any, index: number) => {
+                let arrStr = user.deptnames.map((name: any) => name.deptname).join(', ');
+
+                response.users[index]['arr_deptnames'] = arrStr;
+              });
+            }
+
+            return response;
+          }),
+          map((response: any ) => {
             return getUsersSuccessAction({response});
           }),
 
