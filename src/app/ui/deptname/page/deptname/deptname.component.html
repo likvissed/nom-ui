@@ -47,6 +47,7 @@
                   [value]="$any(dtable.filters['deptname'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'deptname', 'contains')"
                   class="form-control"
+                  placeholder="Участок"
                 >
               </th>
               <th>
@@ -56,6 +57,7 @@
                   [value]="$any(dtable.filters['info'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'info', 'contains')"
                   class="form-control"
+                  placeholder="Описание"
                 >
               </th>
               <th>
@@ -65,6 +67,7 @@
                   [value]="$any(dtable.filters['fio_users'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'fio_users', 'contains')"
                   class="form-control"
+                  placeholder="ФИО"
                 >
 
                 <!-- <p-multiSelect

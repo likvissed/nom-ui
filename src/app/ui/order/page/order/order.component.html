@@ -47,18 +47,20 @@
                   [value]="$any(dtable.filters['number'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'number', 'equals')"
                   class="form-control col-lg-12"
+                  placeholder="№"
                 >
               </th>
               <th>
                 <p-columnFilter type="date" field="date" matchMode="is" [showMenu]="true">
                   <ng-template pTemplate="filter" let-filter="filterCallback">
                     <p-calendar
-                    [ngModel]="$any(dtable.filters['date'])?.value"
+                      [ngModel]="$any(dtable.filters['date'])?.value"
                       (onSelect)="filter($event)"
                       dateFormat="dd.mm.yy"
                       [showButtonBar]="true"
                       appendTo="body"
                       (onClearClick)="filter(null)"
+                      placeholder="Дата"
                     ></p-calendar>
                   </ng-template>
                 </p-columnFilter>
@@ -71,6 +73,7 @@
                   [value]="$any(dtable.filters['desc'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'desc', 'contains')"
                   class="form-control col-lg-12"
+                  placeholder="Содержимое"
                 >
               </th>
 
@@ -81,6 +84,7 @@
                   [value]="$any(dtable.filters['article'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'article', 'contains')"
                   class="form-control col-lg-12"
+                  placeholder="№"
                 >
               </th>
 
@@ -91,6 +95,7 @@
                   [value]="$any(dtable.filters['duration'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'duration', 'contains')"
                   class="form-control col-lg-12"
+                  placeholder="Срок хранения"
                 >
               </th>
 
@@ -101,6 +106,7 @@
                   [value]="$any(dtable.filters['note'])?.value"
                   (input)="dtable.filter($any($event.target)?.value, 'note', 'contains')"
                   class="form-control col-lg-12"
+                  placeholder="Примечание"
                 >
               </th>
 
