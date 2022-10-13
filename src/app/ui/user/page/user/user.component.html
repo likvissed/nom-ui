@@ -35,7 +35,7 @@
               <th class="w-3"> ФИО </th>
               <th class="w-2" style="text-align:center"> Роль </th>
               <th class="w-3" style="text-align:center"> Участки </th>
-              <th class="w-1"></th>
+              <!-- <th class="w-1"></th> -->
               <th class="w-1"></th>
             </tr>
 
@@ -90,7 +90,7 @@
                 >
               </th>
 
-              <th></th>
+              <!-- <th></th> -->
               <th></th>
             </tr>
           </ng-template>
@@ -103,9 +103,9 @@
               <td style="text-align:center">{{ column.full_role }}</td>
               <td style="text-align:center">{{ column.deptnames | arrDeptname }}</td>
 
-              <td style="text-align:center">
+              <!-- <td style="text-align:center">
                 <button pButton pRipple icon="pi pi-pencil" (click)="onEditUser(column)" class="p-button-primary p-button-outlined" ></button>
-              </td>
+              </td> -->
 
               <td style="text-align:center">
                 <button pButton pRipple icon="pi pi-trash" (click)="onDeleteUser(column.id, column.fio)" class="p-button-danger p-button-outlined" ></button>
