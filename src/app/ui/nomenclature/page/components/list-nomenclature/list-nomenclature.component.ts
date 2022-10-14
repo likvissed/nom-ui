@@ -96,7 +96,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   onCreateBasedOn(id: number) {
-    this.router.navigateByUrl(`/nomenclature/new/${id}`);
+    this.router.navigateByUrl(`/nom/new/${id}`);
   }
 
   onShowNom(id: number) {
