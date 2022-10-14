@@ -1,14 +1,14 @@
-import { NewOrderComponent } from './../page/components/new-order/new-order.component';
 import { ConfirmationService } from 'primeng/api';
+
 import { ORDER_FEATURE_KEY, orderReducer } from './../store/reducers';
-import { OrderComponent } from './../page/order/order.component';
-import { GetOrdersResponseInterface } from './../types/get-orders-response.interface';
+
 import { ORDERS_STUB } from './../store/order.stub';
+
 import { OrderService } from './order.service';
 
 import { environment } from 'src/environments/environment';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { StoreModule } from '@ngrx/store';

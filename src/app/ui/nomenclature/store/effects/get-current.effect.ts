@@ -1,7 +1,8 @@
 import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from './../actions/get-current.action';
+
 import { NomenclatureService } from './../../services/nomenclature.service';
 
-import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";

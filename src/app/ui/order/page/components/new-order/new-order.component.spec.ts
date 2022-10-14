@@ -1,9 +1,12 @@
 import { DURATIONS_STUB } from '../../../store/duration.stub';
+
 import { ORDER_FEATURE_KEY, orderReducer } from './../../../store/reducers';
+
 import { StoreModule } from '@ngrx/store';
-import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewOrderComponent } from './new-order.component';

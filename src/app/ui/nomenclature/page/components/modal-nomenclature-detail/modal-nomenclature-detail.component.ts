@@ -1,8 +1,13 @@
 import { getCurrentAction } from './../../../store/actions/get-current.action';
+
 import { getCurrentNom } from './../../../store/selectors';
+
 import { Observable } from 'rxjs';
+
 import { Store, select } from '@ngrx/store';
+
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

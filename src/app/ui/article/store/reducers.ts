@@ -1,5 +1,6 @@
 import { getArticlesAction, getArticlesFailureAction, getArticlesSuccessAction } from './actions/get-articles.action';
 import { ArticleStateInterface } from './../types/article-state.interface';
+
 import { Action, createReducer, on } from '@ngrx/store';
 
 export const ARTICLE_FEATURE_KEY = 'article';

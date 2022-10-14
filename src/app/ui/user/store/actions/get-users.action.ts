@@ -1,6 +1,8 @@
 import { GetUsersResponseInterface } from './../../types/get-users-response.interface';
 import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
+
 import { createAction, props } from '@ngrx/store';
+
 import { UserActionTypes } from '../user-action-types';
 
 export const getUsersAction = createAction(

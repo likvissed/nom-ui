@@ -1,9 +1,5 @@
-import { UserModule } from './ui/user/modules/user.module';
-import { CurrentNomenclatureComponent } from './ui/nomenclature/page/components/current-nomenclature/current-nomenclature.component';
-import { NotFoundComponent } from './ui/shared/components/not-found/not-found.component';
-import { OrderComponent } from './ui/order/page/order/order.component';
-import { ArticleComponent } from './ui/article/page/components/article/article.component';
 import { LayoutModule } from './ui/layout/shared/layout.module';
+
 import { LayoutComponent } from './ui/layout/page/layout/layout.component';
 
 import { NgModule } from '@angular/core';

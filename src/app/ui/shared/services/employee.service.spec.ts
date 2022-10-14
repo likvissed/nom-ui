@@ -1,9 +1,8 @@
 import { EmployeeService } from './employee.service';
 
 import { environment } from 'src/environments/environment';
-import { TestBed } from '@angular/core/testing';
-import { HttpParams } from '@angular/common/http';
 
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('EmployeeService', () => {

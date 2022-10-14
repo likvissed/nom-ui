@@ -1,7 +1,10 @@
-import { ARTICLE_STUB } from './../store/article.stub';
 import { GetArticlesResponseInterface } from './../types/get-articles-response.interface';
+
 import { environment } from 'src/environments/environment';
+
 import { TestBed } from '@angular/core/testing';
+
+import { ARTICLE_STUB } from './../store/article.stub';
 import { ArticleService } from './article.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';

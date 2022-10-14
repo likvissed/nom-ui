@@ -1,8 +1,11 @@
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
 import { getCurrentNom } from './../../../store/selectors';
 import { getCurrentAction } from './../../../store/actions/get-current.action';
+
 import { Observable } from 'rxjs';
+
 import { Store, select } from '@ngrx/store';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

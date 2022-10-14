@@ -1,6 +1,8 @@
 import { GetDeptnamesResponseInterface } from './../../types/get-deptnames-response.interface';
 import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
+
 import { DeptnameActionTypes } from '../deptname-action-types';
+
 import { createAction, props } from '@ngrx/store';
 
 export const getDeptnamesAction = createAction(

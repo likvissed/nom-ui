@@ -1,6 +1,8 @@
 import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
 import { GetListResponseInterface } from './../../types/get-list-response.interface';
+
 import { ActionTypes } from '../action-types';
+
 import { createAction, props } from '@ngrx/store';
 
 export const getListAction = createAction(

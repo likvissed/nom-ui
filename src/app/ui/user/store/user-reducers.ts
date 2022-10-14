@@ -1,9 +1,11 @@
 import { updateUserAction, updateUserSuccessAction, updateUserFailureAction } from './actions/update-user.action';
 import { addUserAction, addUserSuccessAction, addUserFailureAction } from './actions/add-user.action';
 import { getUsersAction, getUsersFailureAction, getUsersSuccessAction } from './actions/get-users.action';
-import { UserStateInterface } from './../types/user-state.interface';
-import { Action, createReducer, on } from '@ngrx/store';
 import { deleteUserAction, deleteUserFailureAction, deleteUserSuccessAction } from './actions/delete-user.action';
+
+import { UserStateInterface } from './../types/user-state.interface';
+
+import { Action, createReducer, on } from '@ngrx/store';
 
 export const USER_FEATURE_KEY = 'user';
 

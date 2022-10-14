@@ -1,6 +1,8 @@
 import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
 import { GetOrdersResponseInterface } from './../../types/get-orders-response.interface';
+
 import { ActionTypes } from '../action-types';
+
 import { createAction, props } from '@ngrx/store';
 
 export const getOrdersAction = createAction(

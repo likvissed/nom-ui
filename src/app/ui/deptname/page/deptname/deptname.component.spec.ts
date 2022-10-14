@@ -1,11 +1,12 @@
-import { DEPTNAME_FEATURE_KEY } from './../../store/deptname-reducers';
 import { StoreModule } from '@ngrx/store';
-/* tslint:disable:no-unused-variable */
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { DeptnameComponent } from './deptname.component';
+
+import { DEPTNAME_FEATURE_KEY } from './../../store/deptname-reducers';
 import { deptnameReducer } from '../../store/deptname-reducers';
 
 describe('DeptnameComponent', () => {

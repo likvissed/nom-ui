@@ -1,14 +1,18 @@
 import { ArticleInterface } from './../../../../article/types/article.interface';
-import { flagResponseTrue } from './../../../store/selectors';
 import { DurationTypeInterface } from './../../../types/duration-type.interface';
+
+import { flagResponseTrue } from './../../../store/selectors';
+
 import { addOrderAction } from './../../../store/actions/add-order.action';
+
 import { ModalSelectArticleComponent } from '../../../../article/page/components/modal-select-article/modal-select-article.component';
+
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { DynamicDialogRef, DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
 
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-new-order',

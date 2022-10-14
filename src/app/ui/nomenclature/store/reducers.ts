@@ -1,13 +1,14 @@
-import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from './actions/get-current.action';
+import { NomenclatureStateInterface } from './../types/nomenclature-state.interface';
+
+import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';
 import { createBasedOnAction, createBasedOnActionSuccess, createBasedOnActionFailure } from './actions/create-based-on.action';
 import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './actions/download.action';
-import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';
+import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from './actions/get-current.action';
 import { sendToSsdAction, sendToSsdActionSuccess, sendToSsdActionFailure } from './actions/send-to-ssd.action';
-import { NomenclatureStateInterface } from './../types/nomenclature-state.interface';
 import { createTemplateAction, createTemplateSuccessAction, createTemplateFailureAction } from './actions/create-template.action';
+import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from './actions/delete.action';
 
 import { Action, createReducer, on } from '@ngrx/store';
-import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from './actions/delete.action';
 
 export const NOMENCLATURE_FEATURE_KEY = 'nomenclature';
 

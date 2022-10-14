@@ -1,14 +1,17 @@
 import { ArticleInterface } from './../../../types/article.interface';
+
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Table } from 'primeng/table';
+
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
 import { selectAllArticles } from '../../../store/selectors';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
-import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-modal-select-article',

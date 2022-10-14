@@ -1,18 +1,25 @@
 import { AuthHelper } from '@iss/ng-auth-center';
+
 import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
+import { searchUsers } from './../../../../shared/store/selectors';
+
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';
-import { createTemplateAction } from './../../../store/actions/create-template.action';
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
 import { ModalSelectArticleComponent } from './../../../../article/page/components/modal-select-article/modal-select-article.component';
-import { DialogService } from 'primeng/dynamicdialog';
+
 import { Observable } from 'rxjs';
-import { searchUsers } from './../../../../shared/store/selectors';
+
 import { Store, select } from '@ngrx/store';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
+import { createTemplateAction } from './../../../store/actions/create-template.action';
 import { findEmployeeAction } from 'src/app/ui/shared/store/actions/find-employee.action';
 import { getOrdersAction } from 'src/app/ui/order/store/actions/get-orders.action';
+
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

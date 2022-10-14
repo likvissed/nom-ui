@@ -1,18 +1,26 @@
 import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail/modal-nomenclature-detail.component';
-import { DialogService } from 'primeng/dynamicdialog';
 import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
-import { AuthHelper } from '@iss/ng-auth-center';
-import { filter } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { Table } from 'primeng/table';
-import { ConfirmationService } from 'primeng/api';
-import { downloadNomenclatureAction } from './../../../store/actions/download.action';
+
 import { selectAllNomenclatures, selectFiltersNom } from './../../../store/selectors';
-import { getListAction } from './../../../store/actions/get-list.action';
+
+import { AuthHelper } from '@iss/ng-auth-center';
+
+import { ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { Observable, of } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+import { filter } from 'rxjs/operators';
+
+import { downloadNomenclatureAction } from './../../../store/actions/download.action';
+import { getListAction } from './../../../store/actions/get-list.action';
 import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
+
+import { Store, select } from '@ngrx/store';
+
+import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+
 
 @Component({
   selector: 'app-list-nomenclature',

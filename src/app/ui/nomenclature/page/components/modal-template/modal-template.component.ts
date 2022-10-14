@@ -1,8 +1,13 @@
 import { sendToSsdAction } from './../../../store/actions/send-to-ssd.action';
+
 import { isSubmittingSelector, flagSendSsd } from './../../../store/selectors';
+
 import { Store, select } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
+
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 

@@ -1,5 +1,7 @@
 import { GetArticlesResponseInterface } from './../../types/get-articles-response.interface';
+
 import { ActionTypes } from '../action-types';
+
 import { createAction, props } from '@ngrx/store';
 
 export const getArticlesAction = createAction(

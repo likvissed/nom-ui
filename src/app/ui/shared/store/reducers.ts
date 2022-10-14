@@ -1,5 +1,7 @@
-import { SharedStateInterface } from './../types/shared.interface';
+import { SharedStateInterface } from '../types/shared-state.interface';
+
 import { Action, createReducer, on } from '@ngrx/store';
+
 import { findEmployeeAction, findEmployeeSuccessAction, findEmployeeFailureAction } from './actions/find-employee.action';
 
 export const SHARED_FEATURE_KEY = 'shared';

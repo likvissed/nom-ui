@@ -1,8 +1,10 @@
 import { addOrderAction, addOrderFailureAction, addOrderSuccessAction } from './actions/add-order.action';
 import { getOrdersAction, getOrdersFailureAction, getOrdersSuccessAction } from './actions/get-orders.action';
-import { OrderStateInterface } from './../types/order-state.interface';
-import { Action, createReducer, on } from '@ngrx/store';
 import { deleteOrderAction, deleteOrderFailureAction, deleteOrderSuccessAction } from './actions/delete-order.action';
+
+import { OrderStateInterface } from './../types/order-state.interface';
+
+import { Action, createReducer, on } from '@ngrx/store';
 
 export const ORDER_FEATURE_KEY = 'order';
 

@@ -3,8 +3,9 @@ import { DeptnameStateInterface } from './../types/deptname.state.interface';
 import { updateDeptnameAction, updateDeptnameSuccessAction, updateDeptnameFailureAction } from './actions/update-deptname.action';
 import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from './actions/add-deptname.action';
 import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from './actions/get-deptnames.action';
-import { Action, createReducer, on } from '@ngrx/store';
 import { deleteDeptnameAction, deleteDeptnameFailureAction, deleteDeptnameSuccessAction } from './actions/delete-deptname.action';
+
+import { Action, createReducer, on } from '@ngrx/store';
 
 export const DEPTNAME_FEATURE_KEY = 'deptname';
 

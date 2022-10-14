@@ -1,12 +1,12 @@
 import { LoaderService } from '../services/loader.service';
+
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpInterceptor,
-  HttpResponse,
-  HttpEventType
 } from '@angular/common/http';
+
 import { finalize, tap } from 'rxjs/operators';
 
 

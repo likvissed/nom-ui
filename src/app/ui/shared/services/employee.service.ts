@@ -1,6 +1,8 @@
-import { EmployeeInterface } from './../types/employee.interdace';
+import { EmployeeInterface } from '../types/employee.interface';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+
 import { environment } from 'src/environments/environment';
 
 @Injectable()

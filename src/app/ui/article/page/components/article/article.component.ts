@@ -1,6 +1,8 @@
 import { map } from 'rxjs/operators';
+
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
 import { selectAllArticles } from './../../../store/selectors';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';

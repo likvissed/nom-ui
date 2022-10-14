@@ -1,6 +1,8 @@
 import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
 import { SuccessResponseInterface } from './../../../shared/types/success-response.interface';
+
 import { createAction, props } from '@ngrx/store';
+
 import { UserActionTypes } from '../user-action-types';
 
 export const deleteUserAction = createAction(

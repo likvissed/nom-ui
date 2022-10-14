@@ -1,13 +1,18 @@
 import { ConfirmationService } from 'primeng/api';
-import { take } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
+
 import { NewUserComponent } from './../components/new-user/new-user.component';
+
 import { selectAllUsers, selectUserFilters } from './../../store/selectors';
+
 import { getUsersAction } from './../../store/actions/get-users.action';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
 import { deleteUserAction } from '../../store/actions/delete-user.action';
+
+import { Store, select } from '@ngrx/store';
+
+import { Observable } from 'rxjs';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user',

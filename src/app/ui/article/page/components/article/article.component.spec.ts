@@ -1,9 +1,10 @@
 import { ArticleService } from './../../../service/article.service';
 import { ARTICLES_STUB } from './../../../store/article.stub';
 import { GetArticlesEffect } from './../../../store/effects/get-articles.effect';
+
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-/* tslint:disable:no-unused-variable */
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
