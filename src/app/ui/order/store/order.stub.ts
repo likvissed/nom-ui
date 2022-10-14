@@ -1,12 +1,15 @@
 import { OrderInterface } from '../types/order.interface';
 
 export const ORDER_STUB = {
-  article: "252",
-  desc: "desc1",
-  duration: "После истечения срока действия сертификата",
   id: 1,
-  link: "https://cosmos-new.***REMOVED***.ru/storage/app/media/documents/prikaz/2855_22072022.pdf",
-  name: "Приказ №1"
+  article: "252",
+  number: "Приказ №1",
+  date_order: "01.01.2020",
+  date: "2020-01-01T00:00:00.000Z",
+  duration: "После истечения срока действия сертификата",
+  desc: "desc1",
+  link: "https://name-site/storage/app/media/documents/prikaz/121212.pdf",
+  note: ""
 };
 
 export const ORDERS_STUB: OrderInterface[] = [ORDER_STUB];

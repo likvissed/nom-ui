@@ -109,7 +109,7 @@ export class NewDeptnameComponent implements OnInit {
       this.store.dispatch(addDeptnameAction({ data: this.form.getRawValue() }));
 
       this.store.pipe(select(flagResponse))
-        .subscribe((flag: any) => {
+        .subscribe((flag: boolean) => {
           if (flag) {
             this.onCloseModal();
           }
@@ -118,7 +118,7 @@ export class NewDeptnameComponent implements OnInit {
       this.store.dispatch(updateDeptnameAction({ data: this.form.getRawValue() }));
 
       this.store.pipe(select(flagResponse))
-        .subscribe((flag: any) => {
+        .subscribe((flag: boolean) => {
           if (flag) {
             this.onCloseModal();
           }

@@ -35,7 +35,8 @@ const reducer = createReducer(
     ...state,
     isSubmitting: false,
     orders: null,
-    duration_types: null
+    duration_types: null,
+    errors: action.error
   })),
 
   on(deleteOrderAction, (state): any => ({

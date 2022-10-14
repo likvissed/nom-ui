@@ -9,11 +9,11 @@ export class ArticleService {
     private http: HttpClient
   ) {}
 
-  getArticles(data: any) {
+  getArticles() {
     const url = `${environment.apiUrl}/articles_list`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get<GetArticlesResponseInterface>(url,  { headers: headers, params: data });
+    return this.http.get<GetArticlesResponseInterface>(url,  { headers: headers });
   }
 }

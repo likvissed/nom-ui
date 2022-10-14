@@ -1,3 +1,4 @@
+import { AddUserRequestInterface } from './../types/add-user-request.interface';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -16,7 +17,7 @@ export class UserService {
     return this.http.get(url, { headers: headers });
   }
 
-  addUser(data: any) {
+  addUser(data: AddUserRequestInterface) {
     const url = `${environment.apiUrl}/add_user`;
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -24,7 +25,7 @@ export class UserService {
     return this.http.post(url, data, { headers: headers})
   }
 
-  updateUser(data: any) {
+  updateUser(data: AddUserRequestInterface) {
     const url = `${environment.apiUrl}/change_user`;
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

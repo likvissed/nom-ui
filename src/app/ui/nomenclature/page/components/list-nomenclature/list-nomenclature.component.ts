@@ -30,9 +30,9 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
     deptnames: []
   };
   roleAdmin: boolean = false;
-  userDeptName = '';
+  userDeptName: string = '';
   display: boolean = false;
-  comment = '';
+  comment: string = '';
 
   constructor(
     private store: Store,
@@ -64,12 +64,12 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
 
   onLoadStatuses() {
     this.store.pipe(select(selectFiltersNom))
-        .subscribe((filters: any) => {
-          if (filters) {
-            this.filters.statuses = filters.state_types;
-            this.filters.deptnames = filters.dept_names;
-          }
-        });
+      .subscribe((filters: any) => {
+        if (filters) {
+          this.filters.statuses = filters.state_types;
+          this.filters.deptnames = filters.dept_names;
+        }
+      });
   }
 
   ngAfterContentChecked(): void {
@@ -79,7 +79,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   onDownloadNom(id: number) {
-    this.store.dispatch(downloadNomenclatureAction({ data: id }));
+    this.store.dispatch(downloadNomenclatureAction({ id: id }));
   }
 
   onDeleteNom(id: number, num: number) {
@@ -100,7 +100,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   onShowNom(id: number) {
-    const ref = this.dialogService.open(ModalNomenclatureDetailComponent, {
+    this.dialogService.open(ModalNomenclatureDetailComponent, {
       header: 'Просмотр номенклатуры',
       width: '80%',
       data: {

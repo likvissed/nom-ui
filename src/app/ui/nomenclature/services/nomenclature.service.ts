@@ -1,3 +1,4 @@
+import { NomenclatureInterface } from './../types/nomenclature.interface';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { environment } from 'src/environments/environment';
@@ -8,7 +9,7 @@ export class NomenclatureService {
     private http: HttpClient
   ) {}
 
-  createTemplateDocument(data: any) {
+  createTemplateDocument(data: NomenclatureInterface) {
     const url = `${environment.apiUrl}/create_nomenclature_sample`;
 
     const requestOptions: Object = {
@@ -18,7 +19,7 @@ export class NomenclatureService {
     return this.http.post(url, data , requestOptions);
   }
 
-  sendDocumentToSsd(data: any) {
+  sendDocumentToSsd(data: NomenclatureInterface) {
     const url = `${environment.apiUrl}/create_nomenclature`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

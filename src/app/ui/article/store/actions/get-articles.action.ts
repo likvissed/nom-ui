@@ -3,8 +3,7 @@ import { ActionTypes } from '../action-types';
 import { createAction, props } from '@ngrx/store';
 
 export const getArticlesAction = createAction(
-  ActionTypes.GET_ARTICLES,
-  props<{ data: any }>()
+  ActionTypes.GET_ARTICLES
 );
 
 export const getArticlesSuccessAction = createAction(

@@ -7,7 +7,8 @@ export const ARTICLE_FEATURE_KEY = 'article';
 const initialState: ArticleStateInterface = {
   isSubmitting: false,
   response: null,
-  articles: null
+  articles: null,
+  errors: null
 }
 
 const reducer = createReducer(
@@ -26,7 +27,8 @@ const reducer = createReducer(
   })),
   on(getArticlesFailureAction, (state, action): any => ({
     ...state,
-    isSubmitting: false
+    isSubmitting: false,
+    errors: action.error
   }))
 )
 

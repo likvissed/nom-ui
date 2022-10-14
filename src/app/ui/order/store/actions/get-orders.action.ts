@@ -1,3 +1,4 @@
+import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
 import { GetOrdersResponseInterface } from './../../types/get-orders-response.interface';
 import { ActionTypes } from '../action-types';
 import { createAction, props } from '@ngrx/store';
@@ -13,5 +14,5 @@ export const getOrdersSuccessAction = createAction(
 
 export const getOrdersFailureAction = createAction(
   ActionTypes.GET_ORDERS_FAILURE,
-  props<{ error: any }>()
+  props<{ error: ErrorResponseInterface }>()
 );

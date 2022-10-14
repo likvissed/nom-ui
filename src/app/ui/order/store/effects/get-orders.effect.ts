@@ -32,7 +32,7 @@ export class GetOrdersEffect {
 
             return response;
           }),
-          map((response: any ) => {//GetOrdersResponseInterface
+          map((response: GetOrdersResponseInterface ) => {
             return getOrdersSuccessAction({response});
           }),
 

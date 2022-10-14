@@ -26,7 +26,7 @@ export class ArticleComponent implements OnInit {
   }
 
   initializeValues() {
-    this.store.dispatch(getArticlesAction( { data: {}  }));
+    this.store.dispatch(getArticlesAction());
     this.onLoadArticles();
   }
 

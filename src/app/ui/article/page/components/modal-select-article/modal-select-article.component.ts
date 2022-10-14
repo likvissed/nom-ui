@@ -1,3 +1,4 @@
+import { ArticleInterface } from './../../../types/article.interface';
 import { map } from 'rxjs/operators';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
@@ -30,7 +31,7 @@ export class ModalSelectArticleComponent implements OnInit {
   }
 
   initializeValues() {
-    this.store.dispatch(getArticlesAction( { data: {} }));
+    this.store.dispatch(getArticlesAction());
     this.onLoadArticles();
   }
 
@@ -48,7 +49,7 @@ export class ModalSelectArticleComponent implements OnInit {
     );
   }
 
-  onSelected(col: any) {
+  onSelected(col: ArticleInterface) {
     this.ref.close(col);
   }
 

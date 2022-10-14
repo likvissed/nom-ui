@@ -1,3 +1,4 @@
+import { ArticleInterface } from './../../../../article/types/article.interface';
 import { flagResponseTrue } from './../../../store/selectors';
 import { DurationTypeInterface } from './../../../types/duration-type.interface';
 import { addOrderAction } from './../../../store/actions/add-order.action';
@@ -61,7 +62,7 @@ export class NewOrderComponent implements OnInit {
       }
     });
 
-    ref.onClose.subscribe((result: any) => {
+    ref.onClose.subscribe((result: ArticleInterface) => {
       if (result) {
         this.form.controls['article'].setValue(`${result.article_id+result.sub}`);
       }
@@ -72,7 +73,7 @@ export class NewOrderComponent implements OnInit {
     this.store.dispatch(addOrderAction({ data: this.form.getRawValue() }));
 
     this.store.pipe(select(flagResponseTrue))
-      .subscribe((flag: any) => {
+      .subscribe((flag: boolean) => {
         if (flag) {
           this.onCloseModal();
         }

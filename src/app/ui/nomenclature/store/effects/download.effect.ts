@@ -21,7 +21,7 @@ export class DownloadEffect {
     this.actions$.pipe(
       ofType(downloadNomenclatureAction),
       switchMap((value) => {
-        return this.nomenclatureService.downloadNomenclature(value.data).pipe(
+        return this.nomenclatureService.downloadNomenclature(value.id).pipe(
           map((response: any ) => {
             let file = new Blob([response], { type: response.type });
             let fileURL = URL.createObjectURL(file);

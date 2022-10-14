@@ -25,7 +25,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 export class OrderComponent implements OnInit {
   @ViewChild('dtable') table!: Table;
   orders$!: Observable<any>;
-  durationTypes = [];
+  durationTypes: DurationTypeInterface[] = [];
 
   constructor(
     private store: Store,
@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit {
 
   onLoadDurationTypes() {
     this.store.pipe(select(selectAllDurationTypes))
-      .subscribe((durationValues: any) => {
+      .subscribe((durationValues: DurationTypeInterface[]) => {
         if (durationValues) {
           this.durationTypes = durationValues;
         }
@@ -71,7 +71,7 @@ export class OrderComponent implements OnInit {
   }
 
   onNewOrder() {
-    const ref = this.dialogService.open(NewOrderComponent, {
+    this.dialogService.open(NewOrderComponent, {
       header: 'Добавление приказа',
       width: '50%',
       data: {

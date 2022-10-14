@@ -32,7 +32,7 @@ export class CurrentNomenclatureComponent implements OnInit {
   }
 
   onDownloadNom(id: any) {
-    this.store.dispatch(downloadNomenclatureAction({ data: id }));
+    this.store.dispatch(downloadNomenclatureAction({ id: id }));
 
     this.onLoadNom();
   }

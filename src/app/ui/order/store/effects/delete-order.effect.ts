@@ -1,5 +1,4 @@
 import { MessageService } from 'primeng/api';
-import { DeleteOrderResponseInterface } from './../../types/delete-order-response.interface';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -27,7 +26,7 @@ export class DeleteOrderEffect {
             this.messageService.add({severity: 'success', summary: 'Успешно', detail: response.result });
           }),
           switchMap((response: any) => [
-            deleteOrderSuccessAction(response.result),
+            deleteOrderSuccessAction(response),
             // TODO: Перенести getOrdersAction в OrderComponent.onDeleteOrder()
             getOrdersAction(),
           ]),
