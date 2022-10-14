@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/nomenclature/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/nom/list', pathMatch: 'full' },
   { path: 'current', component: CurrentNomenclatureComponent },
   { path: 'new', component: NewNomenclatureComponent },
   { path: 'new/:id', component: NewNomenclatureComponent, resolve: { presentNom: CreateBasedOnResolver } },

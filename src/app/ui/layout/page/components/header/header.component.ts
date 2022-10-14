@@ -59,18 +59,18 @@ export class HeaderComponent implements OnInit {
         items: [
           {
             label: 'Создать',
-            routerLink: ['/nomenclature/new']
+            routerLink: ['/nom/new']
           },
           {
             label: 'Текущая',
-            routerLink: ['/nomenclature/current']
+            routerLink: ['/nom/current']
           }
         ]
       },
       {
         label: "Список номенклатур",
         icon: "pi pi-fw pi-align-justify",
-        routerLink: ['/nomenclature/list']
+        routerLink: ['/nom/list']
       },
       {
         icon: "pi pi-fw pi-book",
