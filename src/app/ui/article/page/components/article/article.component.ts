@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
-import { selectAllArticles } from './../../../store/selectors';
+import { selectAllArticles } from '../../../store/article-selectors';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 

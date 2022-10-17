@@ -2,7 +2,7 @@ import { DurationTypeInterface } from './../../types/duration-type.interface';
 
 import { NewOrderComponent } from './../components/new-order/new-order.component';
 
-import { selectAllOrders, selectAllDurationTypes } from './../../store/selectors';
+import { selectAllOrders, selectAllDurationTypes } from '../../store/order-selectors';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 

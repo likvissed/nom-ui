@@ -6,8 +6,8 @@ import { DebugElement } from '@angular/core';
 
 import { CurrentNomenclatureComponent } from './current-nomenclature.component';
 
-import { NOMENCLATURE_FEATURE_KEY } from './../../../store/reducers';
-import { nomenclatureReducer } from '../../../store/reducers';
+import { NOMENCLATURE_FEATURE_KEY } from '../../../store/nomenclature-reducers';
+import { nomenclatureReducer } from '../../../store/nomenclature-reducers';
 
 describe('CurrentNomenclatureComponent', () => {
   let component: CurrentNomenclatureComponent;

@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ArticleComponent } from './article.component';
-import { articleReducer, ARTICLE_FEATURE_KEY } from '../../../store/reducers';
+import { articleReducer, ARTICLE_FEATURE_KEY } from '../../../store/article-reducers';
 import { of, ReplaySubject, Observable, Subject } from 'rxjs';
 
 describe('ArticleComponent', () => {

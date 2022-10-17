@@ -1,6 +1,6 @@
 import { sendToSsdAction } from './../../../store/actions/send-to-ssd.action';
 
-import { isSubmittingSelector, flagSendSsd } from './../../../store/selectors';
+import { isSubmittingSelector, flagSendSsd } from '../../../store/nomenclature-selectors';
 
 import { Store, select } from '@ngrx/store';
 

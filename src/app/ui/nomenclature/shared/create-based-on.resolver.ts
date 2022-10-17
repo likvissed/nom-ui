@@ -1,4 +1,4 @@
-import { getDataPresentNom } from './../store/selectors';
+import { getDataPresentNom } from '../store/nomenclature-selectors';
 
 import { createBasedOnAction } from './../store/actions/create-based-on.action';
 

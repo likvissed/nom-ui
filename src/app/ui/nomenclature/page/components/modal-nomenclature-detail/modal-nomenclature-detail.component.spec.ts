@@ -11,8 +11,8 @@ import { DebugElement } from '@angular/core';
 
 import { ModalNomenclatureDetailComponent } from './modal-nomenclature-detail.component';
 
-import { nomenclatureReducer } from '../../../store/reducers';
-import { NOMENCLATURE_FEATURE_KEY } from './../../../store/reducers';
+import { nomenclatureReducer } from '../../../store/nomenclature-reducers';
+import { NOMENCLATURE_FEATURE_KEY } from '../../../store/nomenclature-reducers';
 
 describe('ModalNomenclatureDetailComponent', () => {
   let component: ModalNomenclatureDetailComponent;

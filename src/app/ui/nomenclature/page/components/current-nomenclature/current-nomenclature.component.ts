@@ -1,5 +1,5 @@
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { getCurrentNom } from './../../../store/selectors';
+import { getCurrentNom } from '../../../store/nomenclature-selectors';
 import { getCurrentAction } from './../../../store/actions/get-current.action';
 
 import { Observable } from 'rxjs';

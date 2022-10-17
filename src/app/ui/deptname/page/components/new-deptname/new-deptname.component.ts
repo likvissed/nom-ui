@@ -2,7 +2,7 @@ import { updateDeptnameAction } from './../../../store/actions/update-deptname.a
 import { findEmployeeAction } from './../../../../shared/store/actions/find-employee.action';
 import { addDeptnameAction } from './../../../store/actions/add-deptname.action';
 
-import { flagResponse } from './../../../store/selectors';
+import { flagResponse } from '../../../store/deptname-selectors';
 import { searchUsers } from './../../../../shared/store/selectors';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';

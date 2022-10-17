@@ -3,7 +3,7 @@ import { NewDeptnameComponent } from './../components/new-deptname/new-deptname.
 import { getDeptnamesAction } from './../../store/actions/get-deptnames.action';
 import { deleteDeptnameAction } from '../../store/actions/delete-deptname.action';
 
-import { selectAllDeptnames } from './../../store/selectors';
+import { selectAllDeptnames } from '../../store/deptname-selectors';
 
 import { Table } from 'primeng/table';
 import { ConfirmationService } from 'primeng/api';

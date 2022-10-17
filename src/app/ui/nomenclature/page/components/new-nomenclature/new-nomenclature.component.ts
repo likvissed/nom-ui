@@ -3,7 +3,7 @@ import { AuthHelper } from '@iss/ng-auth-center';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { selectFileTemplate, isSubmittingSelector } from './../../../store/selectors';
+import { selectFileTemplate, isSubmittingSelector } from '../../../store/nomenclature-selectors';
 import { searchUsers } from './../../../../shared/store/selectors';
 
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';

@@ -1,7 +1,7 @@
 import { ArticleInterface } from './../../../../article/types/article.interface';
 import { DurationTypeInterface } from './../../../types/duration-type.interface';
 
-import { flagResponseTrue } from './../../../store/selectors';
+import { flagResponseTrue } from '../../../store/order-selectors';
 
 import { addOrderAction } from './../../../store/actions/add-order.action';
 

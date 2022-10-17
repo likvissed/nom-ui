@@ -1,5 +1,5 @@
 
-import { UserStateInterface } from './../types/user-state.interface';
+import { UserStateInterface } from '../types/user-state.interface';
 
 import { USER_FEATURE_KEY } from './user-reducers';
 

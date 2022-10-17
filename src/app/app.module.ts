@@ -1,10 +1,10 @@
 import { MessageService } from 'primeng/api';
 
-import { NomenclatureModule } from './ui/nomenclature/shared/nomenclature.module';
+import { NomenclatureModule } from './ui/nomenclature/modules/nomenclature.module';
 import { SharedModule } from './ui/shared/shared.module';
-import { OrderModule } from './ui/order/shared/order.module';
-import { ArticleModule } from './ui/article/shared/article.module';
-import { LayoutModule } from './ui/layout/shared/layout.module';
+import { OrderModule } from './ui/order/modules/order.module';
+import { ArticleModule } from './ui/article/modules/article.module';
+import { LayoutModule } from './ui/layout/modules/layout.module';
 import { PrimengModule } from './primeng.module';
 import { AppRoutingModule } from './app-routing.module';
 

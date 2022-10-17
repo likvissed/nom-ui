@@ -1,6 +1,6 @@
-import { NomenclatureStateInterface } from './../types/nomenclature-state.interface';
+import { NomenclatureStateInterface } from '../types/nomenclature-state.interface';
 
-import { NOMENCLATURE_FEATURE_KEY } from './reducers';
+import { NOMENCLATURE_FEATURE_KEY } from './nomenclature-reducers';
 
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 

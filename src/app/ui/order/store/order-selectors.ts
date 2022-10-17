@@ -1,6 +1,6 @@
-import { ORDER_FEATURE_KEY } from './reducers';
+import { ORDER_FEATURE_KEY } from './order-reducers';
 
-import { OrderStateInterface } from './../types/order-state.interface';
+import { OrderStateInterface } from '../types/order-state.interface';
 
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 

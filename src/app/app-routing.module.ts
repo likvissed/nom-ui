@@ -1,4 +1,4 @@
-import { LayoutModule } from './ui/layout/shared/layout.module';
+import { LayoutModule } from './ui/layout/modules/layout.module';
 
 import { LayoutComponent } from './ui/layout/page/layout/layout.component';
 
@@ -16,19 +16,19 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/shared/nomenclature.module').then((modules) => modules.NomenclatureModule),
+        loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/modules/nomenclature.module').then((modules) => modules.NomenclatureModule),
       },
       {
         path: 'articles',
-        loadChildren: (): Promise<any> => import('src/app/ui/article/shared/article.module').then((modules) => modules.ArticleModule),
+        loadChildren: (): Promise<any> => import('src/app/ui/article/modules/article.module').then((modules) => modules.ArticleModule),
       },
       {
         path: 'orders',
-        loadChildren: (): Promise<any> => import('src/app/ui/order/shared/order.module').then((modules) => modules.OrderModule),
+        loadChildren: (): Promise<any> => import('src/app/ui/order/modules/order.module').then((modules) => modules.OrderModule),
       },
       {
         path: 'nom',
-        loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/shared/nomenclature.module').then((modules) => modules.NomenclatureModule),
+        loadChildren: (): Promise<any> => import('src/app/ui/nomenclature/modules/nomenclature.module').then((modules) => modules.NomenclatureModule),
       },
       {
         path: 'users',

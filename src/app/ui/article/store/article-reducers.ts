@@ -1,5 +1,5 @@
 import { getArticlesAction, getArticlesFailureAction, getArticlesSuccessAction } from './actions/get-articles.action';
-import { ArticleStateInterface } from './../types/article-state.interface';
+import { ArticleStateInterface } from '../types/article-state.interface';
 
 import { Action, createReducer, on } from '@ngrx/store';
 

@@ -1,6 +1,6 @@
 import { getCurrentAction } from './../../../store/actions/get-current.action';
 
-import { getCurrentNom } from './../../../store/selectors';
+import { getCurrentNom } from '../../../store/nomenclature-selectors';
 
 import { Observable } from 'rxjs';
 

@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalSelectArticleComponent } from './modal-select-article.component';
-import { ARTICLE_FEATURE_KEY, articleReducer } from '../../../store/reducers';
+import { ARTICLE_FEATURE_KEY, articleReducer } from '../../../store/article-reducers';
 
 describe('ModalSelectArticleComponent', () => {
   let component: ModalSelectArticleComponent;

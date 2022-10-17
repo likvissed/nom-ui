@@ -1,4 +1,4 @@
-import { NomenclatureStateInterface } from './../types/nomenclature-state.interface';
+import { NomenclatureStateInterface } from '../types/nomenclature-state.interface';
 
 import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';
 import { createBasedOnAction, createBasedOnActionSuccess, createBasedOnActionFailure } from './actions/create-based-on.action';

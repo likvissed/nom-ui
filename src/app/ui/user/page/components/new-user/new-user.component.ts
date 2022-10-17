@@ -1,7 +1,7 @@
 import { updateUserAction } from './../../../store/actions/update-user.action';
 import { addUserAction } from './../../../store/actions/add-user.action';
 
-import { flagResponse } from './../../../store/selectors';
+import { flagResponse } from '../../../store/user-selectors';
 
 import { Store, select } from '@ngrx/store';
 

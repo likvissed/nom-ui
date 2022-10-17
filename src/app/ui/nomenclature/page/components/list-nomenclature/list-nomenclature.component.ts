@@ -1,7 +1,7 @@
 import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail/modal-nomenclature-detail.component';
 import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
 
-import { selectAllNomenclatures, selectFiltersNom } from './../../../store/selectors';
+import { selectAllNomenclatures, selectFiltersNom } from '../../../store/nomenclature-selectors';
 
 import { AuthHelper } from '@iss/ng-auth-center';
 
