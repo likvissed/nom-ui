@@ -1,4 +1,4 @@
-import { primeLocale } from './../../../../lib/primeng.locale';
+import { primeLocale } from 'primeng-locale';
 
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
