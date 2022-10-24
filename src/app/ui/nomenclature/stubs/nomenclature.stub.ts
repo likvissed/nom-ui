@@ -1,5 +1,6 @@
 export const NOMENCLATURE_STUB = {
   head_dept: "Управление вычислительной техники",
+  deptname: '123',
   year: 2022,
   sign_main: {
     fio: 'Иванов Иван Александрович',
@@ -8,11 +9,14 @@ export const NOMENCLATURE_STUB = {
   signs_tns: [
     {
       fio: "Иванов Елена Константиновна",
-      title: "Секретарь"
+      title: "Секретарь",
+      prof: "Техник"
     }
   ],
   table: [{
     index: 1,
+    duration: "Постоянно",
+    text: "Типовые и примерные номенклатуры дел",
     article_number: "156а",
     toms:[
       {
@@ -22,6 +26,9 @@ export const NOMENCLATURE_STUB = {
       }
     ],
     tips: '',
-    is_dsp: true
+    is_dsp: true,
+    order_date: "06.09.2022",
+    order_number: "321",
+    order_desc: "name"
   }]
 };

@@ -22,6 +22,11 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@ang
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { DraftService } from '../../../services/draft.service';
+
+import { TableInterface } from '../../../types/table.interface';
+import { SignsInfoInterface } from '../../../types/signs-info.interface';
+
 @Component({
   selector: 'app-new-nomenclature',
   templateUrl: './new-nomenclature.component.html',
@@ -49,7 +54,8 @@ export class NewNomenclatureComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private authHelper: AuthHelper
+    private authHelper: AuthHelper,
+    private draftService: DraftService
   ) { }
 
   ngOnInit() {
@@ -82,18 +88,22 @@ export class NewNomenclatureComponent implements OnInit {
   onSetValuesForm() {
     this.route.data.subscribe((data: any) => {
       if (data.presentNom) {
-        this.form.patchValue(data.presentNom);
-
-        data.presentNom.table.forEach((object: any) => {
-          this.allRecords.push(this.createTableRowBasedOn(object));
-        });
-
-        data.presentNom.signs_info.forEach((object: any, index: number) => {
-          this.allSigns.push(this.createSignRowBasedOn(object));
-
-          this.selectEmpSign(object, index);
-        });
+        this.onPatchForm(data.presentNom);
       }
+    });
+  }
+
+  onPatchForm(data: any) {
+    this.form.patchValue(data);
+
+    data.table.forEach((object: any) => {
+      this.allRecords.push(this.createTableRowBasedOn(object));
+    });
+
+    data.signs_info.forEach((object: any, index: number) => {
+      this.allSigns.push(this.createSignRowBasedOn(object));
+
+      this.selectEmpSign(object, index);
     });
   }
 
@@ -139,6 +149,21 @@ export class NewNomenclatureComponent implements OnInit {
       order_date: data.order.date_order,
       order_number: data.order.number,
       order_desc: data.order.desc
+    })
+  }
+
+  private createTableRowDraft(object: any): FormGroup {
+    return this.formBuilder.group({
+      index: object.index,
+      is_dsp: object.is_dsp,
+      text: new FormControl(object.text, [Validators.required]),
+      duration: new FormControl(object.duration, [Validators.required]),
+      article_number: new FormControl(object.article_number, [Validators.required]),
+      tips: new FormControl(object.tips, [Validators.maxLength(500)]),
+      toms: this.formBuilder.array([object.toms], [Validators.required]),
+      order_date: object.order_date,
+      order_number: object.order_number,
+      order_desc: object.order_desc
     })
   }
 
@@ -257,6 +282,30 @@ export class NewNomenclatureComponent implements OnInit {
     control.value.map((x: any, index: any)=>{
       (((<FormArray>this.form.controls['table']).at(index)) as FormGroup).controls['index'].setValue(index + 1);
     });
+  }
+
+  onSaveDraft() {
+    this.draftService.onSet(this.form.getRawValue());
+
+    this.messageService.add({severity: 'success', summary: 'Успешно', detail: 'Черновик сохранен' });
+  }
+
+  onGetDraft() {
+    let dataObject = this.draftService.onGet();
+
+    if (dataObject) {
+      this.form.patchValue(dataObject);
+
+      dataObject.table.forEach((object: TableInterface) => {
+        this.allRecords.push(this.createTableRowDraft(object));
+      });
+  
+      dataObject.signs_info.forEach((object: SignsInfoInterface) => {
+        this.allSigns.push(this.createSignRowBasedOn(object));
+      });
+    } else {
+      this.messageService.add({severity: 'warn', summary: 'Внимание', detail: 'Сохраненных черновиков нет' });
+    }
   }
 
   onShowTemplate() {

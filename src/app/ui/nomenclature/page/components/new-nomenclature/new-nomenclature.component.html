@@ -304,15 +304,34 @@
         <div class="pt-6">
           <div class="flex justify-content-end mt-3">
             <p-button
-              label="Сформировать образец документа"
-              icon="mdi mdi-loading mdi-spin mdi-18px"
-              styleClass="p-button-outlined p-button-success"
-              (click)="onShowTemplate()"
-              [disabled]="(isSubmitting$  | async) || false"
-              [ngClass]="{'waiting': isSubmitting$  | async}"
+              icon="pi pi-book"
+              styleClass="p-button-outlined p-button-secondary"
+              (click)="onGetDraft()"
+              class="pr-1"
+              pTooltip="Восстановить черновик"
+              tooltipPosition="top"
             ></p-button>
-            <!-- [loading]="(isSubmitting$  | async) || false" -->
+
+            <p-button
+              icon="pi pi-save"
+              styleClass="p-button-outlined p-button-help"
+              (click)="onSaveDraft()"
+              pTooltip="Сохранить черновик"
+              tooltipPosition="top"
+            ></p-button>
           </div>
+        </div>
+
+        <div class="flex justify-content-end mt-3">
+          <p-button
+            label="Сформировать образец документа"
+            icon="mdi mdi-loading mdi-spin mdi-18px"
+            styleClass="p-button-outlined p-button-success"
+            (click)="onShowTemplate()"
+            [disabled]="(isSubmitting$  | async) || false"
+            [ngClass]="{'waiting': isSubmitting$  | async}"
+          ></p-button>
+          <!-- [loading]="(isSubmitting$  | async) || false" -->
         </div>
       </form>
     </div>
