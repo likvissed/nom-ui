@@ -1,4 +1,5 @@
-import { SharedStateInterface } from './../types/shared.interface';
+import { SharedStateInterface } from '../types/shared-state.interface';
+
 import { SHARED_FEATURE_KEY } from './reducers';
 
 import { createFeatureSelector, createSelector } from "@ngrx/store";

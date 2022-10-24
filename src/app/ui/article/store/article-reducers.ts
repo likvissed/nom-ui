@@ -1,5 +1,6 @@
 import { getArticlesAction, getArticlesFailureAction, getArticlesSuccessAction } from './actions/get-articles.action';
-import { ArticleStateInterface } from './../types/article-state.interface';
+import { ArticleStateInterface } from '../types/article-state.interface';
+
 import { Action, createReducer, on } from '@ngrx/store';
 
 export const ARTICLE_FEATURE_KEY = 'article';
@@ -7,7 +8,8 @@ export const ARTICLE_FEATURE_KEY = 'article';
 const initialState: ArticleStateInterface = {
   isSubmitting: false,
   response: null,
-  articles: null
+  articles: null,
+  errors: null
 }
 
 const reducer = createReducer(
@@ -26,7 +28,8 @@ const reducer = createReducer(
   })),
   on(getArticlesFailureAction, (state, action): any => ({
     ...state,
-    isSubmitting: false
+    isSubmitting: false,
+    errors: action.error
   }))
 )
 

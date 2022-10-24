@@ -1,8 +1,10 @@
 import { NOMENCLATURE_STUB } from './../stubs/nomenclature.stub';
-import { NomenclatureService } from './nomenclature.service';
-import { environment } from 'src/environments/environment';
-import { TestBed } from '@angular/core/testing';
 
+import { NomenclatureService } from './nomenclature.service';
+
+import { environment } from 'src/environments/environment';
+
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('NomenclatureService', () => {

@@ -1,4 +1,5 @@
 import { DeptnameService } from './deptname.service';
+
 import { NgModule } from '@angular/core';
 
 @NgModule({

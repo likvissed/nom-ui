@@ -3,7 +3,8 @@ export interface ArticleInterface {
   default_name: string
   duration: string
   order_desc: string
-  order_name: string
+  order_number: string
+  order_date: string
   sub: string
   text: string
   tips: string

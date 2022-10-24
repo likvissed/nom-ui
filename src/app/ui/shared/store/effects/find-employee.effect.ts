@@ -1,11 +1,14 @@
 import { EmployeeService } from './../../services/employee.service';
+
 import { findEmployeeAction, findEmployeeFailureAction, findEmployeeSuccessAction } from './../actions/find-employee.action';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { of } from 'rxjs';
 
 @Injectable()
 export class FindEmployeeEffect {

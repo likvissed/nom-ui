@@ -1,9 +1,11 @@
 import { getListAction } from './../actions/get-list.action';
-import { MessageService } from 'primeng/api';
 import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from '../actions/delete.action';
+
 import { NomenclatureService } from './../../services/nomenclature.service';
 
-import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
+
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";

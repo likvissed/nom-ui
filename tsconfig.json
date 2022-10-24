@@ -23,7 +23,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "primeng-locale": [
+        "src/app/lib/primeng.locale.ts"
+      ],
+      "@store/shared/*": ["src/app/ui/shared/store/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -5,7 +5,8 @@ export const ARTICLE_STUB = {
   default_name: "По месту принятия, одобрения, подписания;",
   duration: "Постоянно",
   order_desc: "",
-  order_name: "",
+  order_number: "123",
+  order_date: "12.02.2022",
   sub: "а",
   text: "Конституция Российской Федерации)",
   tips: "(1) Относящиеся к деятельности конкретной организации – Постоянно"

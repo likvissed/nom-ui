@@ -1,4 +1,7 @@
+import { AddDeptnameRequestInterface } from './../types/add-deptname-request.interface';
+
 import { environment } from 'src/environments/environment';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -16,7 +19,7 @@ export class DeptnameService {
     return this.http.get(url, { headers: headers });
   }
 
-  addDeptname(data: any) {
+  addDeptname(data: AddDeptnameRequestInterface) {
     const url = `${environment.apiUrl}/add_deptname`;
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -24,7 +27,7 @@ export class DeptnameService {
     return this.http.post(url, data, { headers: headers})
   }
 
-  updateDeptname(data: any) {
+  updateDeptname(data: AddDeptnameRequestInterface) {
     const url = `${environment.apiUrl}/change_deptname`;
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

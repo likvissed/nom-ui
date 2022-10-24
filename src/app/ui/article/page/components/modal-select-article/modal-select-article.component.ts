@@ -1,13 +1,17 @@
+import { ArticleInterface } from './../../../types/article.interface';
+
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Table } from 'primeng/table';
+
 import { getArticlesAction } from '../../../store/actions/get-articles.action';
-import { selectAllArticles } from '../../../store/selectors';
+import { selectAllArticles } from '../../../store/article-selectors';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
-import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-modal-select-article',
@@ -30,7 +34,7 @@ export class ModalSelectArticleComponent implements OnInit {
   }
 
   initializeValues() {
-    this.store.dispatch(getArticlesAction( { data: {} }));
+    this.store.dispatch(getArticlesAction());
     this.onLoadArticles();
   }
 
@@ -48,7 +52,7 @@ export class ModalSelectArticleComponent implements OnInit {
     );
   }
 
-  onSelected(col: any) {
+  onSelected(col: ArticleInterface) {
     this.ref.close(col);
   }
 

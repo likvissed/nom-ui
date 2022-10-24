@@ -1,6 +1,8 @@
 import { DEPTNAME_STUB } from './../store/deptname-stub';
 import { DEPTNAME_FEATURE_KEY, deptnameReducer } from './../store/deptname-reducers';
+
 import { DeptnameService } from './deptname.service';
+
 import { ConfirmationService } from 'primeng/api';
 
 import { environment } from 'src/environments/environment';

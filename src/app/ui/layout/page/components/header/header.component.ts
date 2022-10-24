@@ -1,5 +1,7 @@
 import { AuthHelper } from '@iss/ng-auth-center';
+
 import { LoaderService } from './../../../../shared/services/loader.service';
+
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';

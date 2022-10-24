@@ -1,5 +1,7 @@
 import { GetOrdersResponseInterface } from './../../types/get-orders-response.interface';
+
 import { getOrdersAction, getOrdersSuccessAction, getOrdersFailureAction } from './../actions/get-orders.action';
+
 import { OrderService } from '../../services/order.service';
 
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -32,7 +34,7 @@ export class GetOrdersEffect {
 
             return response;
           }),
-          map((response: any ) => {//GetOrdersResponseInterface
+          map((response: GetOrdersResponseInterface ) => {
             return getOrdersSuccessAction({response});
           }),
 

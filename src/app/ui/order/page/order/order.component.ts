@@ -1,9 +1,13 @@
 import { DurationTypeInterface } from './../../types/duration-type.interface';
+
 import { NewOrderComponent } from './../components/new-order/new-order.component';
-import { selectAllOrders, selectAllDurationTypes } from './../../store/selectors';
+
+import { selectAllOrders, selectAllDurationTypes } from '../../store/order-selectors';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
 
 import { Table } from 'primeng/table';
@@ -11,7 +15,6 @@ import { getOrdersAction } from '../../store/actions/get-orders.action';
 import { deleteOrderAction } from '../../store/actions/delete-order.action';
 
 import { ConfirmationService } from 'primeng/api';
-
 import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
@@ -25,7 +28,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 export class OrderComponent implements OnInit {
   @ViewChild('dtable') table!: Table;
   orders$!: Observable<any>;
-  durationTypes = [];
+  durationTypes: DurationTypeInterface[] = [];
 
   constructor(
     private store: Store,
@@ -50,7 +53,7 @@ export class OrderComponent implements OnInit {
 
   onLoadDurationTypes() {
     this.store.pipe(select(selectAllDurationTypes))
-      .subscribe((durationValues: any) => {
+      .subscribe((durationValues: DurationTypeInterface[]) => {
         if (durationValues) {
           this.durationTypes = durationValues;
         }
@@ -71,7 +74,7 @@ export class OrderComponent implements OnInit {
   }
 
   onNewOrder() {
-    const ref = this.dialogService.open(NewOrderComponent, {
+    this.dialogService.open(NewOrderComponent, {
       header: 'Добавление приказа',
       width: '50%',
       data: {

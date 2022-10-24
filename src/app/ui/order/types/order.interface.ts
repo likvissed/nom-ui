@@ -1,8 +1,11 @@
 export interface OrderInterface {
   id: number
+  article: string
+  number: string
+  date_order: string
+  note: string
   duration: string
-  article?: string
-  name: string
-  desc?: string
-  link?: string
+  desc: string
+  link: string
+  date: string
 }

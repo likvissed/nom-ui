@@ -1,9 +1,13 @@
+import { ErrorResponseInterface } from './../../../shared/types/error-response.interface';
+import { NomenclatureInterface } from './../../types/nomenclature.interface';
+
 import { ActionTypes } from '../action-types';
+
 import { createAction, props } from '@ngrx/store';
 
 export const createTemplateAction = createAction(
   ActionTypes.CREATE_TEMPLATE,
-  props<{ data: any }>()
+  props<{ data: NomenclatureInterface }>()
 );
 
 export const createTemplateSuccessAction = createAction(
@@ -13,5 +17,5 @@ export const createTemplateSuccessAction = createAction(
 
 export const createTemplateFailureAction = createAction(
   ActionTypes.CREATE_TEMPLATE_FAILURE,
-  props<{ error: any }>()
+  props<{ error: ErrorResponseInterface }>()
 );

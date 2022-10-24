@@ -1,13 +1,15 @@
 import { ConfirmationService } from 'primeng/api';
+
 import { USER_STUB } from './../store/user.stub';
 import { USER_FEATURE_KEY, userReducer } from './../store/user-reducers';
 
 import { environment } from 'src/environments/environment';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { StoreModule } from '@ngrx/store';
+
 import { UserService } from './user.service';
 
 describe('UserService', () => {

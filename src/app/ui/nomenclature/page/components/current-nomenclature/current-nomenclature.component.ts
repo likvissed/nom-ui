@@ -1,8 +1,11 @@
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { getCurrentNom } from './../../../store/selectors';
+import { getCurrentNom } from '../../../store/nomenclature-selectors';
 import { getCurrentAction } from './../../../store/actions/get-current.action';
+
 import { Observable } from 'rxjs';
+
 import { Store, select } from '@ngrx/store';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -32,7 +35,7 @@ export class CurrentNomenclatureComponent implements OnInit {
   }
 
   onDownloadNom(id: any) {
-    this.store.dispatch(downloadNomenclatureAction({ data: id }));
+    this.store.dispatch(downloadNomenclatureAction({ id: id }));
 
     this.onLoadNom();
   }

@@ -19,8 +19,8 @@ export class GetArticlesEffect {
   get$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getArticlesAction),
-      switchMap((value) => {
-        return this.articleService.getArticles(value.data).pipe(
+      switchMap(() => {
+        return this.articleService.getArticles().pipe(
           map((response: GetArticlesResponseInterface) => {
             return getArticlesSuccessAction({response});
           }),

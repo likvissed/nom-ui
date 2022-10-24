@@ -1,5 +1,7 @@
 import { LoaderService } from './../services/loader.service';
+
 import { PrimengModule } from './../../../primeng.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

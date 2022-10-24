@@ -1,14 +1,15 @@
-import { NomenclatureModule } from './nomenclature.module';
+import { ArticleModule } from './article.module';
+
 import { TestBed } from '@angular/core/testing';
 
-describe('NomenclatureModule', () => {
+describe('ArticleModule', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NomenclatureModule],
+      imports: [ArticleModule],
     }).compileComponents();
   });
 
   it('should create', () => {
-    expect(NomenclatureModule).toBeTruthy();
+    expect(ArticleModule).toBeTruthy();
   });
 });

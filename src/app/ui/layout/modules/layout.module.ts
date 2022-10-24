@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { PrimengModule } from '../../../primeng.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { PrimengModule } from '../../../primeng.module';
 
 import { LayoutComponent } from '../page/layout/layout.component';
 import { HeaderComponent } from '../page/components/header/header.component';

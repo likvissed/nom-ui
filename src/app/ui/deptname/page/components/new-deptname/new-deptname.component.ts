@@ -1,12 +1,17 @@
 import { updateDeptnameAction } from './../../../store/actions/update-deptname.action';
-import { searchUsers } from './../../../../shared/store/selectors';
 import { findEmployeeAction } from './../../../../shared/store/actions/find-employee.action';
-import { Observable } from 'rxjs';
-import { flagResponse } from './../../../store/selectors';
 import { addDeptnameAction } from './../../../store/actions/add-deptname.action';
-import { FormBuilder, FormControl, Validators, FormGroup, FormArray } from '@angular/forms';
+
+import { flagResponse } from '../../../store/deptname-selectors';
+import { searchUsers } from './../../../../shared/store/selectors';
+
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+
+import { Observable } from 'rxjs';
+
 import { Store, select } from '@ngrx/store';
+
+import { FormBuilder, FormControl, Validators, FormGroup, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -109,7 +114,7 @@ export class NewDeptnameComponent implements OnInit {
       this.store.dispatch(addDeptnameAction({ data: this.form.getRawValue() }));
 
       this.store.pipe(select(flagResponse))
-        .subscribe((flag: any) => {
+        .subscribe((flag: boolean) => {
           if (flag) {
             this.onCloseModal();
           }
@@ -118,7 +123,7 @@ export class NewDeptnameComponent implements OnInit {
       this.store.dispatch(updateDeptnameAction({ data: this.form.getRawValue() }));
 
       this.store.pipe(select(flagResponse))
-        .subscribe((flag: any) => {
+        .subscribe((flag: boolean) => {
           if (flag) {
             this.onCloseModal();
           }

@@ -1,18 +1,26 @@
 import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail/modal-nomenclature-detail.component';
-import { DialogService } from 'primeng/dynamicdialog';
 import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
+
+import { selectAllNomenclatures, selectFiltersNom } from '../../../store/nomenclature-selectors';
+
 import { AuthHelper } from '@iss/ng-auth-center';
-import { filter } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { Table } from 'primeng/table';
+
 import { ConfirmationService } from 'primeng/api';
-import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { selectAllNomenclatures, selectFiltersNom } from './../../../store/selectors';
-import { getListAction } from './../../../store/actions/get-list.action';
+import { Table } from 'primeng/table';
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { Observable, of } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+import { filter } from 'rxjs/operators';
+
+import { downloadNomenclatureAction } from './../../../store/actions/download.action';
+import { getListAction } from './../../../store/actions/get-list.action';
 import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
+
+import { Store, select } from '@ngrx/store';
+
+import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+
 
 @Component({
   selector: 'app-list-nomenclature',
@@ -30,9 +38,9 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
     deptnames: []
   };
   roleAdmin: boolean = false;
-  userDeptName = '';
+  userDeptName: string = '';
   display: boolean = false;
-  comment = '';
+  comment: string = '';
 
   constructor(
     private store: Store,
@@ -64,12 +72,12 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
 
   onLoadStatuses() {
     this.store.pipe(select(selectFiltersNom))
-        .subscribe((filters: any) => {
-          if (filters) {
-            this.filters.statuses = filters.state_types;
-            this.filters.deptnames = filters.dept_names;
-          }
-        });
+      .subscribe((filters: any) => {
+        if (filters) {
+          this.filters.statuses = filters.state_types;
+          this.filters.deptnames = filters.dept_names;
+        }
+      });
   }
 
   ngAfterContentChecked(): void {
@@ -79,7 +87,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   onDownloadNom(id: number) {
-    this.store.dispatch(downloadNomenclatureAction({ data: id }));
+    this.store.dispatch(downloadNomenclatureAction({ id: id }));
   }
 
   onDeleteNom(id: number, num: number) {
@@ -100,7 +108,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   }
 
   onShowNom(id: number) {
-    const ref = this.dialogService.open(ModalNomenclatureDetailComponent, {
+    this.dialogService.open(ModalNomenclatureDetailComponent, {
       header: 'Просмотр номенклатуры',
       width: '80%',
       data: {

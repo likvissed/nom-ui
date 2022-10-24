@@ -1,12 +1,17 @@
 import { getUsersAction } from './../actions/get-users.action';
-import { MessageService } from 'primeng/api';
 import { addUserAction, addUserSuccessAction, addUserFailureAction } from './../actions/add-user.action';
+
+import { MessageService } from 'primeng/api';
+
 import { HttpErrorResponse } from '@angular/common/http';
-import { switchMap, map, catchError, exhaustMap, tap } from 'rxjs/operators';
-import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Injectable } from '@angular/core';
-import { UserService } from '../../services/user.service';
+
+import { switchMap, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+
+import { UserService } from '../../services/user.service';
 
 @Injectable()
 export class AddUserEffect {

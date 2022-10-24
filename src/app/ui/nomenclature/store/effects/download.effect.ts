@@ -1,8 +1,10 @@
 import { MessageService } from 'primeng/api';
+
 import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './../actions/download.action';
+
 import { NomenclatureService } from './../../services/nomenclature.service';
 
-import { catchError, exhaustMap, map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
@@ -21,7 +23,7 @@ export class DownloadEffect {
     this.actions$.pipe(
       ofType(downloadNomenclatureAction),
       switchMap((value) => {
-        return this.nomenclatureService.downloadNomenclature(value.data).pipe(
+        return this.nomenclatureService.downloadNomenclature(value.id).pipe(
           map((response: any ) => {
             let file = new Blob([response], { type: response.type });
             let fileURL = URL.createObjectURL(file);

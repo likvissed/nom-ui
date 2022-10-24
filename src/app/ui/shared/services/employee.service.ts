@@ -1,5 +1,8 @@
+import { EmployeeInterface } from '../types/employee.interface';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -8,7 +11,7 @@ export class EmployeeService {
     private http: HttpClient
   ) {}
 
-  findUsers(data: any) {
+  findUsers(data: EmployeeInterface) {
     const url = `${environment.apiUrl}/fio_tn_search`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

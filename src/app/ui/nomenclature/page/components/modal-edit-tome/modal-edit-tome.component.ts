@@ -1,6 +1,8 @@
 import { DurationTypeInterface } from './../../../../order/types/duration-type.interface';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

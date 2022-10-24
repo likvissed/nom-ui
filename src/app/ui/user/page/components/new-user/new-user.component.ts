@@ -1,11 +1,16 @@
 import { updateUserAction } from './../../../store/actions/update-user.action';
-import { flagResponse } from './../../../store/selectors';
 import { addUserAction } from './../../../store/actions/add-user.action';
+
+import { flagResponse } from '../../../store/user-selectors';
+
 import { Store, select } from '@ngrx/store';
+
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { RoleInterface } from './../../../types/role.interface';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Component, OnInit } from '@angular/core';
+
+import { RoleInterface } from './../../../types/role.interface';
+
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-new-user',
