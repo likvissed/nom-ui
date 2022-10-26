@@ -26,12 +26,12 @@ export class ModalEditTomeComponent implements OnInit {
   ];
   selectDateEnd: any;
 
-  currentYear = new Date().getFullYear();
-  minDateFirst = new Date(`${this.currentYear}-01-01`);
-  maxDateSecond = new Date(`${this.currentYear + 1}-12-31`);
+  // currentYear = new Date().getFullYear();
+  // minDateFirst = new Date(`${this.currentYear}-01-01`);
+  // maxDateSecond = new Date(`${this.currentYear + 1}-12-31`);
 
-  arrMaxDateFirst: Date[] = [];
-  arrMinDateSecond: Date[] = [];
+  // arrMaxDateFirst: Date[] = [];
+  // arrMinDateSecond: Date[] = [];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -60,8 +60,8 @@ export class ModalEditTomeComponent implements OnInit {
 
     if (tomes) {
       tomes.forEach((element: any) => {
-        this.arrMaxDateFirst.push(this.onCalcDateMinusOne(element.date_end));
-        this.arrMinDateSecond.push(this.onCalcDatePluseOne(element.date_start));
+        // this.arrMaxDateFirst.push(this.onCalcDateMinusOne(element.date_end));
+        // this.arrMinDateSecond.push(this.onCalcDatePluseOne(element.date_start));
 
         this.tableRowArray.push(this.addTomsRow(element));
       });
@@ -105,8 +105,8 @@ export class ModalEditTomeComponent implements OnInit {
   onAddRow() {
     this.tableRowArray.push(this.createTomsRow());
 
-    this.arrMaxDateFirst.push(new Date(`${this.currentYear + 1}-12-31`));
-    this.arrMinDateSecond.push(new Date(`${this.currentYear}-01-01`));
+    // this.arrMaxDateFirst.push(new Date(`${this.currentYear + 1}-12-31`));
+    // this.arrMinDateSecond.push(new Date(`${this.currentYear}-01-01`));
   }
 
   onDeleteRow(recordIndex: number) {
@@ -131,32 +131,32 @@ export class ModalEditTomeComponent implements OnInit {
     return (day[1]?day:"0"+day[0]) + '.' + (month[1]?month:"0"+month[0]) + '.' + year;
   }
 
-  onCalcDatePluseOne(date: any) {
-    let str_date = date.split('.').reverse().join('-');
+  // onCalcDatePluseOne(date: any) {
+  //   let str_date = date.split('.').reverse().join('-');
 
-    const today = new Date(str_date);
-    const tomorrow = new Date(str_date)
-    tomorrow.setDate(today.getDate() + 1);
+  //   const today = new Date(str_date);
+  //   const tomorrow = new Date(str_date)
+  //   tomorrow.setDate(today.getDate() + 1);
 
-    return tomorrow;
-  }
+  //   return tomorrow;
+  // }
 
-  onCalcDateMinusOne(date: any) {
-    let str_date = date.split('.').reverse().join('-');
+  // onCalcDateMinusOne(date: any) {
+  //   let str_date = date.split('.').reverse().join('-');
 
-    const today = new Date(str_date);
-    const yesterday = new Date(str_date)
-    yesterday.setDate(today.getDate() - 1);
+  //   const today = new Date(str_date);
+  //   const yesterday = new Date(str_date)
+  //   yesterday.setDate(today.getDate() - 1);
 
-    return yesterday;
-  }
+  //   return yesterday;
+  // }
 
   onSelectDateStart(index: number) {
     let fullStartDate = (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'];
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_start'].setValue(this.onChangeDate(fullStartDate.value));
 
-    this.arrMinDateSecond[index] = this.onCalcDatePluseOne(fullStartDate.value);
+    // this.arrMinDateSecond[index] = this.onCalcDatePluseOne(fullStartDate.value);
   }
 
   onSelectDateEnd(index: number) {
@@ -164,7 +164,7 @@ export class ModalEditTomeComponent implements OnInit {
 
     (((<FormArray>this.form.controls['toms']).at(index)) as FormGroup).controls['date_end'].setValue(this.onChangeDate(fullEndDate.value));
 
-    this.arrMaxDateFirst[index] = this.onCalcDateMinusOne(fullEndDate.value);
+    // this.arrMaxDateFirst[index] = this.onCalcDateMinusOne(fullEndDate.value);
   }
 
   onSaveTome() {
