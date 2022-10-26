@@ -1,5 +1,6 @@
 import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail/modal-nomenclature-detail.component';
 import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
+import { UploadScanComponent } from '../upload-scan/upload-scan.component';
 
 import { selectAllNomenclatures, selectFiltersNom } from '../../../store/nomenclature-selectors';
 
@@ -92,7 +93,7 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
 
   onDeleteNom(id: number, num: number) {
     this.confirmationService.confirm({
-      message: `Вы действительно хотите удалить номенклатуру дел №«‎${num}»?`,
+      message: `Вы действительно хотите удалить номенклатуру дел №«${num}»?`,
       header: 'Подтвердите выбор',
       icon: 'pi pi-info-circle',
       acceptLabel: 'Да',
@@ -120,5 +121,15 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
   onShowComment(comment: any){
     this.display = true;
     this.comment = comment;
+  }
+
+  onOpenModalUpload(id: number) {
+    this.dialogService.open(UploadScanComponent, {
+      header: `Загрузка скана для номенклатуры №${id}`,
+      width: '30%',
+      data: {
+        id: id
+      }
+    });
   }
 }

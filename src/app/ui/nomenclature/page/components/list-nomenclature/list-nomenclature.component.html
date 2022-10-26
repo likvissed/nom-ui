@@ -35,6 +35,7 @@
           <th></th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
 
         <tr>
@@ -83,6 +84,7 @@
             </ng-template>
           </p-dropdown>
           </th>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -136,6 +138,18 @@
               class="p-button-secondary p-button-outlined"
               pTooltip="Комментарий"
               tooltipPosition="top"
+            ></button>
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-upload"
+              (click)="onOpenModalUpload(column.id)"
+              class="p-button-primery p-button-outlined"
+              pTooltip="Загрузить скан-копии"
+              tooltipPosition="top"
+              [disabled]="column.proc_state != 3"
             ></button>
           </td>
           <td style="text-align:center">

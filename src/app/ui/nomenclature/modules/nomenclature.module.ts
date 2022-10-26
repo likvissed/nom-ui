@@ -26,6 +26,7 @@ import { NomenclatureRoutingModule } from './nomenclature-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { UploadScanComponent } from '../page/components/upload-scan/upload-scan.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgModule } from '@angular/core';
     ListNomenclatureComponent,
     ModalEditTomeComponent,
     ModalTemplateComponent,
-    ModalNomenclatureDetailComponent
+    ModalNomenclatureDetailComponent,
+    UploadScanComponent
   ],
   imports: [
     CommonModule,
