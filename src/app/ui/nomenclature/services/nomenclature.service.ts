@@ -71,12 +71,12 @@ export class NomenclatureService {
     }
   }
 
-  uploadScan(data: any) {
+  uploadScan(formData: any) {
     const url = `${environment.apiUrl}/upload_nomenclature`;
 
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
 
-    return this.http.post (url, data, { headers: headers });
+    return this.http.post (url, formData);
   }
 
 }

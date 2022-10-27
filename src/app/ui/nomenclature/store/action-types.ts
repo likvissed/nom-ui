@@ -25,5 +25,9 @@ export enum ActionTypes {
 
   GET_CURRENT = '[Nomenclature] Get current',
   GET_CURRENT_SUCCESS = '[Nomenclature] Get current success',
-  GET_CURRENT_FAILURE = '[Nomenclature] Get current failure'
+  GET_CURRENT_FAILURE = '[Nomenclature] Get current failure',
+
+  UPLOAD_FILE_NOMENCLATURE = '[Nomenclature] Upload file',
+  UPLOAD_FILE_NOMENCLATURE_SUCCESS  = '[Nomenclature] Upload file success',
+  UPLOAD_FILE_NOMENCLATURE_FAILURE = '[Nomenclature] Upload file failure',
 }

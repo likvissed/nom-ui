@@ -1,3 +1,7 @@
+import { flagUploadFile } from './../../../store/nomenclature-selectors';
+
+import { uploadFileAction } from './../../../store/actions/upload-file.action';
+
 import { MessageService } from 'primeng/api';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -51,6 +55,8 @@ export class UploadScanComponent implements OnInit {
   }
 
   uploadFile(event: any) {
+    this.formData.delete('file');
+
     const file: File = event.target.files[0];
 
     if (!file) {
@@ -69,7 +75,16 @@ export class UploadScanComponent implements OnInit {
   }
 
   onSaveFile() {
+    this.formData.append('id', this.form.value.id);
 
+    this.store.dispatch(uploadFileAction({ data: this.formData }));
+
+    this.store.pipe(select(flagUploadFile))
+      .subscribe((flag: boolean) => {
+        if (flag) {
+          this.onCloseModal();
+        }
+      });
   }
 
   onCloseModal() {

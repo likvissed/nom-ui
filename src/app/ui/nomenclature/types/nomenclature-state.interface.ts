@@ -6,4 +6,5 @@ export interface NomenclatureStateInterface {
   filters: any,
   file: Blob | null,
   send_ssd: boolean
+  fileUpload: boolean
 }

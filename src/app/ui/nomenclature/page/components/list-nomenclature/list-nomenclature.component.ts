@@ -123,9 +123,9 @@ export class ListNomenclatureComponent implements OnInit, AfterContentChecked {
     this.comment = comment;
   }
 
-  onOpenModalUpload(id: number) {
+  onOpenModalUpload(num: number, id: number) {
     this.dialogService.open(UploadScanComponent, {
-      header: `Загрузка скана для номенклатуры №${id}`,
+      header: `Загрузка скана для номенклатуры №${num}`,
       width: '30%',
       data: {
         id: id
