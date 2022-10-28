@@ -11,7 +11,6 @@ import { Table } from 'primeng/table';
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { Observable, of } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { downloadNomenclatureAction } from './../../../store/actions/download.action';
 import { getListAction } from './../../../store/actions/get-list.action';

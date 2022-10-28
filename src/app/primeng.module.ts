@@ -24,6 +24,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 const modules: any[] = [
@@ -50,7 +51,8 @@ const modules: any[] = [
   ProgressSpinnerModule,
   DialogModule,
   ChipModule,
-  MultiSelectModule
+  MultiSelectModule,
+  FileUploadModule
 ];
 
 @NgModule({

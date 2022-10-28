@@ -1,32 +1,8 @@
-
-<form [formGroup]="form">
-  <input style="display: none" type="file" formControlName="file" (change)="uploadFile($event)" #fileUpload>
-
-  <div>
-    <button (click)="fileUpload.click()" class="btn btn-outline-primary px-2"><i class="bi bi-folder2-open p-r-2"> </i> Загрузить скан-копию </button>
-
-    <span class="pl-2">
-      {{ form.value.fileName || defaultFileName }}
-    </span>
-  </div>
-</form>
-
-<div class="pt-3">
-  <div class="flex justify-content-end mt-3">
-    <p-button
-      label="Сохранить"
-      icon="mdi mdi-loading mdi-spin mdi-18px"
-      class="pr-2"
-      styleClass="p-button-outlined p-button-success"
-      (click)="onSaveFile()"
-      [disabled]="form.invalid"
-    ></p-button>
-
-    <p-button
-      label="Отмена"
-      icon="mdi mdi-loading mdi-spin mdi-18px"
-      styleClass="p-button-outlined p-button-secondary"
-      (click)="onCloseModal()"
-    ></p-button>
-  </div>
-</div>
+<p-fileUpload 
+  [customUpload]="true" 
+  [multiple]="false"
+  (uploadHandler)="onSaveFile($event)"
+  [maxFileSize]="maxSize"
+  invalidFileSizeMessageSummary="{0}: Превышен допустимый размер файла"
+  invalidFileSizeMessageDetail="Файл не должен превышать {0}"
+></p-fileUpload>
