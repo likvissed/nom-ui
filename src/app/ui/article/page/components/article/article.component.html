@@ -68,7 +68,13 @@
                 <!-- <td style="text-align:center">{{ i + 1 }}</td> -->
                 <td style="text-align:center">{{ column.article_id }}</td>
                 <td style="text-align:center">{{ column.sub }}</td>
-                <td (click)="dtable.toggleRow(column, $event)" style="cursor: pointer;">{{ column.text }}</td>
+                <td (click)="dtable.toggleRow(column, $event)" style="cursor: pointer;">
+                  {{ column.text }}
+
+                  <span class="name-ellipsis">
+                    {{ (column.default_name && column.default_name.length>20) ? ( column.default_name | slice:0:20 ) + '...': ( column.default_name) }}
+                  </span>
+                </td>
               </tr>
             </ng-template>
 
