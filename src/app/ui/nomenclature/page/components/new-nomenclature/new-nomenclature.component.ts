@@ -160,7 +160,7 @@ export class NewNomenclatureComponent implements OnInit {
       duration: new FormControl(object.duration, [Validators.required]),
       article_number: new FormControl(object.article_number, [Validators.required]),
       tips: new FormControl(object.tips, [Validators.maxLength(500)]),
-      toms: this.formBuilder.array([object.toms], [Validators.required]),
+      toms: this.formBuilder.array(object.toms, [Validators.required]),
       order_date: object.order_date,
       order_number: object.order_number,
       order_desc: object.order_desc
