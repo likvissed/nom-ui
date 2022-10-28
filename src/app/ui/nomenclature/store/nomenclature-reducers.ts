@@ -1,3 +1,4 @@
+import { uploadFileAction, uploadFileSuccessAction, uploadFileFailureAction } from './actions/upload-file.action';
 import { NomenclatureStateInterface } from '../types/nomenclature-state.interface';
 
 import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';
@@ -19,7 +20,8 @@ const initialState: NomenclatureStateInterface = {
   nomenclatures: null,
   filters: null,
   file: null,
-  send_ssd: false
+  send_ssd: false,
+  fileUpload: false
 }
 
 const reducer = createReducer(
@@ -140,8 +142,25 @@ const reducer = createReducer(
     ...state,
     isSubmitting: false,
     errors: action.error
-  }))
+  })),
 
+  on(uploadFileAction, (state): NomenclatureStateInterface => ({
+    ...state,
+    isSubmitting: true,
+    fileUpload: false
+  })),
+  on(uploadFileSuccessAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    response: action.response,
+    fileUpload: true
+  })),
+  on(uploadFileFailureAction, (state, action): any => ({
+    ...state,
+    isSubmitting: false,
+    errors: action.error,
+    fileUpload: false
+  }))
 )
 
 export function nomenclatureReducer(state: NomenclatureStateInterface, action: Action) {

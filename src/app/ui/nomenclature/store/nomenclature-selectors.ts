@@ -19,3 +19,5 @@ export const getDataPresentNom = createSelector(nomenclatureFeatureSelector, (st
 export const getCurrentNom = createSelector(nomenclatureFeatureSelector, (state: any) => state.response);
 
 export const flagSendSsd = createSelector(nomenclatureFeatureSelector, (state: any) => state.send_ssd);
+
+export const flagUploadFile = createSelector(nomenclatureFeatureSelector, (state: any) => state.fileUpload);

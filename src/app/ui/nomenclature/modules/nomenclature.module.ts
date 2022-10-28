@@ -12,6 +12,7 @@ import { GetListEffect } from '../store/effects/get-list.effect';
 import { SendToSsdEffect } from '../store/effects/send-to-ssd.effect';
 import { CreateTemplateEffect } from '../store/effects/create-template.effect';
 import { GetCurrentEffect } from '../store/effects/get-current.effect';
+import { UploadFileEffect } from './../store/effects/upload-file.effect';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -26,6 +27,7 @@ import { NomenclatureRoutingModule } from './nomenclature-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { UploadScanComponent } from '../page/components/upload-scan/upload-scan.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { NgModule } from '@angular/core';
     ListNomenclatureComponent,
     ModalEditTomeComponent,
     ModalTemplateComponent,
-    ModalNomenclatureDetailComponent
+    ModalNomenclatureDetailComponent,
+    UploadScanComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +53,8 @@ import { NgModule } from '@angular/core';
         DownloadEffect,
         DeleteEffect,
         CreateBasedOnEffect,
-        GetCurrentEffect
+        GetCurrentEffect,
+        UploadFileEffect
       ]
     ),
 
