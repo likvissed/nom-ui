@@ -1,4 +1,4 @@
-import { createBasedOnAction, createBasedOnActionSuccess, createBasedOnActionFailure } from './../actions/create-based-on.action';
+import { createBasedOnAction, createBasedOnActionSuccess, createBasedOnActionFailure } from '@store/nomenclature/actions/create-based-on.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

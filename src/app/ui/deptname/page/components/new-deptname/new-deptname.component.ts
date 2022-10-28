@@ -1,9 +1,9 @@
-import { updateDeptnameAction } from './../../../store/actions/update-deptname.action';
-import { findEmployeeAction } from './../../../../shared/store/actions/find-employee.action';
-import { addDeptnameAction } from './../../../store/actions/add-deptname.action';
+import { updateDeptnameAction } from '@store/deptname/actions/update-deptname.action';
+import { findEmployeeAction } from '@store/shared/actions/find-employee.action';
+import { addDeptnameAction } from '@store/deptname/actions/add-deptname.action';
 
-import { flagResponse } from '../../../store/deptname-selectors';
-import { searchUsers } from './../../../../shared/store/selectors';
+import { flagResponse } from '@store/deptname/deptname-selectors';
+import { searchUsers } from '@store/shared/selectors';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 

@@ -7,8 +7,8 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
-import { deleteOrderAction, deleteOrderFailureAction, deleteOrderSuccessAction } from '../actions/delete-order.action';
-import { getOrdersAction } from '../actions/get-orders.action';
+import { deleteOrderAction, deleteOrderFailureAction, deleteOrderSuccessAction } from '@store/order/actions/delete-order.action';
+import { getOrdersAction } from '@store/order/actions/get-orders.action';
 
 import { OrderService } from '../../services/order.service';
 

@@ -1,9 +1,9 @@
 import { ArticleInterface } from './../../../../article/types/article.interface';
 import { DurationTypeInterface } from './../../../types/duration-type.interface';
 
-import { flagResponseTrue } from '../../../store/order-selectors';
+import { flagResponseTrue } from '@store/order/order-selectors';
 
-import { addOrderAction } from './../../../store/actions/add-order.action';
+import { addOrderAction } from '@store/order/actions/add-order.action';
 
 import { ModalSelectArticleComponent } from '../../../../article/page/components/modal-select-article/modal-select-article.component';
 

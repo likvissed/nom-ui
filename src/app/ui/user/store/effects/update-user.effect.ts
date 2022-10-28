@@ -1,7 +1,7 @@
 import { MessageService } from 'primeng/api';
 
 import { getUsersAction } from './../actions/get-users.action';
-import { updateUserAction, updateUserSuccessAction, updateUserFailureAction } from './../actions/update-user.action';
+import { updateUserAction, updateUserSuccessAction, updateUserFailureAction } from '@store/user/actions/update-user.action';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';

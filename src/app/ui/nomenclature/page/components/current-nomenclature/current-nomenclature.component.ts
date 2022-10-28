@@ -1,6 +1,7 @@
-import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { getCurrentNom } from '../../../store/nomenclature-selectors';
-import { getCurrentAction } from './../../../store/actions/get-current.action';
+import { downloadNomenclatureAction } from '@store/nomenclature/actions/download.action';
+import { getCurrentAction } from '@store/nomenclature/actions/get-current.action';
+
+import { getCurrentNom } from '@store/nomenclature/nomenclature-selectors';
 
 import { Observable } from 'rxjs';
 

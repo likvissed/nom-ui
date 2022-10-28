@@ -2,7 +2,7 @@ import { DurationTypeInterface } from './../../types/duration-type.interface';
 
 import { NewOrderComponent } from './../components/new-order/new-order.component';
 
-import { selectAllOrders, selectAllDurationTypes } from '../../store/order-selectors';
+import { selectAllOrders, selectAllDurationTypes } from '@store/order/order-selectors';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -11,8 +11,8 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Table } from 'primeng/table';
-import { getOrdersAction } from '../../store/actions/get-orders.action';
-import { deleteOrderAction } from '../../store/actions/delete-order.action';
+import { getOrdersAction } from '@store/order/actions/get-orders.action';
+import { deleteOrderAction } from '@store/order/actions/delete-order.action';
 
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';

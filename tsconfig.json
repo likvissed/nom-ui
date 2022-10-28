@@ -28,7 +28,12 @@
       "primeng-locale": [
         "src/app/lib/primeng.locale.ts"
       ],
-      "@store/shared/*": ["src/app/ui/shared/store/*"]
+      "@store/shared/*": ["src/app/ui/shared/store/*"],
+      "@store/article/*": ["src/app/ui/article/store/*"],
+      "@store/deptname/*": ["src/app/ui/deptname/store/*"],
+      "@store/nomenclature/*": ["src/app/ui/nomenclature/store/*"],
+      "@store/order/*": ["src/app/ui/order/store/*"],
+      "@store/user/*": ["src/app/ui/user/store/*"]
     }
   },
   "angularCompilerOptions": {

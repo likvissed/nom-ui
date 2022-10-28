@@ -3,8 +3,8 @@ import { AuthHelper } from '@iss/ng-auth-center';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { selectFileTemplate, isSubmittingSelector } from '../../../store/nomenclature-selectors';
-import { searchUsers } from './../../../../shared/store/selectors';
+import { selectFileTemplate, isSubmittingSelector } from '@store/nomenclature/nomenclature-selectors';
+import { searchUsers } from '@store/shared/selectors';
 
 import { ModalTemplateComponent } from './../modal-template/modal-template.component';
 import { ModalEditTomeComponent } from './../modal-edit-tome/modal-edit-tome.component';
@@ -14,8 +14,8 @@ import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 
-import { createTemplateAction } from './../../../store/actions/create-template.action';
-import { findEmployeeAction } from 'src/app/ui/shared/store/actions/find-employee.action';
+import { createTemplateAction } from '@store/nomenclature/actions/create-template.action';
+import { findEmployeeAction } from '@store/shared/actions/find-employee.action';
 import { getOrdersAction } from 'src/app/ui/order/store/actions/get-orders.action';
 
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';

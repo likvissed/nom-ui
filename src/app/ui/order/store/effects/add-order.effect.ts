@@ -1,6 +1,6 @@
 import { MessageService } from 'primeng/api';
 
-import { addOrderAction, addOrderSuccessAction, addOrderFailureAction } from './../actions/add-order.action';
+import { addOrderAction, addOrderSuccessAction, addOrderFailureAction } from '@store/order/actions/add-order.action';
 import { getOrdersAction } from '../actions/get-orders.action';
 
 import { catchError, exhaustMap, switchMap, tap } from 'rxjs/operators';

@@ -1,5 +1,5 @@
-import { getListAction } from './../actions/get-list.action';
-import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from '../actions/delete.action';
+import { getListAction } from '@store/nomenclature/actions/get-list.action';
+import { deleteNomenclatureAction, deleteNomenclatureActionFailure, deleteNomenclatureActionSuccess } from '@store/nomenclature/actions/delete.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

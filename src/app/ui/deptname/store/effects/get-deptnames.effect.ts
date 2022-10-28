@@ -1,10 +1,14 @@
-import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from './../actions/get-deptnames.action';
+import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from '@store/deptname/actions/get-deptnames.action';
+
 import { DeptnameService } from './../../services/deptname.service';
+
 import { HttpErrorResponse } from '@angular/common/http';
-import { switchMap, map, catchError } from 'rxjs/operators';
-import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Injectable } from '@angular/core';
+
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 @Injectable()
 export class GetDeptnamesffect {

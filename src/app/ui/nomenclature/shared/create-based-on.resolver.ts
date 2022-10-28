@@ -1,6 +1,6 @@
 import { getDataPresentNom } from '../store/nomenclature-selectors';
 
-import { createBasedOnAction } from './../store/actions/create-based-on.action';
+import { createBasedOnAction } from '@store/nomenclature/actions/create-based-on.action';
 
 import { Store, select } from '@ngrx/store';
 import { Injectable } from '@angular/core';

@@ -1,5 +1,5 @@
 import { getUsersAction } from './../actions/get-users.action';
-import { addUserAction, addUserSuccessAction, addUserFailureAction } from './../actions/add-user.action';
+import { addUserAction, addUserSuccessAction, addUserFailureAction } from '@store/user/actions/add-user.action';
 
 import { MessageService } from 'primeng/api';
 

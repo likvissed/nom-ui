@@ -3,10 +3,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { NewUserComponent } from './../components/new-user/new-user.component';
 
-import { selectAllUsers, selectUserFilters } from '../../store/user-selectors';
+import { selectAllUsers, selectUserFilters } from '@store/user/user-selectors';
 
-import { getUsersAction } from './../../store/actions/get-users.action';
-import { deleteUserAction } from '../../store/actions/delete-user.action';
+import { getUsersAction } from '@store/user/actions/get-users.action';
+import { deleteUserAction } from '@store/user/actions/delete-user.action';
 
 import { Store, select } from '@ngrx/store';
 

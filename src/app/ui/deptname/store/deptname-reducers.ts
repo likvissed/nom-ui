@@ -1,9 +1,9 @@
 import { DeptnameStateInterface } from './../types/deptname.state.interface';
 
-import { updateDeptnameAction, updateDeptnameSuccessAction, updateDeptnameFailureAction } from './actions/update-deptname.action';
-import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from './actions/add-deptname.action';
-import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from './actions/get-deptnames.action';
-import { deleteDeptnameAction, deleteDeptnameFailureAction, deleteDeptnameSuccessAction } from './actions/delete-deptname.action';
+import { updateDeptnameAction, updateDeptnameSuccessAction, updateDeptnameFailureAction } from '@store/deptname/actions/update-deptname.action';
+import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from '@store/deptname/actions/add-deptname.action';
+import { getDeptnamesAction, getDeptnamesSuccessAction, getDeptnamesFailureAction } from '@store/deptname/actions/get-deptnames.action';
+import { deleteDeptnameAction, deleteDeptnameFailureAction, deleteDeptnameSuccessAction } from '@store/deptname/actions/delete-deptname.action';
 
 import { Action, createReducer, on } from '@ngrx/store';
 

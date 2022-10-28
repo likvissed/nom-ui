@@ -1,6 +1,6 @@
 import { NomenclatureService } from './../../services/nomenclature.service';
 
-import { createTemplateAction, createTemplateSuccessAction, createTemplateFailureAction } from './../actions/create-template.action';
+import { createTemplateAction, createTemplateSuccessAction, createTemplateFailureAction } from '@store/nomenclature/actions/create-template.action';
 
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';

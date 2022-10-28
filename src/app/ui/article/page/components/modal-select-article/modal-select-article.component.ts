@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 
-import { getArticlesAction } from '../../../store/actions/get-articles.action';
-import { selectAllArticles } from '../../../store/article-selectors';
+import { getArticlesAction } from '@store/article/actions/get-articles.action';
+import { selectAllArticles } from '@store/article/article-selectors';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 

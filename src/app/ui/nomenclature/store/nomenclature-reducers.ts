@@ -1,4 +1,4 @@
-import { uploadFileAction, uploadFileSuccessAction, uploadFileFailureAction } from './actions/upload-file.action';
+import { uploadFileAction, uploadFileSuccessAction, uploadFileFailureAction } from '@store/nomenclature/actions/upload-file.action';
 import { NomenclatureStateInterface } from '../types/nomenclature-state.interface';
 
 import { getListAction, getListActionSuccess, getListActionFailure } from './actions/get-list.action';

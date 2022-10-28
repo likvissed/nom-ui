@@ -1,5 +1,5 @@
 import { GetArticlesResponseInterface } from './../../types/get-articles-response.interface';
-import { getArticlesAction, getArticlesSuccessAction, getArticlesFailureAction } from '../actions/get-articles.action';
+import { getArticlesAction, getArticlesSuccessAction, getArticlesFailureAction } from '@store/article/actions/get-articles.action';
 import { ArticleService } from './../../service/article.service';
 
 import { catchError, map, switchMap } from 'rxjs/operators';

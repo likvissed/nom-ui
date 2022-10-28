@@ -1,4 +1,4 @@
-import { getListAction, getListActionSuccess, getListActionFailure } from './../actions/get-list.action';
+import { getListAction, getListActionSuccess, getListActionFailure } from '@store/nomenclature/actions/get-list.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

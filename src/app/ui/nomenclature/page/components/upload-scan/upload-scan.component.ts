@@ -1,6 +1,6 @@
-import { flagUploadFile } from './../../../store/nomenclature-selectors';
+import { flagUploadFile } from '@store/nomenclature/nomenclature-selectors';
 
-import { uploadFileAction } from './../../../store/actions/upload-file.action';
+import { uploadFileAction } from '@store/nomenclature/actions/upload-file.action';
 
 import { Component, OnInit } from '@angular/core';
 

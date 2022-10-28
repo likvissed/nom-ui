@@ -1,5 +1,5 @@
-import { getListAction } from './../actions/get-list.action';
-import { uploadFileAction, uploadFileSuccessAction, uploadFileFailureAction } from './../actions/upload-file.action';
+import { getListAction } from '@store/nomenclature/actions/get-list.action';
+import { uploadFileAction, uploadFileSuccessAction, uploadFileFailureAction } from '@store/nomenclature/actions/upload-file.action';
 import { MessageService } from 'primeng/api';
 
 

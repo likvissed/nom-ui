@@ -1,4 +1,4 @@
-import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from './../actions/get-current.action';
+import { getCurrentAction, getCurrentActionSuccess, getCurrentActionFailure } from '@store/nomenclature/actions/get-current.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

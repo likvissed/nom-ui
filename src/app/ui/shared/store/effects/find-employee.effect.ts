@@ -1,6 +1,6 @@
 import { EmployeeService } from './../../services/employee.service';
 
-import { findEmployeeAction, findEmployeeFailureAction, findEmployeeSuccessAction } from './../actions/find-employee.action';
+import { findEmployeeAction, findEmployeeFailureAction, findEmployeeSuccessAction } from '@store/shared/actions/find-employee.action';
 
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';

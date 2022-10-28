@@ -1,6 +1,6 @@
 import { MessageService } from 'primeng/api';
 
-import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from './../actions/download.action';
+import { downloadNomenclatureAction, downloadNomenclatureActionSuccess, downloadNomenclatureActionFailure } from '@store/nomenclature/actions/download.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

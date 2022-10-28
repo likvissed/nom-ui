@@ -1,6 +1,6 @@
 import { MessageService } from 'primeng/api';
 
-import { sendToSsdAction, sendToSsdActionSuccess, sendToSsdActionFailure } from './../actions/send-to-ssd.action';
+import { sendToSsdAction, sendToSsdActionSuccess, sendToSsdActionFailure } from '@store/nomenclature/actions/send-to-ssd.action';
 
 import { NomenclatureService } from './../../services/nomenclature.service';
 

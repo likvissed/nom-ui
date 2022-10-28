@@ -1,12 +1,16 @@
-import { getDeptnamesAction } from './../actions/get-deptnames.action';
-import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from './../actions/add-deptname.action';
+import { getDeptnamesAction } from '@store/deptname/actions/get-deptnames.action';
+import { addDeptnameAction, addDeptnameSuccessAction, addDeptnameFailureAction } from '@store/deptname/actions/add-deptname.action';
+
 import { DeptnameService } from './../../services/deptname.service';
+
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { switchMap, map, catchError, exhaustMap, tap } from 'rxjs/operators';
-import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Injectable } from '@angular/core';
+
+import { switchMap, map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 @Injectable()
 export class AddDeptnameEffect {

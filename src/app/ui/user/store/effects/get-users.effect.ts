@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { getUsersAction, getUsersSuccessAction, getUsersFailureAction } from './../actions/get-users.action';
+import { getUsersAction, getUsersSuccessAction, getUsersFailureAction } from '@store/user/actions/get-users.action';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 

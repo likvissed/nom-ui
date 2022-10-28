@@ -1,9 +1,9 @@
 import { NewDeptnameComponent } from './../components/new-deptname/new-deptname.component';
 
-import { getDeptnamesAction } from './../../store/actions/get-deptnames.action';
-import { deleteDeptnameAction } from '../../store/actions/delete-deptname.action';
+import { getDeptnamesAction } from '@store/deptname/actions/get-deptnames.action';
+import { deleteDeptnameAction } from '@store/deptname/actions/delete-deptname.action';
 
-import { selectAllDeptnames } from '../../store/deptname-selectors';
+import { selectAllDeptnames } from '@store/deptname/deptname-selectors';
 
 import { Table } from 'primeng/table';
 import { ConfirmationService } from 'primeng/api';

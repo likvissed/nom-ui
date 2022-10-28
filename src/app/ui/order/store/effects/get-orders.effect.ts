@@ -1,6 +1,6 @@
 import { GetOrdersResponseInterface } from './../../types/get-orders-response.interface';
 
-import { getOrdersAction, getOrdersSuccessAction, getOrdersFailureAction } from './../actions/get-orders.action';
+import { getOrdersAction, getOrdersSuccessAction, getOrdersFailureAction } from '@store/order/actions/get-orders.action';
 
 import { OrderService } from '../../services/order.service';
 

@@ -2,7 +2,7 @@ import { ModalNomenclatureDetailComponent } from './../modal-nomenclature-detail
 import { CurrentNomenclatureComponent } from './../current-nomenclature/current-nomenclature.component';
 import { UploadScanComponent } from '../upload-scan/upload-scan.component';
 
-import { selectAllNomenclatures, selectFiltersNom } from '../../../store/nomenclature-selectors';
+import { selectAllNomenclatures, selectFiltersNom } from '@store/nomenclature/nomenclature-selectors';
 
 import { AuthHelper } from '@iss/ng-auth-center';
 
@@ -12,9 +12,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { Observable, of } from 'rxjs';
 
-import { downloadNomenclatureAction } from './../../../store/actions/download.action';
-import { getListAction } from './../../../store/actions/get-list.action';
-import { deleteNomenclatureAction } from '../../../store/actions/delete.action';
+import { downloadNomenclatureAction } from '@store/nomenclature/actions/download.action';
+import { getListAction } from '@store/nomenclature/actions/get-list.action';
+import { deleteNomenclatureAction } from '@store/nomenclature/actions/delete.action';
 
 import { Store, select } from '@ngrx/store';
 

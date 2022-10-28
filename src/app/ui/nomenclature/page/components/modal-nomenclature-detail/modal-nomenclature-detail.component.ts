@@ -1,4 +1,4 @@
-import { getCurrentAction } from './../../../store/actions/get-current.action';
+import { getCurrentAction } from '@store/nomenclature/actions/get-current.action';
 
 import { getCurrentNom } from '../../../store/nomenclature-selectors';
 
