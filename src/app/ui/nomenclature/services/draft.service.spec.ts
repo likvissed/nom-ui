@@ -19,21 +19,26 @@ describe('DraftService', () => {
     
     service = TestBed.inject(DraftService);
     httpTestingController = TestBed.inject(HttpTestingController);
-});
+  });
 
-  const nameKey = 'draftNomenclature';
+  afterEach(() => {
+    localStorage.removeItem(nameKey);
+  });
+
+const nameKey = 'draftNomenclature';
+const data = NOMENCLATURE_STUB;
 
   it('should create', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('#onSet and onGet', () => {
-    const value = NOMENCLATURE_STUB;
+  describe('#onSet and #onGet', () => {
+    let value = NOMENCLATURE_STUB;
 
     it('should set item', () => {
       service.onSet(value);
 
-      expect(service.onGet().toEqual(value);
+      expect(service.onGet()).toEqual(data);
     });
   });
 });

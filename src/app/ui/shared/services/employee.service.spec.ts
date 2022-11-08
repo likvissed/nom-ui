@@ -32,7 +32,6 @@ describe('EmployeeService', () => {
     const empUrl = `${apiUrl}/fio_tn_search`;
 
     let params = 'Alex';
-    let dt = { 'text': params };
 
     const data = {
       fio: 'Иванова Елена Константиновна',
@@ -47,7 +46,7 @@ describe('EmployeeService', () => {
           expect(response).toEqual(data);
         })
 
-      const req = httpTestingController.expectOne({method: 'GET', url: `${empUrl}?filters=${encodeURIComponent(JSON.stringify(dt))}`});
+      const req = httpTestingController.expectOne({method: 'GET', url: `${empUrl}?text=${params}`});
 
       expect(req.request.method).toEqual('GET');
       expect(req.request.responseType).toEqual('json');
@@ -61,7 +60,7 @@ describe('EmployeeService', () => {
           expect(response).toEqual(emptyData);
         })
 
-      const req = httpTestingController.expectOne({method: 'GET', url: `${empUrl}?filters=${encodeURIComponent(JSON.stringify(dt))}`});
+      const req = httpTestingController.expectOne({method: 'GET', url: `${empUrl}?text=${params}`});
 
       expect(req.request.method).toEqual('GET');
       expect(req.request.responseType).toEqual('json');

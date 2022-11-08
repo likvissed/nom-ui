@@ -1,7 +1,6 @@
 import { StoreModule } from '@ngrx/store';
 
-import { USER_FEATURE_KEY } from './../../../store/user-reducers';
-import { userReducer } from '../../../store/user-reducers';
+import { userReducer, USER_FEATURE_KEY } from '@store/user/user-reducers';
 
 import { FormBuilder } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -33,7 +32,10 @@ describe('NewUserComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewUserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
+    component.roles = [
+      { id: 1, role: 'admin', full_role: 'Администратор' }
+    ];
   });
 
   it('should create', () => {

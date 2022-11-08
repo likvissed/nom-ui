@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from './../../../../shared/services/loader.service';
 
 import { ButtonModule } from 'primeng/button';
@@ -13,6 +14,7 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   let service: LoaderService;
+  let authHelper: AuthHelper;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,9 +30,13 @@ describe('HeaderComponent', () => {
     .compileComponents();
   });
 
+  
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+
+    authHelper = TestBed.inject(AuthHelper);
+    authHelper.isAuthenticated$ = new BehaviorSubject<boolean>(true);
 
     service = TestBed.inject(LoaderService);
     fixture.detectChanges();

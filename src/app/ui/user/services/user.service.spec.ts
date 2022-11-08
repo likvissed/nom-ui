@@ -1,7 +1,7 @@
 import { ConfirmationService } from 'primeng/api';
 
 import { USER_STUB } from './../store/user.stub';
-import { USER_FEATURE_KEY, userReducer } from './../store/user-reducers';
+import { userReducer, USER_FEATURE_KEY } from '@store/user/user-reducers';
 
 import { environment } from 'src/environments/environment';
 
@@ -45,7 +45,7 @@ describe('UserService', () => {
   });
 
   describe('#getUsers', () => {
-    const getUsersUrl = `${apiUrl}/users_list`
+    const getUsersUrl = `${apiUrl}/users_list`;
     const data = {
       users: [
         USER_STUB,
@@ -106,7 +106,7 @@ describe('UserService', () => {
     };
 
     it('should return data', () => {
-      service.addUser(USER_STUB.id)
+      service.addUser(data)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
@@ -117,7 +117,7 @@ describe('UserService', () => {
     });
 
     it('should call http with the expected url', () => {
-      service.addUser(USER_STUB.id)
+      service.addUser(data)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })
@@ -143,7 +143,7 @@ describe('UserService', () => {
     };
 
     it('should return data', () => {
-      service.updateUser(USER_STUB.id)
+      service.updateUser(data)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
@@ -154,7 +154,7 @@ describe('UserService', () => {
     });
 
     it('should call http with the expected url', () => {
-      service.getUsers()
+      service.updateUser(data)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })

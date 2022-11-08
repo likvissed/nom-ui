@@ -1,11 +1,9 @@
-import { ORDER_FEATURE_KEY, orderReducer } from './../../../../order/store/reducers';
+import { ORDER_FEATURE_KEY, orderReducer } from '@store/order/order-reducers';
 
 import { StoreModule } from '@ngrx/store';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { AuthHelper, AuthHelperStub } from '@iss/ng-auth-center';
 

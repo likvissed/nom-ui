@@ -1,7 +1,6 @@
 import { StoreModule } from '@ngrx/store';
 
-import { USER_FEATURE_KEY } from './../../store/user-reducers';
-import { userReducer } from '../../store/user-reducers';
+import { userReducer, USER_FEATURE_KEY } from '@store/user/user-reducers';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 

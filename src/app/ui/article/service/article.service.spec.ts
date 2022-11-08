@@ -33,7 +33,6 @@ describe('ArticleService', () => {
 
   describe('#getArticles', () => {
     const articlesUrl = `${apiUrl}/articles_list`
-    const params = {};
     const data = {
       articles: [
         ARTICLE_STUB,
@@ -42,7 +41,7 @@ describe('ArticleService', () => {
     };
 
     it('should return data', () => {
-      service.getArticles(params)
+      service.getArticles()
         .subscribe((response: GetArticlesResponseInterface) => {
           expect(response).toEqual(data);
         })
@@ -52,8 +51,8 @@ describe('ArticleService', () => {
       req.flush(data);
     });
 
-    it('should call http with the expected url and params', () => {
-      service.getArticles(params)
+    it('should call http with the expected url', () => {
+      service.getArticles()
         .subscribe((response: GetArticlesResponseInterface) => {
           expect(response.articles.length).toEqual(data.articles.length);
           expect(response).toBe(data);

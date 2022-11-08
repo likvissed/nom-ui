@@ -1,17 +1,12 @@
 import { ArticleService } from './../../../service/article.service';
-import { ARTICLES_STUB } from './../../../store/article.stub';
-import { GetArticlesEffect } from './../../../store/effects/get-articles.effect';
 
-import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleComponent } from './article.component';
-import { articleReducer, ARTICLE_FEATURE_KEY } from '../../../store/article-reducers';
-import { of, ReplaySubject, Observable, Subject } from 'rxjs';
+
+import { articleReducer, ARTICLE_FEATURE_KEY } from '@store/article/article-reducers';
 
 describe('ArticleComponent', () => {
   let component: ArticleComponent;
