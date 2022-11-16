@@ -1,4 +1,4 @@
 export interface AddUserRequestInterface {
-  tn: string
+  tn: number
   role_id: number
 }

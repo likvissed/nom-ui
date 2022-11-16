@@ -34,7 +34,7 @@ export class NomenclatureService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get (url,  { headers: headers });
+    return this.http.get (url, { headers: headers });
   }
 
   downloadNomenclature(id: number) {

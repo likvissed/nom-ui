@@ -4,6 +4,6 @@ export interface AddOrderRequestInterface {
   date_order: string
   desc: string
   duration_type: number
-  likn: string
+  link: string
   note: string
 }

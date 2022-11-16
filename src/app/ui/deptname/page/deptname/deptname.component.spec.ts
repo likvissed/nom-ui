@@ -1,13 +1,10 @@
 import { StoreModule } from '@ngrx/store';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { DeptnameComponent } from './deptname.component';
 
-import { DEPTNAME_FEATURE_KEY } from './../../store/deptname-reducers';
-import { deptnameReducer } from '../../store/deptname-reducers';
+import { deptnameReducer, DEPTNAME_FEATURE_KEY } from '@store/deptname/deptname-reducers';
 
 describe('DeptnameComponent', () => {
   let component: DeptnameComponent;

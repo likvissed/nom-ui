@@ -11,11 +11,11 @@ export class EmployeeService {
     private http: HttpClient
   ) {}
 
-  findUsers(data: EmployeeInterface) {
+  findUsers(data: string) {
     const url = `${environment.apiUrl}/fio_tn_search`;
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get(`${url}?text=${data}`,  { headers: headers });
+    return this.http.get<EmployeeInterface>(`${url}?text=${data}`,  { headers: headers });
   }
 }

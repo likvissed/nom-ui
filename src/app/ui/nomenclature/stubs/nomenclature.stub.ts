@@ -3,12 +3,14 @@ export const NOMENCLATURE_STUB = {
   deptname: '123',
   year: 2022,
   sign_main: {
+    tn: 11111,
     fio: 'Иванов Иван Александрович',
-    title: 'Работник'
+    prof: 'Работник'
   },
-  signs_tns: [
+  signs_info: [
     {
-      fio: "Иванов Елена Константиновна",
+      tn: 2345,
+      fio: "Иванова Елена Константиновна",
       title: "Секретарь",
       prof: "Техник"
     }

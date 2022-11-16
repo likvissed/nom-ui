@@ -74,7 +74,10 @@ describe('NomenclatureService', () => {
   describe('#getListNomenclatures', () => {
     const listUrl = `${apiUrl}/nomenclatures_list`;
 
-    const data = { result: 'Документ отправлен в ССД' };
+    const data = [
+      NOMENCLATURE_STUB,
+      NOMENCLATURE_STUB
+    ];
 
     it('should return data', () => {
       service.getListNomenclatures()
@@ -82,7 +85,7 @@ describe('NomenclatureService', () => {
           expect(response).toEqual(data);
         })
 
-      const req = httpTestingController.expectOne({method: 'GET', url: `${listUrl}?left_index=УИВТ`});
+      const req = httpTestingController.expectOne({method: 'GET', url: listUrl});
 
       expect(req.request.method).toEqual('GET');
       expect(req.request.responseType).toEqual('json');
@@ -159,8 +162,7 @@ describe('NomenclatureService', () => {
   describe('#getCurrentNom', () => {
     const getUrl = `${apiUrl}/nomenclature_detail`;
 
-    let dt = {"left_index": 'УИВТ'}
-    const data = {};
+    const data = NOMENCLATURE_STUB;
 
     it('should return data', () => {
       service.getCurrentNom()
@@ -168,7 +170,7 @@ describe('NomenclatureService', () => {
           expect(response).toEqual(data);
         })
 
-      const req = httpTestingController.expectOne({method: 'GET', url: `${getUrl}?filters=${encodeURIComponent(JSON.stringify(dt))}`});
+      const req = httpTestingController.expectOne({method: 'GET', url: getUrl});
 
       expect(req.request.method).toEqual('GET');
       expect(req.request.responseType).toEqual('json');

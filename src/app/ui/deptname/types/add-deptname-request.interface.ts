@@ -4,7 +4,7 @@ interface User {
 }
 
 export interface AddDeptnameRequestInterface {
-  id: string
+  id: number
   deptname: string
   info: string
   users: User[]

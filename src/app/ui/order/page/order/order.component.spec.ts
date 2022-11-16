@@ -1,4 +1,4 @@
-import { ORDER_FEATURE_KEY, orderReducer } from './../../store/reducers';
+import { orderReducer, ORDER_FEATURE_KEY } from '@store/order/order-reducers';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';

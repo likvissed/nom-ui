@@ -1,15 +1,13 @@
-import { NOMENCLATURE_FEATURE_KEY } from '../../../store/nomenclature-reducers';
-import { nomenclatureReducer } from '../../../store/nomenclature-reducers';
+import { nomenclatureReducer } from '@store/nomenclature/nomenclature-reducers';
 
 import { StoreModule } from '@ngrx/store';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { ModalTemplateComponent } from './modal-template.component';
+import { NOMENCLATURE_FEATURE_KEY } from '@store/nomenclature/nomenclature-reducers';
 
 describe('ModalTemplateComponent', () => {
   let component: ModalTemplateComponent;

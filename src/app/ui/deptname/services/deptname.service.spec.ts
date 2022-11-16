@@ -1,5 +1,5 @@
 import { DEPTNAME_STUB } from './../store/deptname-stub';
-import { DEPTNAME_FEATURE_KEY, deptnameReducer } from './../store/deptname-reducers';
+import { deptnameReducer, DEPTNAME_FEATURE_KEY } from '@store/deptname/deptname-reducers';
 
 import { DeptnameService } from './deptname.service';
 
@@ -83,15 +83,13 @@ describe('DeptnameService', () => {
 
   describe('#addDeptname', () => {
     const pathUrl = `${apiUrl}/add_deptname`
-    const data = {
-      DEPTNAME_STUB
-    };
+    const data = DEPTNAME_STUB;
     const dataSuccess = {
       result: `Участок делопроизводства ${DEPTNAME_STUB.deptname} добавлен`
     };
 
     it('should return data', () => {
-      service.addDeptname(DEPTNAME_STUB.id)
+      service.addDeptname(data)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
@@ -102,7 +100,7 @@ describe('DeptnameService', () => {
     });
 
     it('should call http with the expected url', () => {
-      service.addDeptname(DEPTNAME_STUB)
+      service.addDeptname(data)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })
@@ -125,23 +123,23 @@ describe('DeptnameService', () => {
     };
 
     it('should return data', () => {
-      service.updateDeptname(DEPTNAME_STUB)
+      service.updateDeptname(data)
         .subscribe((response) => {
           expect(response).toEqual(dataSuccess);
         })
 
-      const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
+      const req = httpTestingController.expectOne({method: 'PUT', url: pathUrl});
 
       req.flush(data);
     });
 
     it('should call http with the expected url', () => {
-      service.updateDeptname(DEPTNAME_STUB)
+      service.updateDeptname(data)
         .subscribe((response: any) => {
           expect(response).toEqual(dataSuccess);
         })
 
-        const req = httpTestingController.expectOne({method: 'POST', url: pathUrl});
+        const req = httpTestingController.expectOne({method: 'PUT', url: pathUrl});
 
         expect(req.request.method).toEqual('PUT');
         expect(req.request.responseType).toEqual('json');

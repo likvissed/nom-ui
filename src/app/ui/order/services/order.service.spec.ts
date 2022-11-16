@@ -1,8 +1,9 @@
+import { AddOrderRequestInterface } from './../types/add-order-request.interface';
 import { ConfirmationService } from 'primeng/api';
 
-import { ORDER_FEATURE_KEY, orderReducer } from './../store/reducers';
+import { ORDER_FEATURE_KEY, orderReducer } from '@store/order/order-reducers';
 
-import { ORDERS_STUB } from './../store/order.stub';
+import { ORDERS_STUB, ORDER_STUB } from './../store/order.stub';
 
 import { OrderService } from './order.service';
 
@@ -12,6 +13,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { StoreModule } from '@ngrx/store';
+import { ADD_ORDER_STUB } from '@store/order/add-order.stub';
 
 describe('OrderService', () => {
   let service: OrderService;
@@ -120,15 +122,9 @@ describe('OrderService', () => {
 
   describe('#addOrder', () => {
     const addOrderUrl = `${apiUrl}/order_reg`;
-    const params = {
-      article: "1б",
-      name: 'test data',
-      duration_type: 1,
-      desc: '',
-      link: 'http://',
-    };
+    const params: AddOrderRequestInterface = ADD_ORDER_STUB;
     const dataSuccess = {
-      result: `Приказ ${params.name} успешно зарегистрирован для статьи: ${params.article}`
+      result: `Приказ ${params.number} успешно зарегистрирован для статьи: ${params.article}`
     };
 
     it('should be add record', () => {
