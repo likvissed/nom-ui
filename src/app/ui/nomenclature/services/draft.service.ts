@@ -11,7 +11,6 @@ export class DraftService {
   }
 
   onGet() {
-    console.log('123');
     let value = localStorage.getItem(this.nameKey);
 
     return value && JSON.parse(value);

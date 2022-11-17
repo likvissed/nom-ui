@@ -2,8 +2,8 @@ import { EmployeeService } from './../../services/employee.service';
 
 import { findEmployeeAction, findEmployeeFailureAction, findEmployeeSuccessAction } from '@store/shared/actions/find-employee.action';
 
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { catchError, map, switchMap, filter } from 'rxjs/operators';
+import { of, debounceTime } from 'rxjs';
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
@@ -20,6 +20,7 @@ export class FindEmployeeEffect {
   findEmployee$ = createEffect(() =>
     this.actions$.pipe(
       ofType(findEmployeeAction),
+      debounceTime(800),
       switchMap((value) => {
         return this.employeeService.findUsers(value.data).pipe(
           map((response: any) => {

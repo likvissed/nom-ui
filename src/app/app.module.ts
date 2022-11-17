@@ -26,6 +26,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthCenterModule } from '@iss/ng-auth-center';
 
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
+
 registerLocaleData(localeRu);
 
 const appModules: any[] = [
@@ -42,14 +44,15 @@ const appModules: any[] = [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
+    AuthCenterModule.forRoot(environment.auth),
+    AppRoutingModule,
+
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
-    HttpClientModule,
-    AuthCenterModule.forRoot(environment.auth),
-    AppRoutingModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
